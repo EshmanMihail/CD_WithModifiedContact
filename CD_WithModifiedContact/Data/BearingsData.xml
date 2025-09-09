@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Bearings>
+  <InitialParameters>
+    <Name>666</Name>
+    <AccuracyClass>1</AccuracyClass>
+    <D>11,0</D>
+    <d>2,0</d>
+    <B>4,0</B>
+    <r_s_min>1,0</r_s_min>
+    <Gr1>1,0</Gr1>
+    <Gr2>1,0</Gr2>
+    <lambda_B>1,1</lambda_B>
+    <lambda_H>1,1</lambda_H>
+    <X1>0,3</X1>
+    <X2>1,9</X2>
+    <Bm>1,2</Bm>
+    <k>0,1</k>
+  </InitialParameters>
+</Bearings>

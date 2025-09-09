@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6FAD1154-C967-4A20-98BC-721175181A6C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CD_WithModifiedContact</RootNamespace>
+    <AssemblyName>CD_WithModifiedContact</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddForm.Designer.cs">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Calculation\InitialParameters.cs" />
+    <Compile Include="Calculation\LayoutParameters\CollectionOfFormulas.cs" />
+    <Compile Include="Calculation\LayoutParameters\CosTH.cs" />
+    <Compile Include="Calculation\LayoutParameters\Fc.cs" />
+    <Compile Include="Calculation\LayoutParameters\LayoutParameters.cs" />
+    <Compile Include="Calculation\LayoutParameters\LayoutParameters_Page6.cs" />
+    <Compile Include="Calculation\LayoutParameters\LayoutParameters_Page7.cs" />
+    <Compile Include="Calculation\LayoutParameters\LayoutParameters_Page8.cs" />
+    <Compile Include="Calculation\LayoutParameters\R0smin.cs" />
+    <Compile Include="Calculation\OuterRingParameters\CollectionOfFormulas.cs" />
+    <Compile Include="Calculation\OuterRingParameters\OuterRingParameters.cs" />
+    <Compile Include="Calculation\Parameters.cs" />
+    <Compile Include="Helpers\ControlHelper.cs" />
+    <Compile Include="Helpers\ExecutionOrderAttribute.cs" />
+    <Compile Include="Helpers\FormulasHelper\FormulaDescriptions.cs" />
+    <Compile Include="Helpers\FormulasHelper\FormulaDetails.cs" />
+    <Compile Include="Helpers\FormulasHelper\FormulaSymbols.cs" />
+    <Compile Include="Helpers\GenericParameterProcessor.cs" />
+    <Compile Include="Helpers\IBearingRepository.cs" />
+    <Compile Include="Helpers\LambdaHelper.cs" />
+    <Compile Include="Helpers\ParamsTableHelper\DynamicTableManager.cs" />
+    <Compile Include="Helpers\ParameterRounder.cs" />
+    <Compile Include="Helpers\Range\InitialParameterRangeValidator.cs" />
+    <Compile Include="Helpers\Range\RangeCalculator.cs" />
+    <Compile Include="Helpers\Range\RangeDisplayManager.cs" />
+    <Compile Include="Helpers\Range\RangeResult.cs" />
+    <Compile Include="Helpers\TextBoxValidator.cs" />
+    <Compile Include="Helpers\Xml\XmlBearingRepository.cs" />
+    <Compile Include="Helpers\Xml\XmlRemover.cs" />
+    <Compile Include="Helpers\Xml\XmlUpdater.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\FractionConverter.cs" />
+    <Compile Include="Helpers\Xml\XmlReaderHelper.cs" />
+    <Compile Include="Helpers\Xml\XmlWriterHelper.cs" />
+    <Compile Include="MainFormAddMethods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormDeleteMethods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormInitializeMehtods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormListIndexChanged.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormUpdateMethods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddForm.resx">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Data\BearingsData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
