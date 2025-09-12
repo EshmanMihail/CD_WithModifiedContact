@@ -20,6 +20,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
         private decimal R0 { get; set; }
         private decimal l6 { get; set; }
 
+        [ExecutionOrder(68)]
         private void CalculateDp3()
         {
             try
@@ -35,6 +36,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
+        [ExecutionOrder(69)]
         private void CalculateF1()
         {
             try
@@ -51,6 +53,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
+        [ExecutionOrder(70)]
         private void CalculateL5()
         {
             try
@@ -63,6 +66,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
+        [ExecutionOrder(71)]
         private void Calculaterp()
         {
             try
@@ -75,6 +79,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
+        [ExecutionOrder(72)]
         private void CalculateXp()
         {
             try
@@ -96,6 +101,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
+        [ExecutionOrder(73)]
         private void CalculateD8()
         {
             try
@@ -108,6 +114,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
+        [ExecutionOrder(74)]
         private void CalculateB8()
         {
             try
@@ -121,6 +128,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
+        [ExecutionOrder(75)]
         private void CalculateR0()
         {
             try
@@ -141,6 +149,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
+        [ExecutionOrder(76)]
         private void CalculateL6()
         {
             try
