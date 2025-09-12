@@ -14,7 +14,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
         private decimal F0 { get; set; }
         private decimal M_cube_1plusCosT{ get; set; }
         private decimal cosTH { get; set; }
-        private decimal R { get; set; }
+        public decimal R { get; set; }
         private decimal alpha1 { get; set; }
         private decimal alpha2 { get; set; }
         private decimal fi_1hatch { get; set; }

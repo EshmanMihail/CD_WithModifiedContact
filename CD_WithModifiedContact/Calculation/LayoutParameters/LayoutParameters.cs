@@ -18,7 +18,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             this.initParams = initParams;
         }
 
-        private decimal Dw { get; set; }
+        public decimal Dw { get; set; }
 
         private decimal alpha0_1hatch { get; set; }
 
@@ -34,9 +34,9 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 
         private decimal z { get; set; }
 
-        private decimal Lw { get; set; }
+        public decimal Lw { get; set; }
 
-        private decimal r0smin { get; set; }
+        public decimal r0smin { get; set; }
 
         [ExecutionOrder(8)]
         private void CalculateDw()

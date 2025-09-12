@@ -11,7 +11,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
         private decimal fi1_1hatch { get; set; }
         private decimal L1_1hatch { get; set; }
         private decimal Dwe { get; set; }
-        private decimal dp1 { get; set; }
+        private decimal d_hatch_p1 { get; set; }
         private decimal Xa { get; set; }
         private decimal Ya { get; set; }
         private decimal Xop2 { get; set; }
@@ -66,7 +66,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
         }
 
         [ExecutionOrder(32)]
-        private void CalculateDp1()
+        private void CalculateD_hatch_p1()
         {
             try
             {
@@ -76,7 +76,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 
                 decimal valueInBrackets = R - (decimal)sqrtValue;
 
-                dp1 = ParameterRounder.RoundToStep(Dw - 2m * valueInBrackets, 0.001m);
+                d_hatch_p1 = ParameterRounder.RoundToStep(Dw - 2m * valueInBrackets, 0.001m);
             }
             catch (Exception ex)
             {
@@ -145,7 +145,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
         {
             try
             {
-                P = ParameterRounder.RoundToStep(0.08m * dp1, 0.001m);
+                P = ParameterRounder.RoundToStep(0.08m * d_hatch_p1, 0.001m);
             }
             catch (Exception ex)
             {
@@ -188,15 +188,15 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             {
                 (FormulaDescriptions.fi1_1hatch,       FormulaSymbols.fi1_1hatch,       fi1_1hatch),
                 (FormulaDescriptions.L1_1hatch,        FormulaSymbols.L1_1hatch,        L1_1hatch),
-                (FormulaDescriptions.Dwe,              FormulaSymbols.Dwe,               Dwe),
-                (FormulaDescriptions.dp1,              FormulaSymbols.dp1,               dp1),
-                (FormulaDescriptions.XA,               FormulaSymbols.XA,                Xa),
-                (FormulaDescriptions.Ya,               FormulaSymbols.Ya,                Ya),
-                (FormulaDescriptions.Xop2,             FormulaSymbols.Xop2,              Xop2),
-                (FormulaDescriptions.Yop2,             FormulaSymbols.Yop2,              Yop2),
-                (FormulaDescriptions.P,                FormulaSymbols.P,                 P),
-                (FormulaDescriptions.Xe,               FormulaSymbols.Xe,                Xe),
-                (FormulaDescriptions.Ye,               FormulaSymbols.Ye,                Ye)
+                (FormulaDescriptions.Dwe,              FormulaSymbols.Dwe,              Dwe),
+                (FormulaDescriptions.d_hatch_p1,       FormulaSymbols.d_hatch_p1,       d_hatch_p1),
+                (FormulaDescriptions.XA,               FormulaSymbols.XA,               Xa),
+                (FormulaDescriptions.Ya,               FormulaSymbols.Ya,               Ya),
+                (FormulaDescriptions.Xop2,             FormulaSymbols.Xop2,             Xop2),
+                (FormulaDescriptions.Yop2,             FormulaSymbols.Yop2,             Yop2),
+                (FormulaDescriptions.P,                FormulaSymbols.P,                P),
+                (FormulaDescriptions.Xe,               FormulaSymbols.Xe,               Xe),
+                (FormulaDescriptions.Ye,               FormulaSymbols.Ye,               Ye)
             };
 
             foreach (var (description, symbol, value) in formulaDetailsList)

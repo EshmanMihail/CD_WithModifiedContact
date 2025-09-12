@@ -61,9 +61,16 @@
     <Compile Include="Calculation\LayoutParameters\LayoutParameters_Page7.cs" />
     <Compile Include="Calculation\LayoutParameters\LayoutParameters_Page8.cs" />
     <Compile Include="Calculation\LayoutParameters\R0smin.cs" />
+    <Compile Include="Calculation\OuterRingParameters\CalculatorB_and_e_for54Formula.cs" />
+    <Compile Include="Calculation\OuterRingParameters\Calculator_d0_b1.cs" />
     <Compile Include="Calculation\OuterRingParameters\CollectionOfFormulas.cs" />
     <Compile Include="Calculation\OuterRingParameters\OuterRingParameters.cs" />
+    <Compile Include="Calculation\OuterRingParameters\R3smin.cs" />
     <Compile Include="Calculation\Parameters.cs" />
+    <Compile Include="Calculation\RollerParameters\CollectionOfFormulas.cs" />
+    <Compile Include="Calculation\RollerParameters\R0smax.cs" />
+    <Compile Include="Calculation\RollerParameters\RollerParameters.cs" />
+    <Compile Include="Calculation\RollerParameters\RollerParameter_Page11.cs" />
     <Compile Include="Helpers\ControlHelper.cs" />
     <Compile Include="Helpers\ExecutionOrderAttribute.cs" />
     <Compile Include="Helpers\FormulasHelper\FormulaDescriptions.cs" />

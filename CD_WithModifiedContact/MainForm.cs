@@ -2,6 +2,7 @@
 using CD_WithModifiedContact.Calculation;
 using CD_WithModifiedContact.Calculation.LayoutParameters;
 using CD_WithModifiedContact.Calculation.OuterRingParameters;
+using CD_WithModifiedContact.Calculation.RollerParameters;
 using CD_WithModifiedContact.Helpers;
 using CD_WithModifiedContact.Helpers.LayoutParamsHelper;
 using CD_WithModifiedContact.Helpers.Xml;
@@ -15,13 +16,14 @@ namespace CD_WithModifiedContact
 {
     public partial class MainForm : Form
     {
-        private DynamicTableManager paramsPanelManager;
+        private DynamicTableManager paramsTable;
         private GenericParameterProcessor processor;
 
         private List<InitialParameters> initParamsOfBearings;
         private InitialParameters chosenInitParams;
         private LayoutParameters layoutParameters;
         private OuterRingParameters outerRingParameters;
+        private RollerParameters rollerParameters;
 
 
         private IBearingRepository bearingRepository;
@@ -55,6 +57,7 @@ namespace CD_WithModifiedContact
             initParamsOfBearings = bearingRepository.GetAll();
 
             processor = new GenericParameterProcessor();
+            paramsTable = new DynamicTableManager();
 
             FillListView();
         }
@@ -63,15 +66,11 @@ namespace CD_WithModifiedContact
         {
             if (listViewBearingsName.SelectedItems.Count > 0)
             {
-                if (paramsPanelManager == null)
-                {
-                    paramsPanelManager = new DynamicTableManager(tabPage2);
+                CalculateLayoutParameters();
 
-                    CalculateLayoutParameters();
+                CalculateOuterRingParameters();
 
-                    CalculateOuterRingParameters();
-                }
-                else MessageBox.Show("Перерасчёт пока не доступен");
+                CalculateRollerParameters();
             }
             else MessageBox.Show("Выберите подшипкик!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
@@ -84,7 +83,9 @@ namespace CD_WithModifiedContact
 
             processor.ProcessParameters(layoutParameters);
 
-            paramsPanelManager.AddFormulasToTable(layoutParameters.GetFormulasInfo());
+            tabPage2.Controls.Clear();
+            paramsTable.InitializeTabPageComponents(tabPage2);
+            paramsTable.AddFormulasToTable(layoutParameters.GetFormulasInfo());
         }
 
         private void CalculateOuterRingParameters()
@@ -95,7 +96,22 @@ namespace CD_WithModifiedContact
             
             processor.ProcessParameters(outerRingParameters);
 
-            paramsPanelManager.AddFormulasToTable(outerRingParameters.GetFormulasInfo());
+            tabPage3.Controls.Clear();
+            paramsTable.InitializeTabPageComponents(tabPage3);
+            paramsTable.AddFormulasToTable(outerRingParameters.GetFormulasInfo());
+        }
+
+        private void CalculateRollerParameters()
+        {
+            rollerParameters = new RollerParameters(chosenInitParams, layoutParameters, outerRingParameters);
+
+            rollerParameters.MessageHendler(ShowCalculationError);
+
+            processor.ProcessParameters(rollerParameters);
+
+            tabPage4.Controls.Clear();
+            paramsTable.InitializeTabPageComponents(tabPage4);
+            paramsTable.AddFormulasToTable(rollerParameters.GetFormulasInfo());
         }
 
         private void ShowCalculationError(string message)

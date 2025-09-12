@@ -41,5 +41,8 @@ namespace CD_WithModifiedContact.Helpers
             FormulaSymbols.fi1_1hatch, FormulaSymbols.Fi1, FormulaSymbols.Fi,
             FormulaSymbols.alphaK
         };
+
+        public static readonly decimal R0MinRange = 3.0m;
+        public static readonly decimal R0MaxRange = 6.0m;
     }
 }

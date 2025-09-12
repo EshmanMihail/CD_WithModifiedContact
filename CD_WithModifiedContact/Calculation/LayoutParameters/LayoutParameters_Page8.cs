@@ -9,15 +9,15 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 {
     public partial class LayoutParameters
     {
-        private decimal alpha0 { get; set; }
+        public decimal alpha0 { get; set; }
         private decimal Xd { get; set; }
         private decimal Yd { get; set; }
         private decimal Xop1 { get; set; }
         private decimal Yop1 { get; set; }
-        private decimal Fi1 { get; set; }
+        public decimal Fi1 { get; set; }
         private decimal Fi { get; set; }
         private decimal alphaK { get; set; }
-        private decimal L1 { get; set; }
+        public decimal L1 { get; set; }
 
         [ExecutionOrder(40)]
         private void CalculateAlpha0()

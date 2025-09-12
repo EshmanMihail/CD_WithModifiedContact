@@ -13,16 +13,12 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 
         private const int ColumnsCout = 3;
 
-        public DynamicTableManager(Control tabpage)
+        public void InitializeTabPageComponents(Control tabPage)
         {
-            tabPage = tabpage;
-            InitializeTabPageComponents();
-        }
+            this.tabPage = tabPage;
 
-        private void InitializeTabPageComponents()
-        {
             panel = InitializePanel();
-            tabPage.Controls.Add(panel);
+            this.tabPage.Controls.Add(panel);
 
             table = InitializeTableLayoutPanel();
             panel.Controls.Add(table);

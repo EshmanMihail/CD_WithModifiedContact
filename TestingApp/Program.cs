@@ -50,18 +50,46 @@ namespace TestingApp
 
         static void Main(string[] args)
         {
-            PrintMethods<LayoutParameters>();
+            string input = "4563A1GTDS";
+            string name = GetBearingSymbol(input);
+            Console.WriteLine(name); // Вывод: 4563
         }
 
-        public static void PrintMethods<T>()
+        private static string GetBearingSymbol(string bearingName)
         {
-            Type type = typeof(T);
-            MemberInfo[] members = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance);
+            string result = PadWithZeros(ExtractNumbers(DeletePrefix(bearingName)), 7);
 
-            foreach (MethodInfo methodInfo in members)
+            return result;
+        }
+
+        private static string DeletePrefix(string bearingName)
+        {
+            string[] splitedString = bearingName.Split('-');
+
+            if (splitedString.Length >= 2)
             {
-                Console.WriteLine($"{methodInfo.ReturnType.Name} {methodInfo.Name}({string.Join(", ", methodInfo.GetParameters().Select(p => p.ParameterType.Name + " " + p.Name))})");
+                return splitedString[1];
             }
+
+            return bearingName;
+        }
+
+        private static string ExtractNumbers(string input)
+        {
+            StringBuilder numbers = new StringBuilder();
+
+            foreach (char c in input)
+            {
+                if (!char.IsDigit(c)) break;
+                else numbers.Append(c);
+            }
+
+            return numbers.ToString();
+        }
+
+        private static string PadWithZeros(string input, int totalLength)
+        {
+            return input.PadLeft(totalLength, '0');
         }
 
         public static decimal GetValue(decimal value)

@@ -1,9 +1,9 @@
 ﻿using CD_WithModifiedContact.Helpers;
 using System.Collections.Generic;
 
-namespace CD_WithModifiedContact.Calculation.OuterRingParameters
+namespace CD_WithModifiedContact.Calculation.RollerParameters
 {
-    public partial class OuterRingParameters
+    public partial class RollerParameters
     {
         private List<FormulaDetails> resultOfCalculations = new List<FormulaDetails>();
 

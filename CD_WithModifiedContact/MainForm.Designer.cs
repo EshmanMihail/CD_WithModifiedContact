@@ -31,9 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonChangeBearing = new System.Windows.Forms.Button();
-            this.buttonDeleteBearing = new System.Windows.Forms.Button();
             this.tableLayoutPanelInitParams = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxBm = new System.Windows.Forms.TextBox();
             this.textBoxX2 = new System.Windows.Forms.TextBox();
@@ -69,17 +66,19 @@
             this.comboBoxLambdaRange = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanelBearings = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonCalculate = new System.Windows.Forms.Button();
+            this.buttonChangeBearing = new System.Windows.Forms.Button();
+            this.buttonDeleteBearing = new System.Windows.Forms.Button();
             this.buttonAddBearing = new System.Windows.Forms.Button();
             this.listViewBearingsName = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.errorProviderMainForm = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanelInitParams.SuspendLayout();
             this.groupBoxX1Ranger.SuspendLayout();
             this.groupBoxX2Range.SuspendLayout();
@@ -93,6 +92,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -102,49 +102,15 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.flowLayoutPanel1);
+            this.tabPage1.BackColor = System.Drawing.Color.AntiqueWhite;
             this.tabPage1.Controls.Add(this.tableLayoutPanelInitParams);
             this.tabPage1.Controls.Add(this.flowLayoutPanelBearings);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1496, 710);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Исходные параметры";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.buttonChangeBearing);
-            this.flowLayoutPanel1.Controls.Add(this.buttonDeleteBearing);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1145, 3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(207, 704);
-            this.flowLayoutPanel1.TabIndex = 3;
-            // 
-            // buttonChangeBearing
-            // 
-            this.buttonChangeBearing.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonChangeBearing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonChangeBearing.Location = new System.Drawing.Point(3, 3);
-            this.buttonChangeBearing.Name = "buttonChangeBearing";
-            this.buttonChangeBearing.Size = new System.Drawing.Size(152, 51);
-            this.buttonChangeBearing.TabIndex = 4;
-            this.buttonChangeBearing.Text = "Сохранть изменения";
-            this.buttonChangeBearing.UseVisualStyleBackColor = true;
-            this.buttonChangeBearing.Click += new System.EventHandler(this.buttonChangeBearing_Click);
-            // 
-            // buttonDeleteBearing
-            // 
-            this.buttonDeleteBearing.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonDeleteBearing.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDeleteBearing.Location = new System.Drawing.Point(3, 60);
-            this.buttonDeleteBearing.Name = "buttonDeleteBearing";
-            this.buttonDeleteBearing.Size = new System.Drawing.Size(152, 42);
-            this.buttonDeleteBearing.TabIndex = 5;
-            this.buttonDeleteBearing.Text = " Удалить";
-            this.buttonDeleteBearing.UseVisualStyleBackColor = true;
-            this.buttonDeleteBearing.Click += new System.EventHandler(this.buttonDeleteBearing_Click);
             // 
             // tableLayoutPanelInitParams
             // 
@@ -183,7 +149,7 @@
             this.tableLayoutPanelInitParams.Controls.Add(this.groupBoxX2Range, 2, 10);
             this.tableLayoutPanelInitParams.Controls.Add(this.groupBoxLambda, 2, 8);
             this.tableLayoutPanelInitParams.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanelInitParams.Location = new System.Drawing.Point(163, 3);
+            this.tableLayoutPanelInitParams.Location = new System.Drawing.Point(250, 0);
             this.tableLayoutPanelInitParams.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelInitParams.Name = "tableLayoutPanelInitParams";
             this.tableLayoutPanelInitParams.RowCount = 13;
@@ -200,7 +166,7 @@
             this.tableLayoutPanelInitParams.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692486F));
             this.tableLayoutPanelInitParams.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692486F));
             this.tableLayoutPanelInitParams.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.692486F));
-            this.tableLayoutPanelInitParams.Size = new System.Drawing.Size(982, 704);
+            this.tableLayoutPanelInitParams.Size = new System.Drawing.Size(996, 710);
             this.tableLayoutPanelInitParams.TabIndex = 2;
             // 
             // textBoxBm
@@ -343,7 +309,7 @@
             this.label_k.Location = new System.Drawing.Point(1, 649);
             this.label_k.Margin = new System.Windows.Forms.Padding(0);
             this.label_k.Name = "label_k";
-            this.label_k.Size = new System.Drawing.Size(418, 54);
+            this.label_k.Size = new System.Drawing.Size(418, 60);
             this.label_k.TabIndex = 13;
             this.label_k.Text = "Конусность k";
             this.label_k.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -501,7 +467,7 @@
             "0",
             "1:12",
             "1:30"});
-            this.comboBoxk.Location = new System.Drawing.Point(420, 659);
+            this.comboBoxk.Location = new System.Drawing.Point(420, 662);
             this.comboBoxk.Margin = new System.Windows.Forms.Padding(0);
             this.comboBoxk.Name = "comboBoxk";
             this.comboBoxk.Size = new System.Drawing.Size(280, 33);
@@ -515,7 +481,7 @@
             this.groupBoxX1Ranger.Margin = new System.Windows.Forms.Padding(0);
             this.groupBoxX1Ranger.Name = "groupBoxX1Ranger";
             this.groupBoxX1Ranger.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBoxX1Ranger.Size = new System.Drawing.Size(280, 53);
+            this.groupBoxX1Ranger.Size = new System.Drawing.Size(294, 53);
             this.groupBoxX1Ranger.TabIndex = 28;
             this.groupBoxX1Ranger.TabStop = false;
             this.groupBoxX1Ranger.Text = "диапазон";
@@ -527,7 +493,7 @@
             this.labelX1Range.Location = new System.Drawing.Point(0, 13);
             this.labelX1Range.Margin = new System.Windows.Forms.Padding(0);
             this.labelX1Range.Name = "labelX1Range";
-            this.labelX1Range.Size = new System.Drawing.Size(280, 40);
+            this.labelX1Range.Size = new System.Drawing.Size(294, 40);
             this.labelX1Range.TabIndex = 1;
             this.labelX1Range.Text = "0,52...1,25";
             this.labelX1Range.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -540,7 +506,7 @@
             this.groupBoxX2Range.Margin = new System.Windows.Forms.Padding(0);
             this.groupBoxX2Range.Name = "groupBoxX2Range";
             this.groupBoxX2Range.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBoxX2Range.Size = new System.Drawing.Size(280, 53);
+            this.groupBoxX2Range.Size = new System.Drawing.Size(294, 53);
             this.groupBoxX2Range.TabIndex = 29;
             this.groupBoxX2Range.TabStop = false;
             this.groupBoxX2Range.Text = "диапазон";
@@ -552,7 +518,7 @@
             this.labelX2Range.Location = new System.Drawing.Point(0, 13);
             this.labelX2Range.Margin = new System.Windows.Forms.Padding(0);
             this.labelX2Range.Name = "labelX2Range";
-            this.labelX2Range.Size = new System.Drawing.Size(280, 40);
+            this.labelX2Range.Size = new System.Drawing.Size(294, 40);
             this.labelX2Range.TabIndex = 1;
             this.labelX2Range.Text = "0,44...0,51";
             this.labelX2Range.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -565,7 +531,7 @@
             this.groupBoxLambda.Margin = new System.Windows.Forms.Padding(0);
             this.groupBoxLambda.Name = "groupBoxLambda";
             this.groupBoxLambda.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBoxLambda.Size = new System.Drawing.Size(280, 53);
+            this.groupBoxLambda.Size = new System.Drawing.Size(294, 53);
             this.groupBoxLambda.TabIndex = 30;
             this.groupBoxLambda.TabStop = false;
             this.groupBoxLambda.Text = "выберите диапазон";
@@ -578,7 +544,7 @@
             this.comboBoxLambdaRange.Items.AddRange(new object[] {
             "1,0...1,2",
             "0,9...1,5"});
-            this.comboBoxLambdaRange.Location = new System.Drawing.Point(0, 16);
+            this.comboBoxLambdaRange.Location = new System.Drawing.Point(7, 16);
             this.comboBoxLambdaRange.Margin = new System.Windows.Forms.Padding(0);
             this.comboBoxLambdaRange.Name = "comboBoxLambdaRange";
             this.comboBoxLambdaRange.Size = new System.Drawing.Size(280, 33);
@@ -588,40 +554,74 @@
             // 
             this.flowLayoutPanelBearings.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanelBearings.Controls.Add(this.buttonCalculate);
+            this.flowLayoutPanelBearings.Controls.Add(this.buttonChangeBearing);
+            this.flowLayoutPanelBearings.Controls.Add(this.buttonDeleteBearing);
             this.flowLayoutPanelBearings.Controls.Add(this.buttonAddBearing);
             this.flowLayoutPanelBearings.Controls.Add(this.listViewBearingsName);
             this.flowLayoutPanelBearings.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanelBearings.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanelBearings.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanelBearings.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelBearings.Name = "flowLayoutPanelBearings";
-            this.flowLayoutPanelBearings.Size = new System.Drawing.Size(160, 704);
+            this.flowLayoutPanelBearings.Size = new System.Drawing.Size(250, 710);
             this.flowLayoutPanelBearings.TabIndex = 0;
             // 
             // buttonCalculate
             // 
+            this.buttonCalculate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCalculate.BackColor = System.Drawing.Color.LightGreen;
             this.buttonCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCalculate.Location = new System.Drawing.Point(3, 3);
+            this.buttonCalculate.Location = new System.Drawing.Point(40, 3);
+            this.buttonCalculate.Margin = new System.Windows.Forms.Padding(40, 3, 3, 3);
             this.buttonCalculate.Name = "buttonCalculate";
-            this.buttonCalculate.Size = new System.Drawing.Size(152, 78);
+            this.buttonCalculate.Size = new System.Drawing.Size(160, 78);
             this.buttonCalculate.TabIndex = 6;
-            this.buttonCalculate.Text = "Рассчитать";
-            this.buttonCalculate.UseVisualStyleBackColor = true;
+            this.buttonCalculate.Text = "Рассчитать🧮 ";
+            this.buttonCalculate.UseVisualStyleBackColor = false;
             this.buttonCalculate.Click += new System.EventHandler(this.buttonCalculate_Click);
+            // 
+            // buttonChangeBearing
+            // 
+            this.buttonChangeBearing.BackColor = System.Drawing.Color.LightBlue;
+            this.buttonChangeBearing.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonChangeBearing.Location = new System.Drawing.Point(40, 87);
+            this.buttonChangeBearing.Margin = new System.Windows.Forms.Padding(40, 3, 3, 3);
+            this.buttonChangeBearing.Name = "buttonChangeBearing";
+            this.buttonChangeBearing.Size = new System.Drawing.Size(160, 50);
+            this.buttonChangeBearing.TabIndex = 4;
+            this.buttonChangeBearing.Text = "Сохранть✔️";
+            this.buttonChangeBearing.UseVisualStyleBackColor = false;
+            this.buttonChangeBearing.Click += new System.EventHandler(this.buttonChangeBearing_Click);
+            // 
+            // buttonDeleteBearing
+            // 
+            this.buttonDeleteBearing.BackColor = System.Drawing.Color.Firebrick;
+            this.buttonDeleteBearing.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDeleteBearing.Location = new System.Drawing.Point(40, 143);
+            this.buttonDeleteBearing.Margin = new System.Windows.Forms.Padding(40, 3, 3, 3);
+            this.buttonDeleteBearing.Name = "buttonDeleteBearing";
+            this.buttonDeleteBearing.Size = new System.Drawing.Size(160, 50);
+            this.buttonDeleteBearing.TabIndex = 5;
+            this.buttonDeleteBearing.Text = "Удалить❌";
+            this.buttonDeleteBearing.UseVisualStyleBackColor = false;
+            this.buttonDeleteBearing.Click += new System.EventHandler(this.buttonDeleteBearing_Click);
             // 
             // buttonAddBearing
             // 
-            this.buttonAddBearing.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonAddBearing.BackColor = System.Drawing.Color.Coral;
             this.buttonAddBearing.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddBearing.Location = new System.Drawing.Point(3, 87);
+            this.buttonAddBearing.Location = new System.Drawing.Point(40, 199);
+            this.buttonAddBearing.Margin = new System.Windows.Forms.Padding(40, 3, 3, 3);
             this.buttonAddBearing.Name = "buttonAddBearing";
-            this.buttonAddBearing.Size = new System.Drawing.Size(152, 42);
+            this.buttonAddBearing.Size = new System.Drawing.Size(160, 50);
             this.buttonAddBearing.TabIndex = 3;
-            this.buttonAddBearing.Text = "добавить";
-            this.buttonAddBearing.UseVisualStyleBackColor = true;
+            this.buttonAddBearing.Text = "добавить✚";
+            this.buttonAddBearing.UseVisualStyleBackColor = false;
             this.buttonAddBearing.Click += new System.EventHandler(this.buttonAddBearing_Click);
             // 
             // listViewBearingsName
             // 
+            this.listViewBearingsName.BackColor = System.Drawing.Color.LightSalmon;
             this.listViewBearingsName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listViewBearingsName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
@@ -630,11 +630,11 @@
             this.listViewBearingsName.GridLines = true;
             this.listViewBearingsName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewBearingsName.HideSelection = false;
-            this.listViewBearingsName.Location = new System.Drawing.Point(0, 132);
+            this.listViewBearingsName.Location = new System.Drawing.Point(0, 252);
             this.listViewBearingsName.Margin = new System.Windows.Forms.Padding(0);
             this.listViewBearingsName.MultiSelect = false;
             this.listViewBearingsName.Name = "listViewBearingsName";
-            this.listViewBearingsName.Size = new System.Drawing.Size(160, 571);
+            this.listViewBearingsName.Size = new System.Drawing.Size(250, 704);
             this.listViewBearingsName.TabIndex = 0;
             this.listViewBearingsName.UseCompatibleStateImageBehavior = false;
             this.listViewBearingsName.View = System.Windows.Forms.View.Details;
@@ -642,8 +642,8 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Обозначение";
-            this.columnHeader1.Width = 160;
+            this.columnHeader1.Text = "Обозначения";
+            this.columnHeader1.Width = 250;
             // 
             // tabPage2
             // 
@@ -655,6 +655,15 @@
             this.tabPage2.Text = "Компанованный расчёт";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1496, 710);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Расчёт наружного кольца";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
@@ -664,14 +673,14 @@
             // 
             this.errorProviderMainForm.ContainerControl = this;
             // 
-            // tabPage3
+            // tabPage4
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1496, 710);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Расчёт наружного кольца";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1496, 710);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Расчёт ролика";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -686,7 +695,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanelInitParams.ResumeLayout(false);
             this.tableLayoutPanelInitParams.PerformLayout();
             this.groupBoxX1Ranger.ResumeLayout(false);
@@ -744,10 +752,10 @@
         private System.Windows.Forms.ComboBox comboBoxLambdaRange;
         private System.Windows.Forms.ErrorProvider errorProviderMainForm;
         private System.Windows.Forms.Button buttonCalculate;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button buttonChangeBearing;
         private System.Windows.Forms.Button buttonDeleteBearing;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
     }
 }
 
