@@ -8,15 +8,13 @@ using CD_WithModifiedContact.Helpers.LayoutParamsHelper;
 using CD_WithModifiedContact.Helpers.Xml;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace CD_WithModifiedContact
 {
     public partial class MainForm : Form
     {
-        private DynamicTableManager paramsTable;
+        private DynamicTableManager tableManager;
         private GenericParameterProcessor processor;
 
         private List<InitialParameters> initParamsOfBearings;
@@ -33,10 +31,7 @@ namespace CD_WithModifiedContact
         private RangeDisplayManager rangeDisplayManager;
         private InitialParameterRangeValidator rangeValidator;
 
-        private bool isItemModified = false;
-        private ListViewItem previousChosenItem = null;
-        private string previousChosenItemId = "";
-
+        private bool isFilling = false;
 
         public MainForm()
         {
@@ -56,8 +51,7 @@ namespace CD_WithModifiedContact
 
             initParamsOfBearings = bearingRepository.GetAll();
 
-            processor = new GenericParameterProcessor();
-            paramsTable = new DynamicTableManager();
+            tableManager = new DynamicTableManager();
 
             FillListView();
         }
@@ -66,57 +60,16 @@ namespace CD_WithModifiedContact
         {
             if (listViewBearingsName.SelectedItems.Count > 0)
             {
-                CalculateLayoutParameters();
+                var selectedItem = listViewBearingsName.SelectedItems[0];
+                string selectedId = selectedItem.Tag.ToString();
 
-                CalculateOuterRingParameters();
+                CalculationController controller = new CalculationController();
+                //controller.CalculateAllParameters(chosenInitParams);
+                controller.CalculateAllParameters(GetInitialParameterObject(selectedId));
 
-                CalculateRollerParameters();
+                controller.ShowCalculatedParameters(tableManager, new List<TabPage> { tabPage2, tabPage3, tabPage4 });
             }
             else MessageBox.Show("Выберите подшипкик!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-
-        private void CalculateLayoutParameters()
-        {
-            layoutParameters = new LayoutParameters(chosenInitParams);
-
-            layoutParameters.MessageHendler(ShowCalculationError);
-
-            processor.ProcessParameters(layoutParameters);
-
-            tabPage2.Controls.Clear();
-            paramsTable.InitializeTabPageComponents(tabPage2);
-            paramsTable.AddFormulasToTable(layoutParameters.GetFormulasInfo());
-        }
-
-        private void CalculateOuterRingParameters()
-        {
-            outerRingParameters = new OuterRingParameters(chosenInitParams, layoutParameters);
-
-            outerRingParameters.MessageHendler(ShowCalculationError);
-            
-            processor.ProcessParameters(outerRingParameters);
-
-            tabPage3.Controls.Clear();
-            paramsTable.InitializeTabPageComponents(tabPage3);
-            paramsTable.AddFormulasToTable(outerRingParameters.GetFormulasInfo());
-        }
-
-        private void CalculateRollerParameters()
-        {
-            rollerParameters = new RollerParameters(chosenInitParams, layoutParameters, outerRingParameters);
-
-            rollerParameters.MessageHendler(ShowCalculationError);
-
-            processor.ProcessParameters(rollerParameters);
-
-            tabPage4.Controls.Clear();
-            paramsTable.InitializeTabPageComponents(tabPage4);
-            paramsTable.AddFormulasToTable(rollerParameters.GetFormulasInfo());
-        }
-
-        private void ShowCalculationError(string message)
-        {
-            MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

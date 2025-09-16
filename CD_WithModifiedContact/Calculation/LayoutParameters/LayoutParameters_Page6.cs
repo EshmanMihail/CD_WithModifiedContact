@@ -29,6 +29,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Lwe: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -53,6 +54,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Cr: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -67,6 +69,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте C0r: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -83,6 +86,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Fr: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -98,6 +102,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте F0: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -116,6 +121,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте M_cube_1plusCosT: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -129,6 +135,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте CosTH: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -152,6 +159,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте R: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -167,6 +175,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
                 if (double.IsNaN(radians) || double.IsInfinity(radians))
                 {
                     showMessage.Invoke("Ошибка при подсчёте Alpha1.\nЗначение для arctan должно быть в пределах от -pi/2 до pi/2.");
+                    StopCalculation.Invoke();
                     return;
                 }
 
@@ -175,6 +184,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Alpha1: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -191,6 +201,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
                 if (double.IsNaN(radians) || double.IsInfinity(radians))
                 {
                     showMessage.Invoke("Ошибка при подсчёте Alpha2.\nЗначение для arcsin должно быть в пределах от -1 до 1.");
+                    StopCalculation.Invoke();
                     return;
                 }
 
@@ -199,6 +210,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Alpha2: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -212,6 +224,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте fi`: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 

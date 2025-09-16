@@ -12,6 +12,8 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
 
         private ShowMessage showMessage;
 
+        public event Action StopCalculation;
+
         public OuterRingParameters(InitialParameters initParams, LayoutParameters.LayoutParameters layoutParams)
         {
             this.initParams = initParams;
@@ -46,6 +48,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Ch1: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -90,16 +93,20 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
                 b1 = c.Getb1(initParams.D, initParams.Name);
 
                 if (b1 == -1)
+                {
                     showMessage.Invoke(
                         "Ошибка при вычислении b₁: соответствующее значение не найдено в таблице 21 ГОСТ 24696.");
+                    StopCalculation.Invoke();
+                }
 
-            }
+                }
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте b₁: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
-
+        
         private void CalculateCh2()
         {
             try
@@ -109,6 +116,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             catch(Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Ch2: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -129,25 +137,43 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте D3: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
         private void CalculateR2()
         {
-            decimal B = initParams.r_s_min + CalculatorB_and_e_for54Formula.GetRsmaxRadial(initParams.r_s_min, initParams.d);
-            decimal e = initParams.r_s_min + CalculatorB_and_e_for54Formula.GetRsmaxAxial(initParams.r_s_min, initParams.d);
-
-            if (B == -1 || e == -1)
+            try 
             {
-                showMessage.Invoke($"Ошибка в расчёте R2:\nНе найдено значение rsmax из таблицы по госту 3478.");
+                decimal B = initParams.r_s_min + CalculatorB_and_e_for54Formula.GetRsmaxRadial(initParams.r_s_min, initParams.d);
+                decimal e = initParams.r_s_min + CalculatorB_and_e_for54Formula.GetRsmaxAxial(initParams.r_s_min, initParams.d);
+
+                if (B == -1 || e == -1)
+                {
+                    showMessage.Invoke($"Ошибка в расчёте R2:\nНе найдено значение rsmax из таблицы по госту 3478.");
+                    StopCalculation.Invoke();
+                }
+
+                decimal sqrtValue = (decimal)Math.Sqrt((double)(B * B + e * e));
+
+                double rad19 = 19 * (Math.PI / 180);
+                double atanValue = Math.Atan((double)(B / e) - rad19);
+                if (double.IsNaN(atanValue) || double.IsInfinity(atanValue))
+                {
+                    showMessage.Invoke("Ошибка при подсчёте R2.\nЗначение для arctan должно быть в пределах от -1 до 1.");
+                    StopCalculation.Invoke();
+                    return;
+                }
+
+                decimal denomenator = (decimal)(4 * Math.Sin(atanValue));
+
+                R2 = ParameterRounder.RoundToStep(sqrtValue / denomenator, 1.0m);
             }
-
-            decimal sqrtValue = (decimal)Math.Sqrt((double)(B * B + e * e));
-
-            double rad19 = 19 * (Math.PI / 180);
-            decimal denomenator = (decimal)(4 * Math.Sin(Math.Atan((double)(B / e) - rad19)));
-
-            R2 = ParameterRounder.RoundToStep(sqrtValue / denomenator, 1.0m);
+            catch(Exception ex)
+            {
+                showMessage.Invoke($"Ошибка в расчёте R2: {ex.Message}");
+                StopCalculation.Invoke();
+            }
         }
 
         private void CalculateR3smin()
@@ -159,6 +185,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте r3smin: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -171,6 +198,8 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте R3: {ex.Message}");
+                StopCalculation.Invoke();
+
             }
         }
 

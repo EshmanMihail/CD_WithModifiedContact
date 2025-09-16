@@ -77,6 +77,13 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 
         public void AddFormulasToTable(List<FormulaDetails> formulaDetails)
         {
+            typeof(Control).GetProperty("DoubleBuffered",
+            System.Reflection.BindingFlags.NonPublic |
+            System.Reflection.BindingFlags.Instance)
+            .SetValue(table, true, null);
+
+            table.SuspendLayout();
+
             foreach (var formula in formulaDetails)
             {
                 table.RowCount += 1;
@@ -88,6 +95,8 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 
                 AddRowToTable(formula.Description, formula.Notation, result, newRowIndex);
             }
+
+            table.ResumeLayout();
         }
 
         private void AddRowToTable(string description, string notation, string result, int rowIndex)

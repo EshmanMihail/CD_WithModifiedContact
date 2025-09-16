@@ -1,12 +1,17 @@
-﻿using System;
+﻿using CD_WithModifiedContact.Calculation.LayoutParameters;
+using CD_WithModifiedContact.Helpers;
+using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CD_WithModifiedContact.Calculation
 {
     public interface Parameters
     {
+        event Action StopCalculation;
+
+        void MessageHendler(ShowMessage messageMethod);
+
+        List<FormulaDetails> GetFormulasInfo();
     }
 }

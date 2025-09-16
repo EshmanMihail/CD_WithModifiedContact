@@ -19,7 +19,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
         private decimal P { get; set; }
         private decimal Xe { get; set; }
         private decimal Ye { get; set; }
-
+        
         [ExecutionOrder(29)]
         private void CalculateFi1_1hatch()
         {
@@ -30,6 +30,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Fi1: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -43,6 +44,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте L1: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -62,6 +64,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Dwe: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -81,6 +84,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Dp1: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -95,6 +99,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Xa: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -109,6 +114,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Ya: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -123,6 +129,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Xop2: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -137,6 +144,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Yop2: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -150,6 +158,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте P: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -164,6 +173,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Xe: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -178,6 +188,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Ye: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 

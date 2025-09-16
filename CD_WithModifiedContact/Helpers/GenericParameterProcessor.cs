@@ -11,11 +11,14 @@ public class GenericParameterProcessor
     private readonly List<Action> calculationMethods = new List<Action>();
     private readonly List<Action> addFormulasValueMethods = new List<Action>();
 
-    public void ProcessParameters(Parameters parameters)
+    private bool IsNeedToStopCalculation = false;
+    public void StopCalculation()
     {
-        if (parameters == null)
-            throw new ArgumentNullException(nameof(parameters));
+        IsNeedToStopCalculation = true;
+    }   
 
+    public bool TryProcessParameters(Parameters parameters)
+    {
         GetCalculationMethods(parameters);
 
         if (calculationMethods.Count > 0)
@@ -23,14 +26,19 @@ public class GenericParameterProcessor
             foreach (var calcMethod in calculationMethods)
             {
                 calcMethod();
+                if (IsNeedToStopCalculation)
+                {
+                    return false;
+                }
             }
-
-            ExecuteFormulasValueMethods(parameters);
         }
         else
         {
             MessageBox.Show($"Methods not found, vot i dumay :/"); //поменять на делегат
+            return false;
         }
+
+        return true;
     }
 
     private void GetCalculationMethods(Parameters parameters)
@@ -53,7 +61,7 @@ public class GenericParameterProcessor
         }
     }
 
-    private void ExecuteFormulasValueMethods(Parameters parameters)
+    public void ExecuteFormulasValueMethods(Parameters parameters)
     {
         AddFormulasValuesMethods(parameters);
 

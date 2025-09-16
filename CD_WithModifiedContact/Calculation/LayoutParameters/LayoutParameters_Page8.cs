@@ -29,6 +29,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
                 if (double.IsNaN(radians) || double.IsInfinity(radians))
                 {
                     showMessage.Invoke("Ошибка при подсчёте Alpha0.\nЗначение для arcsin должно быть в пределах от -1 до 1.");
+                    StopCalculation.Invoke();
                     return;
                 }  
 
@@ -37,9 +38,10 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Alpha0: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
-
+        
         [ExecutionOrder(41)]
         private void CalculateXd()
         {
@@ -51,6 +53,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Xd: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -65,6 +68,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Yd: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -78,6 +82,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Xop1: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -91,6 +96,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Yop1: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -104,6 +110,8 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
                 if (double.IsNaN(radians) || double.IsInfinity(radians))
                 {
                     showMessage.Invoke("Ошибка при подсчёте Fi1.\nЗначение для arcsin должно быть в пределах от -1 до 1.");
+                    StopCalculation.Invoke();
+                    return;
                 }
 
                 Fi1 = (decimal)radians;
@@ -111,6 +119,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Fi1: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -124,6 +133,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Fi: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -137,6 +147,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте AlphaK: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -151,6 +162,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте L1: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 

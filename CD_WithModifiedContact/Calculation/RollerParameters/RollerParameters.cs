@@ -15,6 +15,8 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
         private OuterRingParameters.OuterRingParameters outerRingParams;
 
         private ShowMessage showMessage;
+        public event Action<string, decimal> RecalculateRequested;
+        public event Action StopCalculation;
 
         public RollerParameters(InitialParameters initParams,
                LayoutParameters.LayoutParameters layoutParams,
@@ -44,7 +46,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
         public decimal l2 { get; set; }
 
         public decimal dp2 { get; set; }
-
+        
         [ExecutionOrder(58)]
         private void CalculateDp1()
         {
@@ -60,6 +62,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте dp₁: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -76,6 +79,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Xm: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -92,6 +96,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Ym: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -110,6 +115,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте RT: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -123,6 +129,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Rp: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -140,6 +147,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте f: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -153,6 +161,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте l₃: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -166,6 +175,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте l₄: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -179,6 +189,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте l₂: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -198,11 +209,12 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте dp₂: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
         [ExecutionOrder(1)]
-        private void AddValueToFormulaCollection_Page7()
+        private void AddValueToFormulaCollection_Page10()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>
             {

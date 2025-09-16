@@ -28,8 +28,6 @@ namespace CD_WithModifiedContact
 
             controlHelper = new ControlHelper(tableLayoutPanelInitParams);
             controlHelper.AllowOnlyDigits(10);
-
-            ConfigureTextBoxModificationTracking(true);
         }
 
         #region Textboxs D d B change and leave event methods
@@ -57,32 +55,6 @@ namespace CD_WithModifiedContact
                textBoxX2,
                string.Empty
            );
-        }
-        #endregion
-
-        #region ModificationTracking
-        private void ConfigureTextBoxModificationTracking(bool enable)
-        {
-            foreach (var textBox in inputControls)
-            {
-                if (enable)
-                    textBox.TextChanged += MarkSelectedItemAsModified;
-                else
-                    textBox.TextChanged -= MarkSelectedItemAsModified;
-            }
-        }
-
-        private void MarkSelectedItemAsModified(object sender, EventArgs e)
-        {
-            if (listViewBearingsName.SelectedItems.Count > 0 && !isItemModified)
-            {
-                var selectedItem = listViewBearingsName.SelectedItems[0];
-                if (!selectedItem.Text.EndsWith("*"))
-                {
-                    selectedItem.Text += " *";
-                }
-                isItemModified = true;
-            }
         }
         #endregion
 

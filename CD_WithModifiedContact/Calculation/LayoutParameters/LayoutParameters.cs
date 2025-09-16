@@ -13,6 +13,8 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 
         private ShowMessage showMessage;
 
+        public event Action StopCalculation;
+
         public LayoutParameters(InitialParameters initParams)
         {
             this.initParams = initParams;
@@ -57,6 +59,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Dw: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -71,6 +74,8 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
                 if (double.IsNaN(radians) || double.IsInfinity(radians))
                 {
                     showMessage.Invoke("Ошибка при подсчёте Alpha`.\nЗначение для arcsin должно быть в пределах от -1 до 1.");
+                    StopCalculation.Invoke();
+                    return;
                 }
 
                 alpha0_1hatch = (decimal)radians;
@@ -78,6 +83,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Alpha`: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -95,6 +101,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте D1: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -109,6 +116,8 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
                 if (double.IsNaN(radians) || double.IsInfinity(radians))
                 {
                     showMessage.Invoke("Ошибка при подсчёте Alpha``.\nЗначение для arcsin должно быть в пределах от -1 до 1.");
+                    StopCalculation.Invoke();
+                    return;
                 }
 
                 alpha0_2hatch = (decimal)radians;
@@ -116,6 +125,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Alpha``: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -129,6 +139,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch(Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте rh: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -142,6 +153,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте gamma: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -152,11 +164,16 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             {
                 fc = Fc.GetValue(Dw, D1 - Dw, alpha0_1hatch);
 
-                if (fc == -1) showMessage.Invoke($"Ошибка в расчёте fc. Ошибка: значение вне диапазона! ГОСТ 18855 табл. 7");
+                if (fc == -1)
+                {
+                    showMessage.Invoke($"Ошибка в расчёте fc. Ошибка: значение вне диапазона! ГОСТ 18855 табл. 7");
+                    StopCalculation.Invoke();
+                }
             }
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте fc: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -177,6 +194,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте z: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -190,6 +208,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
                 if (double.IsNaN(radians) || double.IsInfinity(radians))
                 {
                     showMessage.Invoke("Ошибка при подсчёте Lw.\nЗначение для arcsin должно быть в пределах от -1 до 1.");
+                    StopCalculation.Invoke();
                     return;
                 }
 
@@ -200,6 +219,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Lw: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -215,12 +235,14 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
                 if (r0smin == 0)
                 {
                     showMessage.Invoke("Ошибка при подсчёте r0smin.\nЗначение не входит не в один из заданных диапазонов.");
+                    StopCalculation.Invoke();
                     return;
                 }
             }
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте R0smin: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 

@@ -20,6 +20,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
         private decimal R0 { get; set; }
         private decimal l6 { get; set; }
 
+        
         [ExecutionOrder(68)]
         private void CalculateDp3()
         {
@@ -33,6 +34,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте dp₃: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -50,6 +52,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте f₁: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -63,6 +66,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте l₅: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -76,6 +80,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте rₚ: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
@@ -89,19 +94,27 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
 
                 decimal resultValue = Xm + valueWithCos + valueWithSin;
 
-                if (resultValue > 0.495m * initParams.B)
-                {
-
-                }
-                else Xp = ParameterRounder.RoundToStep(resultValue, 0.01m);
+                Xp = ParameterRounder.RoundToStep(resultValue, 0.01m);
             }
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Xₚ: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
         [ExecutionOrder(73)]
+        private void CalculateRecalulation()
+        {
+            if (Xp > 0.495m * initParams.B)
+            {
+                StopCalculation.Invoke();
+                System.Windows.Forms.MessageBox.Show($"Вызван перерасчёт Xp > 0.495B");
+                RecalculateRequested?.Invoke("X2", initParams.X2 - 0.05m * initParams.B);
+            }
+        }
+
+        [ExecutionOrder(74)]
         private void CalculateD8()
         {
             try
@@ -111,10 +124,11 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте d₈: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
-        [ExecutionOrder(74)]
+        [ExecutionOrder(75)]
         private void CalculateB8()
         {
             try
@@ -125,10 +139,11 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте B₈: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
-        [ExecutionOrder(75)]
+        [ExecutionOrder(76)]
         private void CalculateR0()
         {
             try
@@ -141,15 +156,16 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
 
                 R0 = ParameterRounder.RoundToStep(avgValue, 0.1m);
 
-                showMessage.Invoke($"Значение R₀ было взято среднее из диапазона.");
+                //showMessage.Invoke($"Значение R₀ было взято среднее из диапазона.");
             }
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте R₀: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
-        [ExecutionOrder(76)]
+        [ExecutionOrder(77)]
         private void CalculateL6()
         {
             try
@@ -159,11 +175,12 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте l₆: {ex.Message}");
+                StopCalculation.Invoke();
             }
         }
 
         [ExecutionOrder(2)]
-        private void AddValueToFormulaCollection_Page8()
+        private void AddValueToFormulaCollection_Page11()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>
             {

@@ -1,10 +1,6 @@
 ﻿using CD_WithModifiedContact.Calculation;
 using CD_WithModifiedContact.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CD_WithModifiedContact
@@ -47,16 +43,15 @@ namespace CD_WithModifiedContact
             CheckTextBoxesRangesAndSetErrors(updatedParams);
             if (TextBoxValidator.HasValidationErrors(errorProviderMainForm, tableLayoutPanelInitParams))
             {
-                MessageBox.Show(
-                    $"Возникла ошибка при проверки введённых данных {previousChosenItem.Text}.",
-                    "Ошибка",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                //MessageBox.Show(
+                //    $"Возникла ошибка при проверки введённых данных {previousChosenItem.Text}.",
+                //    "Ошибка",
+                //    MessageBoxButtons.OK,
+                //    MessageBoxIcon.Warning
+                //);
             }
 
             selectedItem.Text = selectedItem.Text.Replace(" *", "");
-            isItemModified = false;
 
             bearingRepository.Update(updatedParams);
 

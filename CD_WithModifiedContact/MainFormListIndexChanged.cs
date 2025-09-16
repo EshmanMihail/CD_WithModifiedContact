@@ -2,10 +2,6 @@
 using CD_WithModifiedContact.Calculation;
 using CD_WithModifiedContact.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CD_WithModifiedContact
@@ -14,41 +10,20 @@ namespace CD_WithModifiedContact
     {
         private void listViewBearingsName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CheckForUnsavedChanges();
+            errorProviderMainForm.Clear();
 
             if (listViewBearingsName.SelectedItems.Count > 0)
             {
-                string chosenBearingName = listViewBearingsName.SelectedItems[0].Text.Replace(" *", "");
+                string chosenBearingName = listViewBearingsName.SelectedItems[0].Text;
 
                 InitialParameters initParamsForChosenBearing = FindObjectByName(chosenBearingName);
                 chosenInitParams = initParamsForChosenBearing;
 
                 if (initParamsForChosenBearing != null)
                     FillTextBoxesByChosenInformation(initParamsForChosenBearing);
-
-                previousChosenItem = listViewBearingsName.SelectedItems[0];
-                previousChosenItemId = previousChosenItem.Tag.ToString();
             }
 
-            ChangeParametersInTextBoxRange();
-        }
-
-        private void CheckForUnsavedChanges()
-        {
-            if (isItemModified)
-            {
-                var result = ShowUnsavedChangesWarning();
-
-                if (result == DialogResult.Yes)
-                {
-                    UpdateItemData(previousChosenItem, previousChosenItemId);
-                }
-                else
-                {
-                    previousChosenItem.Text = previousChosenItem.Text.Replace(" *", "");
-                    isItemModified = false;
-                }
-            }
+            if (isFilling) ChangeParametersInTextBoxRange();
         }
 
         private DialogResult ShowUnsavedChangesWarning()
@@ -84,7 +59,7 @@ namespace CD_WithModifiedContact
 
         private void FillTextBoxesByChosenInformation(InitialParameters initParamsForChosenBearing)
         {
-            ConfigureTextBoxModificationTracking(false);
+            isFilling = true;
 
             textBoxBearingName.Text = initParamsForChosenBearing.Name;
             textBoxAccuracyClass.Text = initParamsForChosenBearing.AccuracyClass.ToString();
@@ -100,30 +75,33 @@ namespace CD_WithModifiedContact
             textBoxBm.Text = initParamsForChosenBearing.Bm.ToString();
             comboBoxk.Text = initParamsForChosenBearing.k.ToString();
 
-            ConfigureTextBoxModificationTracking(true);
+            isFilling = false;
         }
 
         private void ChangeParametersInTextBoxRange()
         {
-            rangeDisplayManager.HandleRangeCalculation(
-                textBoxD,
-                textBox_d,
-                Constants.X1MinRange,
-                Constants.X1MaxRange,
-                labelX1Range,
-                textBoxX1,
-                ""
-            );
+            if (false) // проверка на рендж
+            {
+                rangeDisplayManager.HandleRangeCalculation(
+                        textBoxD,
+                        textBox_d,
+                        Constants.X1MinRange,
+                        Constants.X1MaxRange,
+                        labelX1Range,
+                        textBoxX1,
+                        ""
+                    );
 
-            rangeDisplayManager.HandleRangeCalculation(
-                textBoxB,
-                null,
-                Constants.X2MinRange,
-                Constants.X2MaxRange,
-                labelX2Range,
-                textBoxX2,
-                ""
-            );
+                rangeDisplayManager.HandleRangeCalculation(
+                    textBoxB,
+                    null,
+                    Constants.X2MinRange,
+                    Constants.X2MaxRange,
+                    labelX2Range,
+                    textBoxX2,
+                    ""
+                ); 
+            }
         }
     }
 }

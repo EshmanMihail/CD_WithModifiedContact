@@ -52,6 +52,7 @@
     <Compile Include="AddForm.Designer.cs">
       <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calculation\CalculationController.cs" />
     <Compile Include="Calculation\InitialParameters.cs" />
     <Compile Include="Calculation\LayoutParameters\CollectionOfFormulas.cs" />
     <Compile Include="Calculation\LayoutParameters\CosTH.cs" />
