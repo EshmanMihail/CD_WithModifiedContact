@@ -13,5 +13,7 @@ namespace CD_WithModifiedContact.Calculation
         void MessageHendler(ShowMessage messageMethod);
 
         List<FormulaDetails> GetFormulasInfo();
+
+        void ClearFormulasInfo();
     }
 }

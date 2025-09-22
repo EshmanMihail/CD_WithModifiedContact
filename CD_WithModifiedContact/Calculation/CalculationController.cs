@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using LP = CD_WithModifiedContact.Calculation.LayoutParameters.LayoutParameters;
 using ORP = CD_WithModifiedContact.Calculation.OuterRingParameters.OuterRingParameters;
 using RP = CD_WithModifiedContact.Calculation.RollerParameters.RollerParameters;
+using IRP = CD_WithModifiedContact.Calculation.InnerRingParameters.InnerRingParameters;
+using SP = CD_WithModifiedContact.Calculation.SeparatorParameters.SeparatorParameters;
 
 namespace CD_WithModifiedContact.Calculation
 {
@@ -14,6 +16,8 @@ namespace CD_WithModifiedContact.Calculation
         private LP layoutParameters;
         private ORP outerRingParameters;
         private RP rollerParameters;
+        private IRP innerRingParameters;
+        private SP separatorParameters;
 
         public void CalculateAllParameters(InitialParameters chosenInitParams)
         {
@@ -24,10 +28,12 @@ namespace CD_WithModifiedContact.Calculation
             {
                 () => CalculateLayoutParameters(processor),
                 () => CalculateOuterRingParameters(processor),
-                () => CalculateRollerParameters(processor)
+                () => CalculateRollerParameters(processor),
+                () => CalulateInnerRingParameters(processor),
+                () => CalculateSeparatorParameters(processor)
             };
 
-            for (int i = 0; i < steps.Count; i++)
+            for (int i = 0; i < 3/*steps.Count*/; i++)
             {
                 bool success = steps[i]();
                 processor.ExecuteFormulasValueMethods(GetParameterObjectByOrder(i));
@@ -67,6 +73,27 @@ namespace CD_WithModifiedContact.Calculation
             return processor.TryProcessParameters(rollerParameters);
         }
 
+        private bool CalulateInnerRingParameters(GenericParameterProcessor processor)
+        {
+            innerRingParameters = new IRP(initParams, layoutParameters, outerRingParameters, rollerParameters);
+
+            innerRingParameters.MessageHendler(ShowCalculationError);
+            innerRingParameters.StopCalculation += processor.StopCalculation;
+            innerRingParameters.RecalculateRequested += Recalculation;
+
+            return processor.TryProcessParameters(innerRingParameters);
+        }
+
+        private bool CalculateSeparatorParameters(GenericParameterProcessor processor)
+        {
+            separatorParameters = new SP(initParams, layoutParameters, outerRingParameters, rollerParameters, innerRingParameters);
+
+            separatorParameters.MessageHendler(ShowCalculationError);
+            separatorParameters.StopCalculation += processor.StopCalculation;
+
+            return processor.TryProcessParameters(separatorParameters);
+        }
+
         private Parameters GetParameterObjectByOrder(int index)
         {
             switch (index)
@@ -77,19 +104,50 @@ namespace CD_WithModifiedContact.Calculation
                     return outerRingParameters;
                 case 2:
                     return rollerParameters;
+                case 3:
+                    return innerRingParameters;
+                case 4:
+                    return separatorParameters;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(index), "Индекс должен быть от 0 до 2.");
+                    throw new ArgumentOutOfRangeException(nameof(index), "Индекс должен быть от 0 до 4.");
             }
         }
 
         private void Recalculation(string paramName, decimal newValue)
         {
-            InitialParameters newInitParams = initParams;
+            var recalculationRules = new Dictionary<string, string>
+            {
+                { "X1", "a < 0.75(d6 - d2)" },
+                { "X2", "Xp > 0.495B" }
+            };
 
+            if (!recalculationRules.TryGetValue(paramName, out string reasonOfRecalculation))
+            {
+                MessageBox.Show($"Параметр {paramName} не поддерживается для перерасчета.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            InitialParameters newInitParams = initParams;
             if (paramName == "X1") newInitParams.X1 = newValue;
-            else if (paramName == "X2") newInitParams.X2 = newValue;
+            if (paramName == "X2") newInitParams.X2 = newValue;
+
+            var result = MessageBox.Show(
+                $"Вызван перерасчёт: {reasonOfRecalculation}. Хотите продолжить перерасчет?",
+                "Перерасчёт", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Cancel) { return; }
 
             CalculateAllParameters(newInitParams);
+        }
+
+        private void ClearInfoAboutParamsFromulas()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                var obj = GetParameterObjectByOrder(i);
+                obj?.ClearFormulasInfo();
+            }
         }
 
         public void ShowCalculatedParameters(DynamicTableManager tableManager, List<TabPage> tabPages)
@@ -102,6 +160,7 @@ namespace CD_WithModifiedContact.Calculation
                 if (obj != null)
                 {
                     tableManager.InitializeTabPageComponents(tabPages[i]);
+                    MessageBox.Show(obj.GetFormulasInfo().Count.ToString());
                     tableManager.AddFormulasToTable(obj.GetFormulasInfo());
                 }
             }

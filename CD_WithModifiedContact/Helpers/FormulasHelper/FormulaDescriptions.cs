@@ -79,5 +79,60 @@ namespace CD_WithModifiedContact.Helpers
         public static readonly string B8 = "";
         public static readonly string R0 = "";
         public static readonly string l6 = "";
+
+        public static readonly string d2_2hatch = "";
+        public static readonly string d6 = "";
+        public static readonly string Fik = "";
+        public static readonly string rB = "";
+        public static readonly string XB = "";
+        public static readonly string XB1 = "";
+        public static readonly string XB2 = "";
+        public static readonly string YB = "";
+        public static readonly string a = "";
+        public static readonly string d2 = "";
+
+        public static readonly string a2 = "";
+        public static readonly string a3 = "";
+        public static readonly string lambda1 = "";
+        public static readonly string delta = "";
+        public static readonly string dp2_1hatch = "";
+        public static readonly string a1 = "";
+        public static readonly string d1 = "";
+        public static readonly string d3 = "";
+        public static readonly string F = "";
+        public static readonly string gamma1 = "";
+
+        public static readonly string d4 = "";
+        public static readonly string d5 = "";
+        public static readonly string dk = "";
+        public static readonly string h = "";
+        public static readonly string h1 = "";
+        public static readonly string Dk1 = "";
+        public static readonly string m0 = "";
+        public static readonly string m1 = "";
+        public static readonly string m2 = "";
+        public static readonly string m3 = "";
+        public static readonly string rm = "";
+        public static readonly string dm = "";
+
+        public static readonly string epsilon1 = "";
+        public static readonly string dc = "";
+        public static readonly string epsilon3 = "";
+        public static readonly string S = "";
+        public static readonly string Bc = "";
+        public static readonly string bc = "";
+        public static readonly string Dc = "";
+        public static readonly string deltaAngle = "";
+        public static readonly string Dc1 = "";
+
+        public static readonly string Fic = "";
+        public static readonly string D0 = "";
+        public static readonly string C1 = "";
+        public static readonly string epsilon2 = "";
+        public static readonly string dr = "";
+        public static readonly string alphar = "";
+        public static readonly string S1 = "";
+        public static readonly string e2 = "";
+        public static readonly string Fir = "";
     }
 }

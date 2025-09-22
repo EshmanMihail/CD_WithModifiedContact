@@ -66,7 +66,7 @@ public class GenericParameterProcessor
         AddFormulasValuesMethods(parameters);
 
         if (addFormulasValueMethods.Count > 0)
-        {
+        {;
             foreach (var addMethod in addFormulasValueMethods)
             {
                 addMethod();

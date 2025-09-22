@@ -1,4 +1,5 @@
 ﻿using CD_WithModifiedContact.Calculation;
+using CD_WithModifiedContact.Calculation.InnerRingParameters;
 using CD_WithModifiedContact.Calculation.LayoutParameters;
 using CD_WithModifiedContact.Helpers;
 using System;
@@ -50,78 +51,7 @@ namespace TestingApp
 
         static void Main(string[] args)
         {
-            string input = "4563A1GTDS";
-            string name = GetBearingSymbol(input);
-            Console.WriteLine(name); // Вывод: 4563
-        }
-
-        private static string GetBearingSymbol(string bearingName)
-        {
-            string result = PadWithZeros(ExtractNumbers(DeletePrefix(bearingName)), 7);
-
-            return result;
-        }
-
-        private static string DeletePrefix(string bearingName)
-        {
-            string[] splitedString = bearingName.Split('-');
-
-            if (splitedString.Length >= 2)
-            {
-                return splitedString[1];
-            }
-
-            return bearingName;
-        }
-
-        private static string ExtractNumbers(string input)
-        {
-            StringBuilder numbers = new StringBuilder();
-
-            foreach (char c in input)
-            {
-                if (!char.IsDigit(c)) break;
-                else numbers.Append(c);
-            }
-
-            return numbers.ToString();
-        }
-
-        private static string PadWithZeros(string input, int totalLength)
-        {
-            return input.PadLeft(totalLength, '0');
-        }
-
-        public static decimal GetValue(decimal value)
-        {
-            decimal formulaValue = value;
-
-            var minValue = keyValues.Keys.Min();
-            var maxValue = keyValues.Keys.Max();
-
-            if (formulaValue < minValue || formulaValue > maxValue)
-            {
-                return -1;
-            }
-
-            if (keyValues.TryGetValue(formulaValue, out decimal result))
-            {
-                return result;
-            }
-
-            var lowerPoint = keyValues.Keys.Where(k => k < formulaValue).OrderByDescending(k => k).FirstOrDefault();
-            var upperPoint = keyValues.Keys.Where(k => k > formulaValue).OrderBy(k => k).FirstOrDefault();
-
-            Console.WriteLine($"({lowerPoint}::{upperPoint})");
-
-            decimal y1 = keyValues[lowerPoint];
-            decimal y2 = keyValues[upperPoint];
-            decimal x1 = lowerPoint;
-            decimal x2 = upperPoint;
-
-            decimal interpolatedValue = y1 + (formulaValue - x1) * (y2 - y1) / (x2 - x1);
-
-            return interpolatedValue;
+            
         }
     }
 }

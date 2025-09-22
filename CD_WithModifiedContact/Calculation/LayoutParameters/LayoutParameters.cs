@@ -28,7 +28,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 
         private decimal alpha0_2hatch { get; set; }
 
-        private decimal rh { get; set; }
+        public decimal rh { get; set; }
 
         private decimal gamma { get; set; }
 
@@ -272,6 +272,11 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
         public void MessageHendler(ShowMessage messageMethod)
         {
             showMessage = messageMethod;
+        }
+
+        public void ClearFormulasInfo()
+        {
+            resultOfCalculations.Clear();
         }
     }
 }

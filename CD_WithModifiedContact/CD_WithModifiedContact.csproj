@@ -54,6 +54,11 @@
     </Compile>
     <Compile Include="Calculation\CalculationController.cs" />
     <Compile Include="Calculation\InitialParameters.cs" />
+    <Compile Include="Calculation\InnerRingParameters\CollectionOfFormulas.cs" />
+    <Compile Include="Calculation\InnerRingParameters\InnerRingCalculation_Page14.cs" />
+    <Compile Include="Calculation\InnerRingParameters\InnerRingParameters.cs" />
+    <Compile Include="Calculation\InnerRingParameters\InnerRingParameters_Page13.cs" />
+    <Compile Include="Calculation\InnerRingParameters\m_m1_m2_m3.cs" />
     <Compile Include="Calculation\LayoutParameters\CollectionOfFormulas.cs" />
     <Compile Include="Calculation\LayoutParameters\CosTH.cs" />
     <Compile Include="Calculation\LayoutParameters\Fc.cs" />
@@ -72,6 +77,10 @@
     <Compile Include="Calculation\RollerParameters\R0smax.cs" />
     <Compile Include="Calculation\RollerParameters\RollerParameters.cs" />
     <Compile Include="Calculation\RollerParameters\RollerParameter_Page11.cs" />
+    <Compile Include="Calculation\SeparatorParameters\CollectionOfFormulas.cs" />
+    <Compile Include="Calculation\SeparatorParameters\SeparatorParameters.cs" />
+    <Compile Include="Calculation\SeparatorParameters\SeparatorParameters_Page16.cs" />
+    <Compile Include="Calculation\SeparatorParameters\SeparatorParameters_Page17.cs" />
     <Compile Include="Helpers\ControlHelper.cs" />
     <Compile Include="Helpers\ExecutionOrderAttribute.cs" />
     <Compile Include="Helpers\FormulasHelper\FormulaDescriptions.cs" />

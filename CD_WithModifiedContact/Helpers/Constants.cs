@@ -32,14 +32,15 @@ namespace CD_WithModifiedContact.Helpers
 
         public static readonly List<string> anglesThatRoundForMinutes = new List<string>
         {
-            FormulaSymbols.alpha0_1hatch, FormulaSymbols.alpha0_2hatch, FormulaSymbols.alpha0
+            FormulaSymbols.alpha0_1hatch, FormulaSymbols.alpha0_2hatch, FormulaSymbols.alpha0,
+            FormulaSymbols.Fik
         };
 
         public static readonly List<string> anglesThatRoundForSeconds = new List<string>
         {
             FormulaSymbols.alpha1, FormulaSymbols.alpha2, FormulaSymbols.fi_1hatch,
             FormulaSymbols.fi1_1hatch, FormulaSymbols.Fi1, FormulaSymbols.Fi,
-            FormulaSymbols.alphaK
+            FormulaSymbols.alphaK, FormulaSymbols.gamma1
         };
 
         public static readonly decimal R0MinRange = 3.0m;

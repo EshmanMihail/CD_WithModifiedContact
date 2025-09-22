@@ -14,8 +14,8 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
         private decimal d_hatch_p1 { get; set; }
         private decimal Xa { get; set; }
         private decimal Ya { get; set; }
-        private decimal Xop2 { get; set; }
-        private decimal Yop2 { get; set; }
+        public decimal Xop2 { get; set; }
+        public decimal Yop2 { get; set; }
         private decimal P { get; set; }
         private decimal Xe { get; set; }
         private decimal Ye { get; set; }

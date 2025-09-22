@@ -28,23 +28,14 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
         }
 
         public decimal dp1 { get; set; }
-
         public decimal Xm { get; set; }
-
         public decimal Ym { get; set; }
-
         public decimal RT { get; set; }
-
         public decimal Rp { get; set; }
-
         public decimal f {  get; set; }
-
         public decimal l3 { get; set; }
-
         public decimal l4 { get; set; }
-
         public decimal l2 { get; set; }
-
         public decimal dp2 { get; set; }
         
         [ExecutionOrder(58)]
@@ -239,6 +230,11 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
         public void MessageHendler(ShowMessage messageMethod)
         {
             showMessage = messageMethod;
+        }
+
+        public void ClearFormulasInfo()
+        {
+            resultOfCalculations.Clear();
         }
     }
 }

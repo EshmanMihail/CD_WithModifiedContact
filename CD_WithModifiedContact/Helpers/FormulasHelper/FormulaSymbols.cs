@@ -79,5 +79,67 @@ namespace CD_WithModifiedContact.Helpers
         public static readonly string B8 = "B₈";
         public static readonly string R0 = "R₀";
         public static readonly string l6 = "l₆";
+
+        public static readonly string d2_2hatch = "d₂''";
+        public static readonly string d6 = "d₆";
+        public static readonly string Fik = "φₖ";
+        public static readonly string rB = "rB";
+        public static readonly string XB = "XB";
+        public static readonly string XB1 = "XB₁";
+        public static readonly string XB2 = "XB₂";
+        public static readonly string YB = "YB";
+        public static readonly string a = "a";
+        public static readonly string d2 = "d₂";
+
+        public static readonly string a2 = "a₂";
+        public static readonly string a3 = "a₃";
+        public static readonly string lambda1 = "λ₁";
+        public static readonly string delta = "Δ";
+        public static readonly string dp2_1hatch = "dp₂'";
+        public static readonly string a1 = "a₁";
+        public static readonly string d1 = "d₁";
+        public static readonly string d3 = "d₃";
+        public static readonly string F = "F";
+        public static readonly string gamma1 = "γ₁";
+
+        public static readonly string d4 = "d₄";
+        public static readonly string d5 = "d₅";
+        public static readonly string dk = "dₖ";
+        public static readonly string h = "h";
+        public static readonly string h1 = "h₁";
+        public static readonly string Dk1 = "Dₖ₁";
+        public static readonly string m0 = "m₀";
+        public static readonly string m1 = "m₁";
+        public static readonly string m2 = "m₂";
+        public static readonly string m3 = "m₃";
+        public static readonly string rm = "rₘ";
+        public static readonly string dm = "dₘ";
+
+        public static readonly string epsilon1 = "ε₁";
+        public static readonly string dc = "d꜀";
+        public static readonly string epsilon3 = "ε₃";
+        public static readonly string S = "S";
+        public static readonly string Bc = "B꜀";
+        public static readonly string bc = "b꜀";
+        public static readonly string Dc = "D꜀";
+        public static readonly string deltaAngle = "Δφ";
+        public static readonly string Dc1 = "D꜀₁";
+
+        public static readonly string Fic = "φ꜀";
+        public static readonly string D0 = "D₀";
+        public static readonly string C1 = "C₁";
+        public static readonly string epsilon2 = "ε₂";
+        public static readonly string dr = "dᵣ";
+        public static readonly string alphar = "αᵣ";
+        public static readonly string S1 = "S₁";
+        public static readonly string e2 = "e₂";
+        public static readonly string Fir = "φᵣ";
+
+        public static readonly string hk = "hₖ";
+        public static readonly string Dwk = "Dwₖ";
+        public static readonly string Hr = "Hᵣ";
+        public static readonly string da = "dₐ";
+        public static readonly string e2_1hatch = "e₂′";
+
     }
 }

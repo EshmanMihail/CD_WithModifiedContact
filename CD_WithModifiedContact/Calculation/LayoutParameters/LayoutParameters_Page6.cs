@@ -10,7 +10,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
         private decimal Lwe { get; set; }
         private decimal Cr { get; set; }
         private decimal C0r { get; set; }
-        private decimal Fr{ get; set; }
+        private decimal Fr { get; set; }
         private decimal F0 { get; set; }
         private decimal M_cube_1plusCosT{ get; set; }
         private decimal cosTH { get; set; }

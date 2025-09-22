@@ -10,9 +10,27 @@ namespace CD_WithModifiedContact.Helpers
     {
         public static decimal RoundToStep(decimal value, decimal step)
         {
-            return Math.Round(value / step) * step;
+            return Math.Round(value / step, MidpointRounding.AwayFromZero) * step;
         }
 
+        public static decimal RoundUpToTenth(decimal value)
+        {
+            return Math.Ceiling(value * 10) / 10;
+        }
+
+        public static decimal RoundToCustomValues(decimal number)
+        {
+            int[] values = { 16, 25, 32, 40, 50, 63, 80, 100 };
+
+            return (decimal)values.OrderBy(v => Math.Abs(v - number)).First();
+        }
+
+        public static decimal RoundRadiansToHalfDegree(decimal radians)
+        {
+            decimal step = (decimal)Math.PI / 360m; // 0.5 градуса в радианах
+            return RoundToStep(radians, step);
+        }
+            
         public static string RoundAngleToMinutes(double value)
         {
             double degrees = value * (180 / Math.PI);
@@ -75,6 +93,5 @@ namespace CD_WithModifiedContact.Helpers
 
             return decimalPart;
         }
-
     }
 }

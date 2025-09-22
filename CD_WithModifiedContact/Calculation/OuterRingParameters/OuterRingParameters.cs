@@ -228,5 +228,10 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
         {
             showMessage = messageMethod;
         }
+
+        public void ClearFormulasInfo()
+        {
+            resultOfCalculations.Clear();
+        }
     }
 }
