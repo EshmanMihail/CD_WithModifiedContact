@@ -1,7 +1,7 @@
-﻿using CD_WithModifiedContact.Calculation;
-using CD_WithModifiedContact.Helpers;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using CD_WithModifiedContact.Helpers;
+using CD_WithModifiedContact.Calculation;
 
 namespace CD_Radial_Spherical_Roller_withAsymetricalRollers.Calculation
 {

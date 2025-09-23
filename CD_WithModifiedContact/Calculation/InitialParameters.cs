@@ -1,11 +1,11 @@
-﻿
-using System;
+﻿using System;
 
 namespace CD_WithModifiedContact.Calculation
 {
     public class InitialParameters
     {
         public string Id { get; private set; }
+
         public string Name { get; set; }
 
         public int AccuracyClass { get; set; }

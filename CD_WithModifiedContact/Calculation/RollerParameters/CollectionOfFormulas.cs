@@ -1,5 +1,5 @@
-﻿using CD_WithModifiedContact.Helpers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CD_WithModifiedContact.Helpers;
 
 namespace CD_WithModifiedContact.Calculation.RollerParameters
 {

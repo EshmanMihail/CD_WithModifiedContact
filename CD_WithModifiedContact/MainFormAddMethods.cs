@@ -1,10 +1,6 @@
-﻿using CD_WithModifiedContact.Calculation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using CD_WithModifiedContact.Calculation;
 
 namespace CD_WithModifiedContact
 {

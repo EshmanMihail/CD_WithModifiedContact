@@ -1,7 +1,6 @@
-﻿using CD_WithModifiedContact.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using CD_WithModifiedContact.Helpers;
 
 namespace CD_WithModifiedContact.Calculation.LayoutParameters
 {

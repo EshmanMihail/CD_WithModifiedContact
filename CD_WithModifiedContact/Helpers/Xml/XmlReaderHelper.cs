@@ -1,8 +1,8 @@
-﻿using CD_WithModifiedContact.Calculation;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Xml;
+using System.Collections.Generic;
+using CD_WithModifiedContact.Calculation;
 
 namespace CD_WithModifiedContact.Helpers
 {

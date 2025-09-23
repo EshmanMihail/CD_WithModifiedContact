@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CD_WithModifiedContact.Helpers
+﻿namespace CD_WithModifiedContact.Helpers
 {
     public class FormulaSymbols
     {

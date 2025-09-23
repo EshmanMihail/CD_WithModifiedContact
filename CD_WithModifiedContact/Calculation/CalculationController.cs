@@ -1,12 +1,12 @@
-﻿using CD_WithModifiedContact.Helpers.LayoutParamsHelper;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using CD_WithModifiedContact.Helpers.LayoutParamsHelper;
 using LP = CD_WithModifiedContact.Calculation.LayoutParameters.LayoutParameters;
-using ORP = CD_WithModifiedContact.Calculation.OuterRingParameters.OuterRingParameters;
 using RP = CD_WithModifiedContact.Calculation.RollerParameters.RollerParameters;
-using IRP = CD_WithModifiedContact.Calculation.InnerRingParameters.InnerRingParameters;
 using SP = CD_WithModifiedContact.Calculation.SeparatorParameters.SeparatorParameters;
+using ORP = CD_WithModifiedContact.Calculation.OuterRingParameters.OuterRingParameters;
+using IRP = CD_WithModifiedContact.Calculation.InnerRingParameters.InnerRingParameters;
 
 namespace CD_WithModifiedContact.Calculation
 {

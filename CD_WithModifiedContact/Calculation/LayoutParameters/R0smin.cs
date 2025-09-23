@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CD_WithModifiedContact.Calculation.LayoutParameters
+﻿namespace CD_WithModifiedContact.Calculation.LayoutParameters
 {
     public class R0smin
     {

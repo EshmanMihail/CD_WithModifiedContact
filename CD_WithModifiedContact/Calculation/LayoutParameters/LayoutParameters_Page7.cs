@@ -1,8 +1,6 @@
-﻿using CD_WithModifiedContact.Calculation.LayoutParameters;
-using CD_WithModifiedContact.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
+using CD_WithModifiedContact.Helpers;
 
 namespace CD_WithModifiedContact.Calculation.LayoutParameters
 {

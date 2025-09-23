@@ -1,10 +1,7 @@
-﻿using CD_WithModifiedContact.Calculation.LayoutParameters;
-using CD_WithModifiedContact.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CD_WithModifiedContact.Helpers;
+using CD_WithModifiedContact.Calculation.LayoutParameters;
 
 namespace CD_WithModifiedContact.Calculation.RollerParameters
 {

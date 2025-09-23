@@ -1,10 +1,10 @@
-﻿using CD_WithModifiedContact.Calculation;
-using CD_WithModifiedContact.Helpers;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using CD_WithModifiedContact.Helpers;
+using CD_WithModifiedContact.Calculation;
 
 public class GenericParameterProcessor
 {

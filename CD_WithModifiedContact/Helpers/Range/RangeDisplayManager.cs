@@ -1,6 +1,5 @@
-﻿using CD_WithModifiedContact.Helpers;
-using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using CD_WithModifiedContact.Helpers;
 
 public class RangeDisplayManager
 {

@@ -1,12 +1,7 @@
-﻿using CD_WithModifiedContact.Calculation;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml.Linq;
+using CD_WithModifiedContact.Calculation;
 
 namespace CD_WithModifiedContact.Helpers.Xml
 {

@@ -1,8 +1,7 @@
-﻿using CD_WithModifiedContact.Calculation.LayoutParameters;
-using CD_WithModifiedContact.Helpers;
-using Microsoft.SqlServer.Server;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CD_WithModifiedContact.Helpers;
+using CD_WithModifiedContact.Calculation.LayoutParameters;
 
 namespace CD_WithModifiedContact.Calculation
 {
