@@ -22,25 +22,28 @@ namespace CD_WithModifiedContact.Calculation
         public void CalculateAllParameters(InitialParameters chosenInitParams)
         {
             initParams = chosenInitParams;
-            var processor = new GenericParameterProcessor();
 
-            var steps = new List<Func<bool>>
+            var steps = new List<Func<GenericParameterProcessor, bool>>
             {
-                () => CalculateLayoutParameters(processor),
-                () => CalculateOuterRingParameters(processor),
-                () => CalculateRollerParameters(processor),
-                () => CalulateInnerRingParameters(processor),
-                () => CalculateSeparatorParameters(processor)
+                CalculateLayoutParameters,
+                CalculateOuterRingParameters,
+                CalculateRollerParameters,
+                CalulateInnerRingParameters,
+                CalculateSeparatorParameters
             };
 
-            for (int i = 0; i < 3/*steps.Count*/; i++)
+            for (int i = 0; i < steps.Count; i++)
             {
-                bool success = steps[i]();
+                var processor = new GenericParameterProcessor();
+
+                bool success = steps[i](processor);
+
                 processor.ExecuteFormulasValueMethods(GetParameterObjectByOrder(i));
 
                 if (!success) break;
             }
         }
+
 
         private bool CalculateLayoutParameters(GenericParameterProcessor processor)
         {
@@ -141,15 +144,6 @@ namespace CD_WithModifiedContact.Calculation
             CalculateAllParameters(newInitParams);
         }
 
-        private void ClearInfoAboutParamsFromulas()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                var obj = GetParameterObjectByOrder(i);
-                obj?.ClearFormulasInfo();
-            }
-        }
-
         public void ShowCalculatedParameters(DynamicTableManager tableManager, List<TabPage> tabPages)
         {
             for (int i = 0; i < tabPages.Count; i++)
@@ -160,7 +154,6 @@ namespace CD_WithModifiedContact.Calculation
                 if (obj != null)
                 {
                     tableManager.InitializeTabPageComponents(tabPages[i]);
-                    MessageBox.Show(obj.GetFormulasInfo().Count.ToString());
                     tableManager.AddFormulasToTable(obj.GetFormulasInfo());
                 }
             }
