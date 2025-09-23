@@ -30,7 +30,7 @@ namespace CD_WithModifiedContact.Helpers
         public static readonly List<string> anglesThatRoundForMinutes = new List<string>
         {
             FormulaSymbols.alpha0_1hatch, FormulaSymbols.alpha0_2hatch, FormulaSymbols.alpha0,
-            FormulaSymbols.Fik
+            FormulaSymbols.Fik, FormulaSymbols.lambda1
         };
 
         public static readonly List<string> anglesThatRoundForSeconds = new List<string>

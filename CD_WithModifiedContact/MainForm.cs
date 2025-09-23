@@ -6,9 +6,6 @@ using CD_WithModifiedContact.Helpers;
 using CD_WithModifiedContact.Calculation;
 using CD_WithModifiedContact.Helpers.Xml;
 using CD_WithModifiedContact.Helpers.LayoutParamsHelper;
-using CD_WithModifiedContact.Calculation.LayoutParameters;
-using CD_WithModifiedContact.Calculation.RollerParameters;
-using CD_WithModifiedContact.Calculation.OuterRingParameters;
 using CD_Radial_Spherical_Roller_withAsymetricalRollers.Calculation;
 
 namespace CD_WithModifiedContact
@@ -19,11 +16,6 @@ namespace CD_WithModifiedContact
         private GenericParameterProcessor processor;
 
         private List<InitialParameters> initParamsOfBearings;
-        private InitialParameters chosenInitParams;
-        private LayoutParameters layoutParameters;
-        private OuterRingParameters outerRingParameters;
-        private RollerParameters rollerParameters;
-
 
         private IBearingRepository bearingRepository;
         private List<Control> inputControls = new List<Control>();
@@ -68,7 +60,6 @@ namespace CD_WithModifiedContact
                 string selectedId = selectedItem.Tag.ToString();
 
                 CalculationController controller = new CalculationController();
-                //controller.CalculateAllParameters(chosenInitParams);
                 controller.CalculateAllParameters(GetInitialParameterObject(selectedId));
 
                 controller.ShowCalculatedParameters(tableManager, new List<TabPage> { tabPage2, tabPage3, tabPage4, tabPage5, tabPage6 });
@@ -83,7 +74,7 @@ namespace CD_WithModifiedContact
 
            
             Color backColor = e.State.HasFlag(DrawItemState.Selected) // Цвет фона вкладки
-                ? Color.LightBlue   // активная вкладка
+                ? Color.AntiqueWhite   // активная вкладка
                 : Color.LightSalmon;  // неактивная вкладка
 
             using (SolidBrush brush = new SolidBrush(backColor))

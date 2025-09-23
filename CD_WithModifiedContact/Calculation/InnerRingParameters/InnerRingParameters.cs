@@ -45,7 +45,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             try
             {
                 decimal firstValue = rp.Ym + lp.L1 * (decimal)Math.Sin((double)lp.Fi1);
-                decimal secondValue = 0.5m * rp.dp1 * (decimal)Math.Sin((double)lp.Fi1);
+                decimal secondValue = 0.5m * rp.dp1 * (decimal)Math.Cos((double)lp.Fi1);
 
                 d2_2hatch = ParameterRounder.RoundToStep(2 * (firstValue - secondValue), 0.001m);
             }
@@ -176,14 +176,15 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             {
                 decimal firstPart = 2 * (rp.Xm - lp.L1 * (decimal)Math.Cos((double)lp.Fi1));
 
-                decimal innerBrackets = rB - (decimal)Math.Sqrt(Math.Pow((double)rB, 2) + Math.Pow((double)lp.L1, 2));
+                decimal innerBrackets = rB - (decimal)Math.Sqrt(Math.Pow((double)rB, 2) - Math.Pow((double)lp.L1, 2));
 
-                double sinFraction = Math.Pow((double)(d6 - d2_2hatch), 2) / (16 * (double)rp.RT * Math.Cos((double)lp.alphaK));
-                decimal sinValue = (decimal)Math.Sin((double)lp.Fi1 - sinFraction);
+                double lastFraction = Math.Pow((double)(d6 - d2_2hatch), 2) / (16 * (double)rp.RT * Math.Cos((double)lp.alphaK));
 
-                decimal secondPart = lp.Dw - 2 * innerBrackets * sinValue;
+                decimal sinValue = (decimal)Math.Sin((double)lp.Fi1);
 
-                a = ParameterRounder.RoundToStep(firstPart - secondPart, 0.001m);
+                decimal secondPart = (lp.Dw - 2 * innerBrackets) * sinValue;
+
+                a = ParameterRounder.RoundToStep(firstPart - secondPart - (decimal)lastFraction, 0.001m);
             }
             catch (Exception ex)
             {

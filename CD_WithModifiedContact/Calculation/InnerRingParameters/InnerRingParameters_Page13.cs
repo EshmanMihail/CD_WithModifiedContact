@@ -22,7 +22,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             if (a < 0.75m * (d6 - d2))
             {
                 StopCalculation.Invoke();
-                RecalculateRequested.Invoke("X1", initParams.X1 - 0.005m * (initParams.D - initParams.d));
+                RecalculateRequested.Invoke("X1", initParams.X1 + 0.005m * (initParams.D - initParams.d));//newValue
             }
         }
 
@@ -55,7 +55,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
         }
 
         [ExecutionOrder(91)]
-        private void CalculateLambda1()
+        private void CalculateLambda1() // ещё раз проверить рассчёт с точностью как его делатб
         {
             try
             {
@@ -73,7 +73,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
         {
             try
             {
-                decimal firstFraction = (0.1m * dp2_1hatch - lp.r0smin) / (decimal)Math.Cos((double)lambda1);
+                decimal firstFraction = (0.1m * rp.dp2 - lp.r0smin) / (decimal)Math.Cos((double)lambda1);
 
                 decimal valueWithSin = 2 * rp.l2 * (decimal)Math.Sin((double)lp.Fi1);
                 decimal valueWithCos = rp.dp2 * (decimal)Math.Cos((double)lp.Fi1);
@@ -82,7 +82,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
 
                 decimal denominator = 2 * lp.Lw * (decimal)Math.Cos((double)lp.Fi1);
 
-                decimal resultValue = firstFraction * (decimal)Math.Sin((double)(numerator / denominator) - 1/*lambda*/);
+                decimal resultValue = firstFraction * (decimal)Math.Sin(Math.Atan((double)(numerator / denominator)) - 1/*lambda*/);
 
                 delta = ParameterRounder.RoundUpToTenth(resultValue);
             }

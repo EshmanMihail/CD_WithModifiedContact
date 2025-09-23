@@ -8,6 +8,8 @@ namespace CD_WithModifiedContact
 {
     public partial class MainForm
     {
+        private InitialParameters chosenInitParams;
+
         private void listViewBearingsName_SelectedIndexChanged(object sender, EventArgs e)
         {
             errorProviderMainForm.Clear();
