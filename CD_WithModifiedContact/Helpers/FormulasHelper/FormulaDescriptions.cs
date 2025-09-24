@@ -132,5 +132,11 @@
         public static readonly string S1 = "";
         public static readonly string e2 = "";
         public static readonly string Fir = "";
+
+        public static readonly string hk = "";
+        public static readonly string Dwk = "";
+        public static readonly string Hr = "";
+        public static readonly string da = "";
+        public static readonly string e2_1hatch = "";
     }
 }

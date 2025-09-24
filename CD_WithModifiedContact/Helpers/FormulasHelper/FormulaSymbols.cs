@@ -138,6 +138,5 @@
         public static readonly string Hr = "Hᵣ";
         public static readonly string da = "dₐ";
         public static readonly string e2_1hatch = "e₂′";
-
     }
 }

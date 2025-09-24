@@ -1,5 +1,6 @@
-﻿using System;
-using CD_WithModifiedContact.Helpers;
+﻿using CD_WithModifiedContact.Helpers;
+using System;
+using System.Collections.Generic;
 
 namespace CD_WithModifiedContact.Calculation.SeparatorParameters
 {
@@ -108,5 +109,24 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
                 StopCalculation.Invoke();
             }
         }
+
+        [ExecutionOrder(3)]
+        private void AddValueToFormulaCollection_Page17()
+        {
+            var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>
+            {
+                (FormulaDescriptions.hk,         FormulaSymbols.hk,         hk),
+                (FormulaDescriptions.Dwk,        FormulaSymbols.Dwk,        Dwk),
+                (FormulaDescriptions.Hr,         FormulaSymbols.Hr,         Hr),
+                (FormulaDescriptions.da,         FormulaSymbols.da,         da),
+                (FormulaDescriptions.e2_1hatch,  FormulaSymbols.e2_1hatch,  e2_1hatch)
+            };
+
+            foreach (var (description, symbol, value) in formulaDetailsList)
+            {
+                resultOfCalculations.Add(new FormulaDetails(description, symbol, value));
+            }
+        }
+
     }
 }

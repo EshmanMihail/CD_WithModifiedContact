@@ -166,7 +166,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         }
 
         [ExecutionOrder(1)]
-        private void AddNewValuesToFormulaCollection()
+        private void AddValueToFormulaCollection()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>
             {
