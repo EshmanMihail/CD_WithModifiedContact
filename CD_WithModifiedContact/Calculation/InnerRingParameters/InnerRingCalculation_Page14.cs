@@ -142,7 +142,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
         [ExecutionOrder(106)]
         private void CalculateM2()
         {
-            decimal valueInBrackets = 0.5m * (d6 - d2) * (decimal)Math.Tan((double)lp.alphaK) + 0.02m * lp.Dw;
+            decimal valueInBrackets = 0.5m * (d6 - d2) * (decimal)Math.Tan((double)Fik) + 0.02m * lp.Dw;
 
             if (m2 < valueInBrackets)
             {

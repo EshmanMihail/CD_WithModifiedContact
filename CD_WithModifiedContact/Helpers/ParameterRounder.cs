@@ -25,6 +25,7 @@ namespace CD_WithModifiedContact.Helpers
         public static decimal RoundRadiansToHalfDegree(decimal radians)
         {
             decimal step = (decimal)Math.PI / 360m; // 0.5 градуса в радианах
+
             return RoundToStep(radians, step);
         }
             
