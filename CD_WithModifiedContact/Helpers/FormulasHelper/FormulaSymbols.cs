@@ -114,16 +114,16 @@
         public static readonly string dm = "dₘ";
 
         public static readonly string epsilon1 = "ε₁";
-        public static readonly string dc = "d꜀";
+        public static readonly string dc = "dc";
         public static readonly string epsilon3 = "ε₃";
         public static readonly string S = "S";
-        public static readonly string Bc = "B꜀";
-        public static readonly string bc = "b꜀";
-        public static readonly string Dc = "D꜀";
+        public static readonly string Bc = "Bc";
+        public static readonly string bc = "bc";
+        public static readonly string Dc = "Dc";
         public static readonly string deltaAngle = "Δφ";
-        public static readonly string Dc1 = "D꜀₁";
+        public static readonly string Dc1 = "Dc₁";
 
-        public static readonly string Fic = "φ꜀";
+        public static readonly string Fic = "φc";
         public static readonly string D0 = "D₀";
         public static readonly string C1 = "C₁";
         public static readonly string epsilon2 = "ε₂";

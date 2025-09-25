@@ -15,43 +15,9 @@ namespace TestingApp
 {
     internal class Program
     {
-        private static Dictionary<decimal, decimal> keyValues = new Dictionary<decimal, decimal>()
-        {
-            { 0.01m, 52.1m },
-            { 0.02m, 60.8m },
-            { 0.03m, 66.5m },
-            { 0.04m, 70.7m },
-            { 0.05m, 74.1m },
-            { 0.06m, 76.9m },
-            { 0.07m, 79.2m },
-            { 0.08m, 81.2m },
-            { 0.09m, 82.8m },
-            { 0.10m, 84.2m },
-            { 0.11m, 85.4m },
-            { 0.12m, 86.4m },
-            { 0.13m, 87.1m },
-            { 0.14m, 87.7m },
-            { 0.15m, 88.2m },
-            { 0.16m, 88.5m },
-            { 0.17m, 88.7m },
-            { 0.18m, 88.8m },
-            { 0.19m, 88.8m },
-            { 0.20m, 88.7m },
-            { 0.21m, 88.5m },
-            { 0.22m, 88.2m },
-            { 0.23m, 87.9m },
-            { 0.24m, 87.5m },
-            { 0.25m, 87.0m },
-            { 0.26m, 86.4m },
-            { 0.27m, 85.8m },
-            { 0.28m, 85.2m },
-            { 0.29m, 84.5m },
-            { 0.30m, 83.8m }
-        };
-
         static void Main(string[] args)
         {
-            
+            Console.WriteLine(Math.Round(245.95284, MidpointRounding.AwayFromZero).ToString());
         }
     }
 }

@@ -17,7 +17,8 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта hk
+                decimal resultValue = lp.R * (decimal)Math.Sin((double)Fir);
+                hk = ParameterRounder.RoundToStep(resultValue, 0.01m);
             }
             catch (Exception ex)
             {
@@ -31,7 +32,13 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта Dwk
+                double R_square = Math.Pow((double)lp.R, 2);
+                double hk_square = Math.Pow((double)hk, 2);
+                decimal sqrtValue = (decimal)Math.Sqrt(R_square -  hk_square);
+
+                decimal resultValue = lp.Dw - 2 * (lp.R - sqrtValue);
+
+                Dwk = ParameterRounder.RoundToStep(resultValue, 0.01m);
             }
             catch (Exception ex)
             {
@@ -45,7 +52,9 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта Hr
+                decimal fractionValue = (lp.Dw - Dwk) / (2 * (decimal)Math.Tan((double)Fir));
+
+                Hr = ParameterRounder.RoundToStep(rp.l3 - hk + fractionValue, 0.1m);
             }
             catch (Exception ex)
             {
@@ -59,7 +68,9 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта da
+                decimal resultValue = dr - 2 * Hr * (decimal)Math.Tan((double)Fir);
+
+                da = ParameterRounder.RoundToStep(resultValue, 0.01m);
             }
             catch (Exception ex)
             {
@@ -73,7 +84,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта e2_1hatch
+                e2_1hatch = ParameterRounder.RoundToStep(lp.r0smin, 0.1m);
             }
             catch (Exception ex)
             {
@@ -87,7 +98,18 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта e2_1hatch
+                double dr_square = Math.Pow((double)dr, 2);
+                double DcMinusD0_square = Math.Pow((double)(Dc - D0), 2);
+
+                decimal leftPart = (decimal)Math.Sqrt((dr_square -  DcMinusD0_square) / 2);
+
+                double R_square = Math.Pow((double)lp.R, 2);
+                decimal cosValue = (decimal)Math.Cos((double)Fic);
+                double sencondValueSquare = Math.Pow((double)(Bc - S - lp.L1 * cosValue), 2);
+                decimal sqrtValue = (decimal)Math.Sqrt(R_square - sencondValueSquare);
+
+                decimal rightPart = lp.Dw - 2 * (lp.R - sqrtValue);
+                
             }
             catch (Exception ex)
             {

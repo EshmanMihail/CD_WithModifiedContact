@@ -33,7 +33,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 
         private decimal fc { get; set; }
 
-        private decimal z { get; set; }
+        public decimal z { get; set; }
 
         public decimal Lw { get; set; }
 

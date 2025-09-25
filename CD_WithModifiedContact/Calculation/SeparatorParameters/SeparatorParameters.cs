@@ -44,7 +44,14 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта epsilon1
+                epsilon1 = Epsilon1.GetValue(ip.d6);
+
+                if (epsilon1 < 0)
+                {
+                    showMessage.Invoke($"Не найдено подходящего значения для epsilon1 из таблицы 6.");
+                    StopCalculation.Invoke();
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -58,7 +65,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта dc
+                dc = ParameterRounder.RoundToStep(ip.d6 + epsilon1, 0.05m);
             }
             catch (Exception ex)
             {
@@ -68,11 +75,18 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         }
 
         [ExecutionOrder(111)]
-        private void CalculateEpsilon3()
+        private void CalculateEpsilon3() // ?????? dc? in book Dc
         {
             try
             {
-                // Логика расчёта epsilon3
+                decimal resultValue = -1;
+
+                if (dc <= 120) resultValue = 0.4m;
+                else if (dc > 120 && dc <= 250) resultValue = 0.6m;
+                else if (dc > 250 && dc <= 500) resultValue = 0.8m;
+                else if (dc > 500) resultValue = 1.2m;
+
+                epsilon3 = resultValue;
             }
             catch (Exception ex)
             {
@@ -86,7 +100,9 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта S
+                decimal resultValue = rp.Xm - 0.5m * epsilon3 - rp.l3 * (decimal)Math.Cos((double)lp.Fi1);
+
+                S = ParameterRounder.RoundToStep(resultValue, 0.01m);
             }
             catch (Exception ex)
             {
@@ -100,7 +116,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта Bc
+                Bc = ParameterRounder.RoundToStep(S + 1.5m * rp.l3, 0.1m);
             }
             catch (Exception ex)
             {
@@ -114,7 +130,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта bc
+                bc = ParameterRounder.RoundToStep(0.5m * lp.Lw, 0.1m);
             }
             catch (Exception ex)
             {
@@ -128,11 +144,33 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта Dc
+                double D2_square = Math.Pow((double)orp.D2, 2);
+                double Bc_square = Math.Pow((double)Bc, 2);
+
+                decimal resultValue = (decimal)Math.Sqrt(D2_square - Bc_square);
+
+                Dc = ParameterRounder.RoundToStep(resultValue, 1.0m);
             }
             catch (Exception ex)
             {
                 showMessage.Invoke($"Ошибка в расчёте Dc: {ex.Message}");
+                StopCalculation.Invoke();
+            }
+        }
+
+        [ExecutionOrder(116)]
+        private void CalculateRecalculationDc()
+        {
+            try
+            {
+                if (Dc - dc > lp.Dw)
+                {
+                    Dc = ParameterRounder.RoundToStep(ip.d6 + lp.Dw, 1.0m);
+                }
+            }
+            catch (Exception ex)
+            {
+                showMessage.Invoke($"Ошибка в перерасчёте Dc: {ex.Message}");
                 StopCalculation.Invoke();
             }
         }
@@ -142,7 +180,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта deltaAngle
+                deltaAngle = ParameterRounder.RoundRadiansToOneDegree(lp.Fi1);
             }
             catch (Exception ex)
             {
@@ -156,7 +194,9 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта Dc1
+                decimal resultValue = Dc - 2 * (Bc - bc) * (decimal)Math.Tan((double)deltaAngle);
+
+                Dc1 = ParameterRounder.RoundToStep(resultValue, 1.0m);
             }
             catch (Exception ex)
             {

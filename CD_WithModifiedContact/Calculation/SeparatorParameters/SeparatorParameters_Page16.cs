@@ -1,6 +1,7 @@
-﻿using System;
+﻿using CD_WithModifiedContact.Helpers;
+using System;
 using System.Collections.Generic;
-using CD_WithModifiedContact.Helpers;
+using System.Linq;
 
 namespace CD_WithModifiedContact.Calculation.SeparatorParameters
 {
@@ -21,7 +22,18 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                
+                double Dc1_square = Math.Pow((double)Dc1, 2);
+                double Bc_square = Math.Pow((double)Bc, 2);
+                decimal sqrtValue = (decimal)Math.Sqrt(Dc1_square + 4 * Bc_square);
+
+                while (sqrtValue >= orp.D2)
+                {
+                    Dc1--;
+
+                    Dc1_square = Math.Pow((double)Dc1, 2);
+                    Bc_square = Math.Pow((double)Bc, 2);
+                    sqrtValue = (decimal)Math.Sqrt(Dc1_square + 4 * Bc_square);
+                }
             }
             catch (Exception ex)
             {
@@ -35,7 +47,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта Fic
+                Fic = lp.Fi1;
             }
             catch (Exception ex)
             {
@@ -49,7 +61,11 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта D0
+                decimal innerBrackets = Bc - rp.Xm + 0.5m * epsilon3;
+
+                decimal bracketsValue = rp.Ym - innerBrackets * (decimal)Math.Tan((double)Fic);
+
+                D0 = ParameterRounder.RoundToStep(2 * bracketsValue, 0.01m);
             }
             catch (Exception ex)
             {
@@ -63,7 +79,12 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта C1
+                double radians = Math.PI / (double)lp.z;
+                double sinValue = Math.Sin(radians);
+
+                decimal resultValue = D0 * (decimal)sinValue;
+
+                C1 = ParameterRounder.RoundToStep(resultValue, 0.001m);
             }
             catch (Exception ex)
             {
@@ -77,7 +98,14 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта epsilon2
+                epsilon2 = Epsilon2.GetValue(lp.Dw);
+
+                if (epsilon2 < 0)
+                {
+                    showMessage.Invoke($"Не найдено подходящего значения для epsilon2 из таблицы 5.");
+                    StopCalculation.Invoke();
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -91,7 +119,10 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта dr
+                //Для гнезда коническо-цилиндрической формы epsilon2 увеличить на 0.1мм
+                if (FractionConverter.GetFraction(initParams.k, 6) != 0) epsilon2 += 0.1m;
+
+                dr = ParameterRounder.RoundToStep(lp.Dw + epsilon2, 0.05m);
             }
             catch (Exception ex)
             {
@@ -105,7 +136,13 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта alphar
+                decimal radians = (decimal)Math.Asin((double)(rp.dp1 / (2 * rp.Rp)));
+
+                decimal degrees = radians * (decimal)(180 / Math.PI);
+                decimal resultValue = 180 - 2 * degrees;
+
+                //alphar = ParameterRounder.RoundRadiansToOneDegree(resultValue);
+                alphar = ParameterRounder.RoundToStep(resultValue, 1.0m);
             }
             catch (Exception ex)
             {
@@ -119,7 +156,17 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта S1
+                //decimal alpharDegrees = alphar * (decimal)(180 / Math.PI);
+                decimal ficDegrees = ParameterRounder.RoundToStep(Fic * (decimal)(180 / Math.PI), 1.0m);
+
+                double tanAngleDegrees = (double)(ficDegrees - (180 - alphar) / 2);
+                double tanAngleRadians = tanAngleDegrees * Math.PI / 180.0;
+
+                decimal tanValue = (decimal)Math.Tan(tanAngleRadians);
+
+                decimal resultValue = 0.5m * (ip.a - epsilon3 + (dc - ip.d2_2hatch) * tanValue);
+
+                S1 = ParameterRounder.RoundToStep(resultValue, 0.1m);
             }
             catch (Exception ex)
             {
@@ -133,7 +180,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта e2
+                e2 = ParameterRounder.RoundToStep((lp.Dw - rp.dp1) / 2, 0.1m);
             }
             catch (Exception ex)
             {
@@ -147,7 +194,16 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                // Логика расчёта Fir
+                double radians = Math.Asin((double)(2 * lp.L1 / (3 * lp.R)));
+
+                if (double.IsNaN(radians) || double.IsInfinity(radians))
+                {
+                    showMessage.Invoke("Ошибка при подсчёте Fir.\nЗначение для arcsin должно быть в пределах от -1 до 1.");
+                    StopCalculation.Invoke();
+                    return;
+                }
+
+                Fir = (decimal)radians;
             }
             catch (Exception ex)
             {
@@ -161,7 +217,26 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
+                double degrees = (double)Fir * 180.0 / Math.PI;
 
+                var presets = new List<double>
+                {
+                    2.0 + 52.0 / 60.0,   // 2°52′ = 2.8667°
+                    3.0 + 35.0 / 60.0,   // 3°35′ = 3.5833°
+                    4.0 +  5.0 / 60.0,   // 4°05′ = 4.0833°
+                    4.0 + 46.0 / 60.0,   // 4°46′ = 4.7667°
+                    5.0 + 43.0 / 60.0    // 5°43′ = 5.7167°
+                };
+
+                double nearestDeg = presets.OrderBy(p => Math.Abs(p - degrees)).First();
+
+                bool cylindricalAllowed = nearestDeg < 3.0;
+                if (cylindricalAllowed)
+                {
+                    showMessage.Invoke($"{FormulaSymbols.Fir} < 3°, гнездо может быть цилиндрической формы.");
+                }
+
+                Fir = (decimal)(nearestDeg * Math.PI / 180.0); // обратно в радианы
             }
             catch (Exception ex)
             {

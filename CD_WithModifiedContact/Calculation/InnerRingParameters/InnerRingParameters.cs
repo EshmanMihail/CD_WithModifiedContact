@@ -28,16 +28,16 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             this.rp = rp;
         }
 
-        private decimal d2_2hatch {  get; set; }
-        private decimal d6 {  get; set; }
+        public decimal d2_2hatch {  get; set; }
+        public decimal d6 {  get; set; }
         private decimal Fik { get; set; }
         private decimal rB { get; set; }
         private decimal XB { get; set; }
         private decimal XB1 { get; set; }
         private decimal XB2 { get; set; }
         private decimal YB { get; set; }
-        private decimal a { get; set; }
-        private decimal d2 {  get; set; }
+        public decimal a { get; set; }
+        public decimal d2 {  get; set; }
 
         [ExecutionOrder(78)]
         private void CalculateD2_2hatch()

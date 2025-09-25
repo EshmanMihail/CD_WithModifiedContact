@@ -28,7 +28,13 @@ namespace CD_WithModifiedContact.Helpers
 
             return RoundToStep(radians, step);
         }
-            
+
+        public static decimal RoundRadiansToOneDegree(decimal radians)
+        {
+            decimal step = (decimal)Math.PI / 180m; // 1 градус в радианах
+            return RoundToStep(radians, step);
+        }
+
         public static string RoundAngleToMinutes(double value)
         {
             double degrees = value * (180 / Math.PI);

@@ -78,6 +78,8 @@
     <Compile Include="Calculation\RollerParameters\RollerParameters.cs" />
     <Compile Include="Calculation\RollerParameters\RollerParameter_Page11.cs" />
     <Compile Include="Calculation\SeparatorParameters\CollectionOfFormulas.cs" />
+    <Compile Include="Calculation\SeparatorParameters\Epsilon1.cs" />
+    <Compile Include="Calculation\SeparatorParameters\Epsilon2.cs" />
     <Compile Include="Calculation\SeparatorParameters\SeparatorParameters.cs" />
     <Compile Include="Calculation\SeparatorParameters\SeparatorParameters_Page16.cs" />
     <Compile Include="Calculation\SeparatorParameters\SeparatorParameters_Page17.cs" />
