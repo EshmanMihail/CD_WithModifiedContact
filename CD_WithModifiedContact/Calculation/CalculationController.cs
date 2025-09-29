@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using CD_WithModifiedContact.Helpers.LayoutParamsHelper;
+using CD_WithModifiedContact.Helpers;
 using LP = CD_WithModifiedContact.Calculation.LayoutParameters.LayoutParameters;
 using RP = CD_WithModifiedContact.Calculation.RollerParameters.RollerParameters;
 using SP = CD_WithModifiedContact.Calculation.SeparatorParameters.SeparatorParameters;
-using ORP = CD_WithModifiedContact.Calculation.OuterRingParameters.OuterRingParameters;
 using IRP = CD_WithModifiedContact.Calculation.InnerRingParameters.InnerRingParameters;
+using ORP = CD_WithModifiedContact.Calculation.OuterRingParameters.OuterRingParameters;
 
 namespace CD_WithModifiedContact.Calculation
 {
     public class CalculationController
     {
+        private List<Parameters> parameters = new List<Parameters>();
+
         private InitialParameters initParams;
-        private LP layoutParameters;
-        private ORP outerRingParameters;
-        private RP rollerParameters;
-        private IRP innerRingParameters;
-        private SP separatorParameters;
 
         public void CalculateAllParameters(InitialParameters chosenInitParams)
         {
@@ -38,18 +35,18 @@ namespace CD_WithModifiedContact.Calculation
 
                 bool success = steps[i](processor);
 
-                processor.ExecuteFormulasValueMethods(GetParameterObjectByOrder(i));
+                processor.ExecuteFormulasValueMethods(parameters[i]);
 
                 if (!success) break;
             }
         }
 
-
         private bool CalculateLayoutParameters(GenericParameterProcessor processor)
         {
-            layoutParameters = new LP(initParams);
+            LP layoutParameters = new LP(initParams);
+            parameters.Add(layoutParameters);
 
-            layoutParameters.MessageHendler(ShowCalculationError);
+            layoutParameters.MessageHendler(ErrorHandler.ShowError);
             layoutParameters.StopCalculation += processor.StopCalculation;
 
             return processor.TryProcessParameters(layoutParameters);
@@ -57,9 +54,10 @@ namespace CD_WithModifiedContact.Calculation
 
         private bool CalculateOuterRingParameters(GenericParameterProcessor processor)
         {
-            outerRingParameters = new ORP(initParams, layoutParameters);
+            ORP outerRingParameters = new ORP(initParams, (LP)parameters[0]);
+            parameters.Add(outerRingParameters);
 
-            outerRingParameters.MessageHendler(ShowCalculationError);
+            outerRingParameters.MessageHendler(ErrorHandler.ShowError);
             outerRingParameters.StopCalculation += processor.StopCalculation;
 
             return processor.TryProcessParameters(outerRingParameters);
@@ -67,9 +65,10 @@ namespace CD_WithModifiedContact.Calculation
 
         private bool CalculateRollerParameters(GenericParameterProcessor processor)
         {
-            rollerParameters = new RP(initParams, layoutParameters, outerRingParameters);
+            RP rollerParameters = new RP(initParams, (LP)parameters[0], (ORP)parameters[1]);
+            parameters.Add(rollerParameters);
 
-            rollerParameters.MessageHendler(ShowCalculationError);
+            rollerParameters.MessageHendler(ErrorHandler.ShowError);
             rollerParameters.StopCalculation += processor.StopCalculation;
             rollerParameters.RecalculateRequested += Recalculation;
 
@@ -78,9 +77,10 @@ namespace CD_WithModifiedContact.Calculation
 
         private bool CalulateInnerRingParameters(GenericParameterProcessor processor)
         {
-            innerRingParameters = new IRP(initParams, layoutParameters, outerRingParameters, rollerParameters);
+            IRP innerRingParameters = new IRP(initParams, (LP)parameters[0], (ORP)parameters[1], (RP)parameters[2]);
+            parameters.Add(innerRingParameters);
 
-            innerRingParameters.MessageHendler(ShowCalculationError);
+            innerRingParameters.MessageHendler(ErrorHandler.ShowError);
             innerRingParameters.StopCalculation += processor.StopCalculation;
             innerRingParameters.RecalculateRequested += Recalculation;
 
@@ -89,31 +89,13 @@ namespace CD_WithModifiedContact.Calculation
 
         private bool CalculateSeparatorParameters(GenericParameterProcessor processor)
         {
-            separatorParameters = new SP(initParams, layoutParameters, outerRingParameters, rollerParameters, innerRingParameters);
+            SP separatorParameters = new SP(initParams, (LP)parameters[0], (ORP)parameters[1], (RP)parameters[2], (IRP)parameters[3]);
+            parameters.Add(separatorParameters);
 
-            separatorParameters.MessageHendler(ShowCalculationError);
+            separatorParameters.MessageHendler(ErrorHandler.ShowError);
             separatorParameters.StopCalculation += processor.StopCalculation;
 
             return processor.TryProcessParameters(separatorParameters);
-        }
-
-        private Parameters GetParameterObjectByOrder(int index)
-        {
-            switch (index)
-            {
-                case 0:
-                    return layoutParameters;
-                case 1:
-                    return outerRingParameters;
-                case 2:
-                    return rollerParameters;
-                case 3:
-                    return innerRingParameters;
-                case 4:
-                    return separatorParameters;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(index), "Индекс должен быть от 0 до 4.");
-            }
         }
 
         private void Recalculation(string paramName, decimal newValue)
@@ -144,26 +126,9 @@ namespace CD_WithModifiedContact.Calculation
             CalculateAllParameters(newInitParams);
         }
 
-        public void ShowCalculatedParameters(DynamicTableManager tableManager, List<TabPage> tabPages)
+        public List<Parameters> GetListOfParameters()
         {
-            for (int i = 0; i < tabPages.Count; i++)
-            {
-                tabPages[i].Controls.Clear();
-
-                var obj = GetParameterObjectByOrder(i);
-                if (obj != null)
-                {
-                    tableManager.InitializeTabPageComponents(tabPages[i]);
-                    tableManager.AddFormulasToTable(obj.GetFormulasInfo());
-                }
-            }
-
-            MessageBox.Show("Расчёт окончен!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void ShowCalculationError(string message)
-        {
-            MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return parameters;
         }
     }
 }

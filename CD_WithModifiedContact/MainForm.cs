@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using CD_WithModifiedContact.Helpers;
 using CD_WithModifiedContact.Calculation;
 using CD_WithModifiedContact.Helpers.Xml;
+using CD_WithModifiedContact.Helpers.ParamsTableHelper;
 using CD_WithModifiedContact.Helpers.LayoutParamsHelper;
 using CD_Radial_Spherical_Roller_withAsymetricalRollers.Calculation;
 
@@ -56,13 +57,16 @@ namespace CD_WithModifiedContact
         {
             if (listViewBearingsName.SelectedItems.Count > 0)
             {
+                List<TabPage> tabPagesList = new List<TabPage> { tabPage2, tabPage3, tabPage4, tabPage5, tabPage6 };
+                TablePresenter tablePresenter = new TablePresenter(tableManager, tabPagesList);
+
                 var selectedItem = listViewBearingsName.SelectedItems[0];
                 string selectedId = selectedItem.Tag.ToString();
 
                 CalculationController controller = new CalculationController();
                 controller.CalculateAllParameters(GetInitialParameterObject(selectedId));
 
-                controller.ShowCalculatedParameters(tableManager, new List<TabPage> { tabPage2, tabPage3, tabPage4, tabPage5, tabPage6 });
+                tablePresenter.ShowResults(controller.GetListOfParameters());
             }
             else MessageBox.Show("Выберите подшипкик!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }

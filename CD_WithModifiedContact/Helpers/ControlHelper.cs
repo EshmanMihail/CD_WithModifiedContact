@@ -56,6 +56,22 @@ namespace CD_WithModifiedContact.Helpers
             }
         }
 
+        public static void AttachDigitOnlyHandler(TextBox textBox)
+        {
+            textBox.KeyPress += (sender, e) =>
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                if (e.KeyChar == ',' && (textBox.Text.Contains(",") || string.IsNullOrEmpty(textBox.Text)))
+                {
+                    e.Handled = true;
+                }
+            };
+        }
+
         public List<Control> GetControls()
         {
             return initControls;

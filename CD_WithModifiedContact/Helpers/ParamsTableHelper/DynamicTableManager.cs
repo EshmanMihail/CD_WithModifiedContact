@@ -92,17 +92,40 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 
                 string result = IsAngle(formula.Notation) ? RoundAngle(formula.Notation, formula.Result) : formula.Result.ToString();
 
-                AddRowToTable(formula.Description, formula.Notation, result, newRowIndex);
+                AddRowWithTextBox(formula.Description, formula.Notation, result, newRowIndex);
             }
 
             table.ResumeLayout();
         }
 
-        private void AddRowToTable(string description, string notation, string result, int rowIndex)
+        private void AddRowWithLabel(string description, string notation, string result, int rowIndex)
         {
             table.Controls.Add(InitializeLabel(description, true), 0, rowIndex);
             table.Controls.Add(InitializeLabel(notation, false), 1, rowIndex);
             table.Controls.Add(InitializeLabel(result, false), 2, rowIndex);
+        }
+
+        private void AddRowWithTextBox(string description, string notation, string initialValue, int rowIndex)
+        {
+            table.Controls.Add(InitializeLabel(description, true), 0, rowIndex);
+            table.Controls.Add(InitializeLabel(notation, false), 1, rowIndex);
+            table.Controls.Add(InitializeTextBox(initialValue), 2, rowIndex);
+        }
+
+        private TextBox InitializeTextBox(string text)
+        {
+            TextBox textBox = new TextBox
+            {
+                Text = text,
+                Dock = DockStyle.Fill,
+                Font = new Font("Arial", 14, FontStyle.Regular),
+                TextAlign = HorizontalAlignment.Center,
+                Margin = new Padding(3)
+            };
+
+            ControlHelper.AttachDigitOnlyHandler(textBox);
+
+            return textBox;
         }
 
         private bool IsAngle(string value)

@@ -1,7 +1,7 @@
-﻿using CD_WithModifiedContact.Helpers;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using System.Collections.Generic;
+using CD_WithModifiedContact.Helpers;
 
 namespace CD_WithModifiedContact.Calculation.SeparatorParameters
 {

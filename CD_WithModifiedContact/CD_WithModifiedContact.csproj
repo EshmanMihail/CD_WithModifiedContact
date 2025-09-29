@@ -84,6 +84,7 @@
     <Compile Include="Calculation\SeparatorParameters\SeparatorParameters_Page16.cs" />
     <Compile Include="Calculation\SeparatorParameters\SeparatorParameters_Page17.cs" />
     <Compile Include="Helpers\ControlHelper.cs" />
+    <Compile Include="Helpers\ErrorHandler.cs" />
     <Compile Include="Helpers\ExecutionOrderAttribute.cs" />
     <Compile Include="Helpers\FormulasHelper\FormulaDescriptions.cs" />
     <Compile Include="Helpers\FormulasHelper\FormulaDetails.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Helpers\LambdaHelper.cs" />
     <Compile Include="Helpers\ParamsTableHelper\DynamicTableManager.cs" />
     <Compile Include="Helpers\ParameterRounder.cs" />
+    <Compile Include="Helpers\ParamsTableHelper\TablePresenter.cs" />
     <Compile Include="Helpers\Range\InitialParameterRangeValidator.cs" />
     <Compile Include="Helpers\Range\RangeCalculator.cs" />
     <Compile Include="Helpers\Range\RangeDisplayManager.cs" />
