@@ -73,6 +73,7 @@
     <Compile Include="Calculation\OuterRingParameters\OuterRingParameters.cs" />
     <Compile Include="Calculation\OuterRingParameters\R3smin.cs" />
     <Compile Include="Calculation\Parameters.cs" />
+    <Compile Include="Calculation\RecalculationController.cs" />
     <Compile Include="Calculation\RollerParameters\CollectionOfFormulas.cs" />
     <Compile Include="Calculation\RollerParameters\R0smax.cs" />
     <Compile Include="Calculation\RollerParameters\RollerParameters.cs" />

@@ -8,9 +8,9 @@ namespace CD_WithModifiedContact.Helpers.ParamsTableHelper
     public class TablePresenter
     {
         private readonly DynamicTableManager tableManager;
-        private readonly IList<TabPage> tabPages;
+        private readonly List<TabPage> tabPages;
 
-        public TablePresenter(DynamicTableManager manager, IList<TabPage> pages)
+        public TablePresenter(DynamicTableManager manager, List<TabPage> pages)
         {
             tableManager = manager;
             tabPages = pages;
@@ -18,6 +18,7 @@ namespace CD_WithModifiedContact.Helpers.ParamsTableHelper
 
         public void ShowResults(List<Parameters> results)
         {
+            ClearAllTabPages();
             for (int i = 0; i < results.Count; i++)
             {
                 var page = tabPages[i];
@@ -26,6 +27,14 @@ namespace CD_WithModifiedContact.Helpers.ParamsTableHelper
                 tableManager.AddFormulasToTable(results[i].GetFormulasInfo());
             }
             MessageBox.Show("Расчёт окончен!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ClearAllTabPages()
+        {
+            for (int i = 0; i < tabPages.Count; i++)
+            {
+                tabPages[i].Controls.Clear();
+            }
         }
     }
 }

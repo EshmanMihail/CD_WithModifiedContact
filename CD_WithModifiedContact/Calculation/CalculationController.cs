@@ -16,8 +16,15 @@ namespace CD_WithModifiedContact.Calculation
 
         private InitialParameters initParams;
 
+        private Dictionary<string, string> recalculationRules = new Dictionary<string, string>
+        {
+            { "X1", "a < 0.75(d6 - d2)" },
+            { "X2", "Xp > 0.495B" }
+        };
+
         public void CalculateAllParameters(InitialParameters chosenInitParams)
         {
+            if (parameters.Count > 0) parameters.Clear();
             initParams = chosenInitParams;
 
             var steps = new List<Func<GenericParameterProcessor, bool>>
@@ -34,7 +41,7 @@ namespace CD_WithModifiedContact.Calculation
                 var processor = new GenericParameterProcessor();
 
                 bool success = steps[i](processor);
-
+                
                 processor.ExecuteFormulasValueMethods(parameters[i]);
 
                 if (!success) break;
@@ -98,14 +105,8 @@ namespace CD_WithModifiedContact.Calculation
             return processor.TryProcessParameters(separatorParameters);
         }
 
-        private void Recalculation(string paramName, decimal newValue)
+        public void Recalculation(string paramName, decimal newValue)
         {
-            var recalculationRules = new Dictionary<string, string>
-            {
-                { "X1", "a < 0.75(d6 - d2)" },
-                { "X2", "Xp > 0.495B" }
-            };
-
             if (!recalculationRules.TryGetValue(paramName, out string reasonOfRecalculation))
             {
                 MessageBox.Show($"Параметр {paramName} не поддерживается для перерасчета.",

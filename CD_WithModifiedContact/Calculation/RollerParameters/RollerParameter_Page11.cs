@@ -105,7 +105,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             if (Xp > 0.495m * initParams.B)
             {
                 StopCalculation.Invoke();
-                //System.Windows.Forms.MessageBox.Show($"Вызван перерасчёт Xp > 0.495B");
+                //System.Windows.Forms.MessageBox.Show($"{Xp} > {0.495m * initParams.B}");
                 RecalculateRequested?.Invoke("X2", initParams.X2 - 0.05m * initParams.B);
             }
         }
