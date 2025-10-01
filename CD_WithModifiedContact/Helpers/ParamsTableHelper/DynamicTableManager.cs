@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
 
@@ -6,11 +7,17 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 {
     public class DynamicTableManager
     {
+        public event EventHandler RecalculateRequested;
+        public event EventHandler SketchRequested;
+        public event Action<decimal> ParameterValueChanged;
+
         private Control tabPage;
         private Panel panel;
         private TableLayoutPanel table;
 
         private const int ColumnsCout = 3;
+
+        private bool _isInitializing;
 
         public void InitializeTabPageComponents(Control tabPage)
         {
@@ -19,6 +26,9 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
             panel = InitializePanel();
             this.tabPage.Controls.Add(panel);
 
+            var buttonsPanel = InitializeButtonsPanel();
+            this.tabPage.Controls.Add(buttonsPanel);
+
             table = InitializeTableLayoutPanel();
             panel.Controls.Add(table);
 
@@ -26,6 +36,7 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
             table.Controls.Add(InitializeLabel("Обозначение параметра", false), 1, 0);
             table.Controls.Add(InitializeLabel("Значение", false), 2, 0);
         }
+
 
         private Panel InitializePanel()
         {
@@ -38,6 +49,42 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
             };
 
             return panel;
+        }
+
+        private Panel InitializeButtonsPanel()
+        {
+            var panelButtons = new Panel
+            {
+                Dock = DockStyle.Top,
+                Height = 50,
+                BackColor = Color.AntiqueWhite,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+
+            var recalcButton = new Button
+            {
+                Text = "Перерасчёт",
+                Size = new Size(150, 40),
+                BackColor = Color.LightGreen,
+                Font = new Font("Arial", 12, FontStyle.Bold),
+                Location = new Point(10, 5)
+            };
+            recalcButton.Click += (s, e) => RecalculateRequested?.Invoke(this, EventArgs.Empty);
+
+            var sketchButton = new Button
+            {
+                Text = "Эскиз",
+                Size = new Size(150, 40),
+                BackColor = Color.LightSkyBlue,
+                Font = new Font("Arial", 12, FontStyle.Bold),
+                Location = new Point(recalcButton.Right + 10, 5)
+            };
+            sketchButton.Click += (s, e) => SketchRequested?.Invoke(this, EventArgs.Empty);
+
+            panelButtons.Controls.Add(recalcButton);
+            panelButtons.Controls.Add(sketchButton);
+
+            return panelButtons;
         }
 
         private TableLayoutPanel InitializeTableLayoutPanel(int columnsCount = 3, int rowsCount = 4)
@@ -76,6 +123,8 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 
         public void AddFormulasToTable(List<FormulaDetails> formulaDetails)
         {
+            _isInitializing = true;
+
             typeof(Control).GetProperty("DoubleBuffered",
             System.Reflection.BindingFlags.NonPublic |
             System.Reflection.BindingFlags.Instance)
@@ -96,6 +145,8 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
             }
 
             table.ResumeLayout();
+
+            _isInitializing = false;
         }
 
         private void AddRowWithLabel(string description, string notation, string result, int rowIndex)
@@ -124,6 +175,14 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
             };
 
             ControlHelper.AttachDigitOnlyHandler(textBox);
+
+            textBox.TextChanged += (s, e) =>
+            {
+                if (_isInitializing) return;
+
+                if (decimal.TryParse(textBox.Text, out var value))
+                    ParameterValueChanged?.Invoke(value);
+            };
 
             return textBox;
         }
