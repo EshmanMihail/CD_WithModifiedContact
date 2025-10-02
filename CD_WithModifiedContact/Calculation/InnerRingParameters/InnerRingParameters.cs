@@ -28,18 +28,39 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             this.rp = rp;
         }
 
-        public decimal d2_2hatch {  get; set; }
-        public decimal d6 {  get; set; }
-        private decimal Fik { get; set; }
-        private decimal rB { get; set; }
-        private decimal XB { get; set; }
-        private decimal XB1 { get; set; }
-        private decimal XB2 { get; set; }
-        private decimal YB { get; set; }
-        public decimal a { get; set; }
-        public decimal d2 {  get; set; }
+        [PropertyMetadata(FormulaSymbols.d2_2hatch)]
+        public decimal d2_2hatch { get; set; }
 
-        [ExecutionOrder(78)]
+        [PropertyMetadata(FormulaSymbols.d6)]
+        public decimal d6 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Fik)]
+        private decimal Fik { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.rB)]
+        private decimal rB { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.XB)]
+        private decimal XB { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.XB1)]
+        private decimal XB1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.XB2)]
+        private decimal XB2 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.YB)]
+        private decimal YB { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.a)]
+        public decimal a { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.d2)]
+        public decimal d2 { get; set; }
+
+
+
+        [ExecutionOrder(78, FormulaSymbols.d2_2hatch)]
         private void CalculateD2_2hatch()
         {
             try
@@ -56,7 +77,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(79)]
+        [ExecutionOrder(79, FormulaSymbols.d6)]
         private void CalculateD6()
         {
             try
@@ -73,7 +94,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(80)]
+        [ExecutionOrder(80, FormulaSymbols.Fik)]
         private void CalculateFik() // est kakieto otklonenia, na katorie zabil poka
         {
             try
@@ -97,7 +118,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(81)]
+        [ExecutionOrder(81, FormulaSymbols.rB)]
         private void CalculateRB()
         {
             try
@@ -111,7 +132,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(82)]
+        [ExecutionOrder(82, FormulaSymbols.XB)]
         private void CalculateXB()
         {
             try
@@ -126,7 +147,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(83)]
+        [ExecutionOrder(83, FormulaSymbols.XB1)]
         private void CalculateXB1()
         {
             try
@@ -140,7 +161,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(84)]
+        [ExecutionOrder(84, FormulaSymbols.XB2)]
         private void CalculateXB2()
         {
             try
@@ -154,7 +175,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(85)]
+        [ExecutionOrder(85, FormulaSymbols.YB)]
         private void CalculateYB()
         {
             try
@@ -169,7 +190,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(86)]
+        [ExecutionOrder(86, FormulaSymbols.a)]
         private void CalculateA()
         {
             try
@@ -193,7 +214,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(87)]
+        [ExecutionOrder(87, FormulaSymbols.d2)]
         private void CalculateD2()
         {
             try
@@ -211,7 +232,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(1)]
+        [ExecutionOrder(1, "")]
         private void AddValueToFormulaCollection()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>

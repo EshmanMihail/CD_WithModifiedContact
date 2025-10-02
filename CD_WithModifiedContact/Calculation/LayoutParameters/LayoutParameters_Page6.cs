@@ -6,19 +6,42 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 {
     public partial class LayoutParameters
     {
+        [PropertyMetadata(FormulaSymbols.Lwe)]
         private decimal Lwe { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Cr)]
         private decimal Cr { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.C0r)]
         private decimal C0r { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Fr)]
         private decimal Fr { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.F0)]
         private decimal F0 { get; set; }
-        private decimal M_cube_1plusCosT{ get; set; }
+
+        [PropertyMetadata(FormulaSymbols.M_cube_1plusCosT)]
+        private decimal M_cube_1plusCosT { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.cosTH)]
         private decimal cosTH { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.R)]
         public decimal R { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.alpha1)]
         private decimal alpha1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.alpha2)]
         private decimal alpha2 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.fi_1hatch)]
         private decimal fi_1hatch { get; set; }
 
-        [ExecutionOrder(18)]
+
+
+        [ExecutionOrder(18, FormulaSymbols.Lwe)]
         private void CalculateLwe()
         {
             try
@@ -32,7 +55,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(19)]
+        [ExecutionOrder(19, FormulaSymbols.Cr)]
         private void CalculateCr()
         {
             try
@@ -57,7 +80,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(20)]
+        [ExecutionOrder(20, FormulaSymbols.C0r)]
         private void CalculateC0r()
         {
             try
@@ -72,7 +95,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(21)]
+        [ExecutionOrder(21, FormulaSymbols.Fr)]
         private void CalculateFr()
         {
             try
@@ -89,7 +112,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(22)]
+        [ExecutionOrder(22, FormulaSymbols.F0)]
         private void CalculateF0()
         {
             try
@@ -105,7 +128,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(23)]
+        [ExecutionOrder(23, FormulaSymbols.M_cube_1plusCosT)]
         private void CalculateM_cube_1plusCosT()
         {
             try
@@ -124,7 +147,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(24)]
+        [ExecutionOrder(24, FormulaSymbols.cosTH)]
         private void CalculateCosTH()
         {
             try
@@ -138,7 +161,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(25)]
+        [ExecutionOrder(25, FormulaSymbols.R)]
         private void CalculateR()
         {
             try
@@ -162,7 +185,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(26)]
+        [ExecutionOrder(26, FormulaSymbols.alpha1)]
         private void CalculateAlpha1()
         {
             try
@@ -187,7 +210,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(27)]
+        [ExecutionOrder(27, FormulaSymbols.alpha2)]
         private void CalculateAlpha2()
         {
             try
@@ -213,7 +236,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(28)]
+        [ExecutionOrder(28, FormulaSymbols.fi_1hatch)]
         private void CalculateFi1Hatch()
         {
             try
@@ -227,7 +250,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(2)]
+        [ExecutionOrder(2, "")]
         private void AddValueToFormulaCollection_Page6()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>

@@ -7,15 +7,33 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
 {
     public partial class SeparatorParameters
     {
-        private decimal Fic {  get; set; }
+        [PropertyMetadataAttribute(FormulaSymbols.Fic)]
+        private decimal Fic { get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.D0)]
         private decimal D0 { get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.C1)]
         private decimal C1 { get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.epsilon2)]
         private decimal epsilon2 { get; set; }
-        private decimal dr {  get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.dr)]
+        private decimal dr { get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.alphar)]
         private decimal alphar { get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.S1)]
         private decimal S1 { get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.e2)]
         private decimal e2 { get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.Fir)]
         private decimal Fir { get; set; }
+
 
         [ExecutionOrder(119)]
         private void CalculateRecalculationDc1()

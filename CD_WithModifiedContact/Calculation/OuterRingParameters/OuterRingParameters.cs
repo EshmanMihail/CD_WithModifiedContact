@@ -20,25 +20,35 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             this.layoutParams = layoutParams;
         }
 
+        [PropertyMetadata(FormulaSymbols.Ch1)]
         public decimal Ch1 { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.D2)]
         public decimal D2 { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.d0)]
         public decimal d0 { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.b1)]
         public decimal b1 { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.Ch2)]
         public decimal Ch2 { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.D3)]
         public decimal D3 { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.R2)]
         public decimal R2 { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.r3smin)]
         public decimal r3smin { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.R3)]
         public decimal R3 { get; set; }
 
 
+        [ExecutionOrder(49, FormulaSymbols.Ch1)]
         private void CalculateCh1()
         {
             try
@@ -52,6 +62,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             }
         }
 
+        [ExecutionOrder(50, FormulaSymbols.D2)]
         private void CalculateD2()
         {
             try
@@ -68,6 +79,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             }
         }
 
+        [ExecutionOrder(51, FormulaSymbols.d0)]
         private void Calculated0()
         {
             try
@@ -85,6 +97,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             }
         }
 
+        [ExecutionOrder(52, FormulaSymbols.b1)]
         private void Calculateb1()
         {
             try
@@ -106,7 +119,8 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
                 StopCalculation.Invoke();
             }
         }
-        
+
+        [ExecutionOrder(53, FormulaSymbols.Ch2)]
         private void CalculateCh2()
         {
             try
@@ -120,6 +134,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             }
         }
 
+        [ExecutionOrder(54, FormulaSymbols.D3)]
         private void CalculateD3()
         {
             try
@@ -141,6 +156,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             }
         }
 
+        [ExecutionOrder(55, FormulaSymbols.R2)]
         private void CalculateR2()
         {
             try 
@@ -176,6 +192,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             }
         }
 
+        [ExecutionOrder(56, FormulaSymbols.r3smin)]
         private void CalculateR3smin()
         {
             try
@@ -189,6 +206,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             }
         }
 
+        [ExecutionOrder(57, FormulaSymbols.R3)]
         private void CalculateR3()
         {
             try
@@ -203,6 +221,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
             }
         }
 
+        [ExecutionOrder(1, "")]
         private void AddValueToFormulaCollection()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>

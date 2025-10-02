@@ -6,19 +6,42 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 {
     public partial class LayoutParameters
     {
+        [PropertyMetadata(FormulaSymbols.fi1_1hatch)]
         private decimal fi1_1hatch { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.L1_1hatch)]
         private decimal L1_1hatch { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Dwe)]
         private decimal Dwe { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.d_hatch_p1)]
         private decimal d_hatch_p1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Xa)]
         private decimal Xa { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Ya)]
         private decimal Ya { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Xop2)]
         public decimal Xop2 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Yop2)]
         public decimal Yop2 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.P)]
         private decimal P { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Xe)]
         private decimal Xe { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Ye)]
         private decimal Ye { get; set; }
-        
-        [ExecutionOrder(29)]
+
+
+
+        [ExecutionOrder(29, FormulaSymbols.fi1_1hatch)]
         private void CalculateFi1_1hatch()
         {
             try
@@ -32,7 +55,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(30)]
+        [ExecutionOrder(30, FormulaSymbols.L1_1hatch)]
         private void CalculateL1_1hatch()
         {
             try
@@ -46,7 +69,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(31)]
+        [ExecutionOrder(31, FormulaSymbols.Dwe)]
         private void CalculateDwe()
         {
             try
@@ -66,7 +89,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(32)]
+        [ExecutionOrder(32, FormulaSymbols.d_hatch_p1)]
         private void CalculateD_hatch_p1()
         {
             try
@@ -86,7 +109,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(33)]
+        [ExecutionOrder(33, FormulaSymbols.Xa)]
         private void CalculateXa()
         {
             try
@@ -101,7 +124,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(34)]
+        [ExecutionOrder(34, FormulaSymbols.Ya)]
         private void CalculateYa()
         {
             try
@@ -116,7 +139,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(35)]
+        [ExecutionOrder(35, FormulaSymbols.Xop2)]
         private void CalculateXop2()
         {
             try
@@ -131,7 +154,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(36)]
+        [ExecutionOrder(36, FormulaSymbols.Yop2)]
         private void CalculateYop2()
         {
             try
@@ -146,7 +169,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(37)]
+        [ExecutionOrder(37, FormulaSymbols.P)]
         private void CalculateP()
         {
             try
@@ -160,7 +183,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(38)]
+        [ExecutionOrder(38, FormulaSymbols.Xe)]
         private void CalculateXe()
         {
             try
@@ -175,7 +198,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(39)]
+        [ExecutionOrder(39, FormulaSymbols.Ye)]
         private void CalculateYe()
         {
             try
@@ -190,7 +213,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(3)]
+        [ExecutionOrder(3, "")]
         private void AddValueToFormulaCollection_Page7()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>
@@ -199,7 +222,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
                 (FormulaDescriptions.L1_1hatch,        FormulaSymbols.L1_1hatch,        L1_1hatch),
                 (FormulaDescriptions.Dwe,              FormulaSymbols.Dwe,              Dwe),
                 (FormulaDescriptions.d_hatch_p1,       FormulaSymbols.d_hatch_p1,       d_hatch_p1),
-                (FormulaDescriptions.XA,               FormulaSymbols.XA,               Xa),
+                (FormulaDescriptions.XA,               FormulaSymbols.Xa,               Xa),
                 (FormulaDescriptions.Ya,               FormulaSymbols.Ya,               Ya),
                 (FormulaDescriptions.Xop2,             FormulaSymbols.Xop2,             Xop2),
                 (FormulaDescriptions.Yop2,             FormulaSymbols.Yop2,             Yop2),

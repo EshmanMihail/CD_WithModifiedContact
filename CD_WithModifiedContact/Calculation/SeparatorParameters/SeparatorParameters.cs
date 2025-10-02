@@ -29,17 +29,35 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             this.ip = ip;
         }
 
+        [PropertyMetadata(FormulaSymbols.epsilon1)]
         private decimal epsilon1 { get; set; }
-        private decimal dc {  get; set; }
+
+        [PropertyMetadata(FormulaSymbols.dc)]
+        private decimal dc { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.epsilon3)]
         private decimal epsilon3 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.S)]
         private decimal S { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Bc)]
         private decimal Bc { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.bc)]
         private decimal bc { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Dc)]
         private decimal Dc { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.deltaAngle)]
         private decimal deltaAngle { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Dc1)]
         private decimal Dc1 { get; set; }
 
-        [ExecutionOrder(109)]
+
+        [ExecutionOrder(109, FormulaSymbols.epsilon1)]
         private void CalculateEpsilon1()
         {
             try
@@ -60,7 +78,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(110)]
+        [ExecutionOrder(110, FormulaSymbols.dc)]
         private void Calculatedc()
         {
             try
@@ -74,7 +92,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(111)]
+        [ExecutionOrder(111, FormulaSymbols.epsilon3)]
         private void CalculateEpsilon3() // ?????? dc? in book Dc
         {
             try
@@ -95,7 +113,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(112)]
+        [ExecutionOrder(112, FormulaSymbols.S)]
         private void CalculateS()
         {
             try
@@ -111,7 +129,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(113)]
+        [ExecutionOrder(113, FormulaSymbols.Bc)]
         private void CalculateBc()
         {
             try
@@ -125,7 +143,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(114)]
+        [ExecutionOrder(114, FormulaSymbols.bc)]
         private void Calculatebc()
         {
             try
@@ -139,7 +157,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(115)]
+        [ExecutionOrder(115, FormulaSymbols.Dc)]
         private void CalculateDc()
         {
             try
@@ -158,7 +176,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(116)]
+        [ExecutionOrder(116, "")]
         private void CalculateRecalculationDc()
         {
             try
@@ -175,7 +193,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(117)]
+        [ExecutionOrder(117, FormulaSymbols.deltaAngle)]
         private void CalculateDeltaAngle()
         {
             try
@@ -189,7 +207,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(118)]
+        [ExecutionOrder(118, FormulaSymbols.Dc1)]
         private void CalculateDc1()
         {
             try
@@ -205,7 +223,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(1)]
+        [ExecutionOrder(1, "")]
         private void AddValueToFormulaCollection()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>

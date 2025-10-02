@@ -6,17 +6,36 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 {
     public partial class LayoutParameters
     {
+        [PropertyMetadata(FormulaSymbols.alpha0)]
         public decimal alpha0 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Xd)]
         public decimal Xd { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Yd)]
         public decimal Yd { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Xop1)]
         public decimal Xop1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Yop1)]
         public decimal Yop1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Fi1)]
         public decimal Fi1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Fi)]
         public decimal Fi { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.alphaK)]
         public decimal alphaK { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.L1)]
         public decimal L1 { get; set; }
 
-        [ExecutionOrder(40)]
+
+
+        [ExecutionOrder(40, FormulaSymbols.alpha0)]
         private void CalculateAlpha0()
         {
             try
@@ -39,7 +58,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
         
-        [ExecutionOrder(41)]
+        [ExecutionOrder(41, FormulaSymbols.Xd)]
         private void CalculateXd()
         {
             try
@@ -54,7 +73,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(42)]
+        [ExecutionOrder(42, FormulaSymbols.Yd)]
         private void CalculateYd()
         {
             try
@@ -69,7 +88,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(43)]
+        [ExecutionOrder(43, FormulaSymbols.Xop1)]
         private void CalculateXop1()
         {
             try
@@ -83,7 +102,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(44)]
+        [ExecutionOrder(44, FormulaSymbols.Yop1)]
         private void CalculateYop1()
         {
             try
@@ -97,7 +116,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(45)]
+        [ExecutionOrder(45, FormulaSymbols.Fi1)]
         private void CalculateFi1()
         {
             try
@@ -120,7 +139,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(46)]
+        [ExecutionOrder(46, FormulaSymbols.Fi)]
         private void CalculateFi()
         {
             try
@@ -134,7 +153,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(47)]
+        [ExecutionOrder(47, FormulaSymbols.alphaK)]
         private void CalculateAlphaK()
         {
             try
@@ -148,7 +167,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(48)]
+        [ExecutionOrder(48, FormulaSymbols.L1)]
         private void CalculateL1()
         {
             try
@@ -163,7 +182,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(4)]
+        [ExecutionOrder(4, "")]
         private void AddValueToFormulaCollection_Page8()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>

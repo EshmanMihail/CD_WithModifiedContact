@@ -6,16 +6,37 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
 {
     public partial class InnerRingParameters
     {
+        [PropertyMetadata(FormulaSymbols.a2)]
         public decimal a2 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.a3)]
         public decimal a3 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.lambda1)]
         public decimal lambda1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.delta)]
         public decimal delta { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.dp2_1hatch)]
         public decimal dp2_1hatch { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.a1)]
         public decimal a1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.d1)]
         public decimal d1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.d3)]
         public decimal d3 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.F)]
         public decimal F { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.gamma1)]
         public decimal gamma1 { get; set; }
+
+
 
         private void CalculateRecalculation2()
         {
@@ -26,7 +47,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(89)]
+        [ExecutionOrder(89, FormulaSymbols.a2)]
         private void CalculateA2()
         {
             try
@@ -40,7 +61,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(90)]
+        [ExecutionOrder(90, FormulaSymbols.a3)]
         private void CalculateA3()
         {
             try
@@ -54,7 +75,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(91)]
+        [ExecutionOrder(91, FormulaSymbols.lambda1)]
         private void CalculateLambda1() // ещё раз проверить рассчёт с точностью как его делатб
         {
             try
@@ -68,7 +89,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(92)]
+        [ExecutionOrder(92, FormulaSymbols.delta)]
         private void CalculateDelta()
         {
             try
@@ -93,7 +114,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(93)]
+        [ExecutionOrder(93, FormulaSymbols.dp2_1hatch)]
         private void CalculateDp2_1hatch()
         {
             try
@@ -111,7 +132,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(94)]
+        [ExecutionOrder(94, FormulaSymbols.a1)]
         private void CalculateA1()
         {
             try
@@ -130,7 +151,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(95)]
+        [ExecutionOrder(95, FormulaSymbols.d1)]
         private void CalculateD1()
         {
             try
@@ -149,7 +170,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(96)]
+        [ExecutionOrder(96, FormulaSymbols.d3)]
         private void CalculateD3()
         {
             try
@@ -174,7 +195,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(97)]
+        [ExecutionOrder(97, FormulaSymbols.F)]
         private void CalculateF()
         {
             try
@@ -188,7 +209,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(98)]
+        [ExecutionOrder(98, FormulaSymbols.gamma1)]
         private void CalculateGamma1()
         {
             try
@@ -219,7 +240,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(2)]
+        [ExecutionOrder(2, "")]
         private void AddValueToFormulaCollection_Page13()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>

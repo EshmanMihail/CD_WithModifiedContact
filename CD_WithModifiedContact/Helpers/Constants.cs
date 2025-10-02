@@ -14,18 +14,18 @@ namespace CD_WithModifiedContact.Helpers
 
         public static readonly string FullFilePath = Path.GetFullPath(FilePath);
 
-        public static readonly decimal X1MinRange = 0.025m;
-        public static readonly decimal X1MaxRange = 0.045m;
+        public const decimal X1MinRange = 0.025m;
+        public const decimal X1MaxRange = 0.045m;
 
-        public static readonly decimal X2MinRange = 0.48m;
-        public static readonly decimal X2MaxRange = 0.49m;
+        public const decimal X2MinRange = 0.48m;
+        public const decimal X2MaxRange = 0.49m;
 
-        public static readonly decimal BmValue = 1.15m;
+        public const decimal BmValue = 1.15m;
 
         public static readonly short FirstValueIndex = 0;
 
-        public static readonly decimal FrMinRange = 0.1m;
-        public static readonly decimal FrMaxRange = 0.15m;
+        public const decimal FrMinRange = 0.1m;
+        public const decimal FrMaxRange = 0.15m;
 
         public static readonly List<string> anglesThatRoundForMinutes = new List<string>
         {
@@ -40,7 +40,7 @@ namespace CD_WithModifiedContact.Helpers
             FormulaSymbols.alphaK, FormulaSymbols.gamma1, FormulaSymbols.deltaAngle
         };
 
-        public static readonly decimal R0MinRange = 3.0m;
-        public static readonly decimal R0MaxRange = 6.0m;
+        public const decimal R0MinRange = 3.0m;
+        public const decimal R0MaxRange = 6.0m;
     }
 }

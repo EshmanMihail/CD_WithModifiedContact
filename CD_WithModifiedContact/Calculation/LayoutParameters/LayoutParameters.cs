@@ -19,27 +19,38 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             this.initParams = initParams;
         }
 
+        [PropertyMetadata(FormulaSymbols.Dw)]
         public decimal Dw { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.alpha0_1hatch)]
         private decimal alpha0_1hatch { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.D1)]
         public decimal D1 { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.alpha0_2hatch)]
         private decimal alpha0_2hatch { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.rh)]
         public decimal rh { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.gamma)]
         private decimal gamma { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.fc)]
         private decimal fc { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.z)]
         public decimal z { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.Lw)]
         public decimal Lw { get; set; }
 
+        [PropertyMetadata(FormulaSymbols.r0smin)]
         public decimal r0smin { get; set; }
 
-        [ExecutionOrder(8)]
+
+        [ExecutionOrder(8, FormulaSymbols.Dw)]
         private void CalculateDw()
         {
             try
@@ -62,7 +73,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(9)]
+        [ExecutionOrder(9, FormulaSymbols.alpha0_1hatch)]
         private void CalculateAlpha0_1hatch()
         {
             try
@@ -86,7 +97,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(10)]
+        [ExecutionOrder(10, FormulaSymbols.D1)]
         private void CalculateD1()
         {
             try
@@ -104,7 +115,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(11)]
+        [ExecutionOrder(11, FormulaSymbols.alpha0_2hatch)]
         private void CalculateAlpha0_2hatch()
         {
             try
@@ -128,7 +139,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(12)]
+        [ExecutionOrder(12, FormulaSymbols.rh)]
         private void CalculateRh()
         {
             try
@@ -142,7 +153,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(13)]
+        [ExecutionOrder(13, FormulaSymbols.gamma)]
         private void CalculateGamma()
         {
             try
@@ -156,7 +167,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(14)]
+        [ExecutionOrder(14, FormulaSymbols.fc)]
         private void CalculateFc()
         {
             try
@@ -176,7 +187,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(15)]
+        [ExecutionOrder(15, FormulaSymbols.z)]
         private void CalculateZ()
         {
             try
@@ -197,7 +208,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(16)]
+        [ExecutionOrder(16, FormulaSymbols.Lw)]
         private void CalculateLw()
         {
             try
@@ -222,7 +233,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(17)]
+        [ExecutionOrder(17, FormulaSymbols.r0smin)]
         private void CalculateR0smin()
         {
             try
@@ -245,7 +256,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
             }
         }
 
-        [ExecutionOrder(1)]
+        [ExecutionOrder(1, "")]
         private void AddValueToFormulaCollection()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>

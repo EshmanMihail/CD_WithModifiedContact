@@ -11,7 +11,15 @@ public class GenericParameterProcessor
     private readonly List<Action> calculationMethods = new List<Action>();
     private readonly List<Action> addFormulasValueMethods = new List<Action>();
 
+    private Dictionary<string, decimal> inputParameters = new Dictionary<string, decimal>();
+
     private bool IsNeedToStopCalculation = false;
+
+    public GenericParameterProcessor(Dictionary<string, decimal> inputParameters)
+    {
+        this.inputParameters = inputParameters;
+    }
+
     public void StopCalculation()
     {
         IsNeedToStopCalculation = true;
@@ -26,6 +34,7 @@ public class GenericParameterProcessor
             foreach (var calcMethod in calculationMethods)
             {
                 calcMethod();
+
                 if (IsNeedToStopCalculation)
                 {
                     return false;

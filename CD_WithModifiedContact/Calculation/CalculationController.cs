@@ -1,12 +1,13 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using CD_WithModifiedContact.Helpers;
+using System;
 using System.Collections.Generic;
-using CD_WithModifiedContact.Helpers;
+using System.Text;
+using System.Windows.Forms;
+using IRP = CD_WithModifiedContact.Calculation.InnerRingParameters.InnerRingParameters;
 using LP = CD_WithModifiedContact.Calculation.LayoutParameters.LayoutParameters;
+using ORP = CD_WithModifiedContact.Calculation.OuterRingParameters.OuterRingParameters;
 using RP = CD_WithModifiedContact.Calculation.RollerParameters.RollerParameters;
 using SP = CD_WithModifiedContact.Calculation.SeparatorParameters.SeparatorParameters;
-using IRP = CD_WithModifiedContact.Calculation.InnerRingParameters.InnerRingParameters;
-using ORP = CD_WithModifiedContact.Calculation.OuterRingParameters.OuterRingParameters;
 
 namespace CD_WithModifiedContact.Calculation
 {
@@ -22,13 +23,16 @@ namespace CD_WithModifiedContact.Calculation
             { "X2", "Xp > 0.495B" }
         };
 
+        private Dictionary<string, decimal> changedParameters = new Dictionary<string, decimal>();
+
         public void CalculateAllParameters(InitialParameters chosenInitParams)
         {
             if (parameters.Count > 0) parameters.Clear();
+            changedParameters.Clear();
             initParams = chosenInitParams;
 
             var steps = new List<Func<GenericParameterProcessor, bool>>
-            {
+            {   
                 CalculateLayoutParameters,
                 CalculateOuterRingParameters,
                 CalculateRollerParameters,
@@ -38,7 +42,7 @@ namespace CD_WithModifiedContact.Calculation
 
             for (int i = 0; i < steps.Count; i++)
             {
-                var processor = new GenericParameterProcessor();
+                var processor = new GenericParameterProcessor(changedParameters);
 
                 bool success = steps[i](processor);
                 
@@ -125,6 +129,21 @@ namespace CD_WithModifiedContact.Calculation
             if (result == DialogResult.Cancel) { return; }
 
             CalculateAllParameters(newInitParams);
+        }
+
+        public void RecanculationChangedValues()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var kvp in changedParameters)
+            {
+                sb.AppendLine($"{kvp.Key}: {kvp.Value}");
+            }
+            MessageBox.Show(sb.ToString(), "Изменённые параметры");
+        }
+
+        public void AddChangedParameter(string symbol, decimal value)
+        {
+            changedParameters[symbol] = value;
         }
 
         public List<Parameters> GetListOfParameters()

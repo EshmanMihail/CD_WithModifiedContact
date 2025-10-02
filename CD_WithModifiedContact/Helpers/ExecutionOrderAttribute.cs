@@ -7,9 +7,12 @@ namespace CD_WithModifiedContact.Helpers
     {
         public int Order { get; }
 
-        public ExecutionOrderAttribute(int order)
+        public string FormulaName { get; }
+
+        public ExecutionOrderAttribute(int order, string formulaName)
         {
             Order = order;
+            FormulaName = formulaName;
         }
     }
 }

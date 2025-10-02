@@ -6,11 +6,21 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
 {
     public partial class SeparatorParameters
     {
-        private decimal hk {  get; set; }
+        [PropertyMetadataAttribute(FormulaSymbols.hk)]
+        private decimal hk { get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.Dwk)]
         private decimal Dwk { get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.Hr)]
         private decimal Hr { get; set; }
-        private decimal da {  get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.da)]
+        private decimal da { get; set; }
+
+        [PropertyMetadataAttribute(FormulaSymbols.e2_1hatch)]
         private decimal e2_1hatch { get; set; }
+
 
         [ExecutionOrder(130)]
         private void CalculateHk()

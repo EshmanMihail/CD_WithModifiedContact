@@ -24,18 +24,38 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             this.outerRingParams = outerRingParams;
         }
 
+        [PropertyMetadata(FormulaSymbols.dp1)]
         public decimal dp1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Xm)]
         public decimal Xm { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Ym)]
         public decimal Ym { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.RT)]
         public decimal RT { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Rp)]
         public decimal Rp { get; set; }
-        public decimal f {  get; set; }
+
+        [PropertyMetadata(FormulaSymbols.f)]
+        public decimal f { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.l3)]
         public decimal l3 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.l4)]
         public decimal l4 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.l2)]
         public decimal l2 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.dp2)]
         public decimal dp2 { get; set; }
-        
-        [ExecutionOrder(58)]
+
+
+        [ExecutionOrder(58, FormulaSymbols.dp1)]
         private void CalculateDp1()
         {
             try
@@ -54,7 +74,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
-        [ExecutionOrder(59)]
+        [ExecutionOrder(59, FormulaSymbols.Xm)]
         private void CalculateXm()
         {
             try
@@ -71,7 +91,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
-        [ExecutionOrder(60)]
+        [ExecutionOrder(60, FormulaSymbols.Ym)]
         private void CalculateYm()
         {
             try
@@ -88,7 +108,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
-        [ExecutionOrder(61)]
+        [ExecutionOrder(61, FormulaSymbols.RT)]
         private void CalculateRT()
         {
             try
@@ -107,7 +127,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
-        [ExecutionOrder(62)]
+        [ExecutionOrder(62, FormulaSymbols.Rp)]
         private void CalculateRp()
         {
             try
@@ -121,7 +141,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
-        [ExecutionOrder(63)]
+        [ExecutionOrder(63, FormulaSymbols.f)]
         private void CalculateF()
         {
             try
@@ -139,7 +159,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
-        [ExecutionOrder(64)]
+        [ExecutionOrder(64, FormulaSymbols.l3)]
         private void CalculateL3()
         {
             try
@@ -153,7 +173,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
-        [ExecutionOrder(65)]
+        [ExecutionOrder(65, FormulaSymbols.l4)]
         private void CalculateL4()
         {
             try
@@ -167,7 +187,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
-        [ExecutionOrder(66)]
+        [ExecutionOrder(66, FormulaSymbols.l2)]
         private void CalculateL2()
         {
             try
@@ -181,7 +201,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
-        [ExecutionOrder(67)]
+        [ExecutionOrder(67, FormulaSymbols.dp2)]
         private void CalculateDp2()
         {
             try
@@ -201,7 +221,7 @@ namespace CD_WithModifiedContact.Calculation.RollerParameters
             }
         }
 
-        [ExecutionOrder(1)]
+        [ExecutionOrder(1, "")]
         private void AddValueToFormulaCollection_Page10()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>

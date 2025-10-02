@@ -9,7 +9,7 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
     {
         public event EventHandler RecalculateRequested;
         public event EventHandler SketchRequested;
-        public event Action<decimal> ParameterValueChanged;
+        public event Action<string, decimal> ParameterValueChanged;
 
         private Control tabPage;
         private Panel panel;
@@ -160,14 +160,15 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
         {
             table.Controls.Add(InitializeLabel(description, true), 0, rowIndex);
             table.Controls.Add(InitializeLabel(notation, false), 1, rowIndex);
-            table.Controls.Add(InitializeTextBox(initialValue), 2, rowIndex);
+            table.Controls.Add(InitializeTextBox(initialValue, notation), 2, rowIndex);
         }
 
-        private TextBox InitializeTextBox(string text)
+        private TextBox InitializeTextBox(string text, string notation)
         {
             TextBox textBox = new TextBox
             {
                 Text = text,
+                Tag = notation,
                 Dock = DockStyle.Fill,
                 Font = new Font("Arial", 14, FontStyle.Regular),
                 TextAlign = HorizontalAlignment.Center,
@@ -181,7 +182,7 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
                 if (_isInitializing) return;
 
                 if (decimal.TryParse(textBox.Text, out var value))
-                    ParameterValueChanged?.Invoke(value);
+                    ParameterValueChanged?.Invoke((string)textBox.Tag, value);
             };
 
             return textBox;
@@ -189,6 +190,8 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 
         private bool IsAngle(string value)
         {
+            return false; // временно отлючил данную функцию
+
             return Constants.anglesThatRoundForMinutes.Contains(value) ||
                    Constants.anglesThatRoundForSeconds.Contains(value);
         }

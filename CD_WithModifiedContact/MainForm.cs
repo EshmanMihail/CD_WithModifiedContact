@@ -14,8 +14,7 @@ namespace CD_WithModifiedContact
     public partial class MainForm : Form
     {
         private DynamicTableManager tableManager;
-        private GenericParameterProcessor processor;
-
+        CalculationController controller;
         private List<InitialParameters> initParamsOfBearings;
 
         private IBearingRepository bearingRepository;
@@ -36,6 +35,12 @@ namespace CD_WithModifiedContact
 
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += tabControl1_DrawItem;
+
+            tableManager = new DynamicTableManager();
+            controller = new CalculationController();
+
+            tableManager.RecalculateRequested += (s, ev) => controller.RecanculationChangedValues();
+            tableManager.ParameterValueChanged += controller.AddChangedParameter;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -47,13 +52,11 @@ namespace CD_WithModifiedContact
             AddInputControls();
 
             initParamsOfBearings = bearingRepository.GetAll();
-
-            tableManager = new DynamicTableManager();
-
+             
             FillListView();
         }
 
-        private void buttonCalculate_Click(object sender, EventArgs e)
+        private void buttonCalculate_Click(object sender, EventArgs eventArgs)
         {
             if (listViewBearingsName.SelectedItems.Count > 0)
             {
@@ -63,7 +66,6 @@ namespace CD_WithModifiedContact
                 var selectedItem = listViewBearingsName.SelectedItems[0];
                 string selectedId = selectedItem.Tag.ToString();
 
-                CalculationController controller = new CalculationController();
                 controller.CalculateAllParameters(GetInitialParameterObject(selectedId));
 
                 tablePresenter.ShowResults(controller.GetListOfParameters());

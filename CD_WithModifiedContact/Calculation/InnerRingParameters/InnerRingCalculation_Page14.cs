@@ -7,20 +7,45 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
 {
     public partial class InnerRingParameters
     {
+        [PropertyMetadata(FormulaSymbols.d4)]
         public decimal d4 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.d5)]
         public decimal d5 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.dk)]
         public decimal dk { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.h)]
         public decimal h { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.h1)]
         public decimal h1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.Dk1)]
         public decimal Dk1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.m0)]
         public decimal m { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.m1)]
         public decimal m1 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.m2)]
         public decimal m2 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.m3)]
         public decimal m3 { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.rm)]
         public decimal rm { get; set; }
+
+        [PropertyMetadata(FormulaSymbols.dm)]
         public decimal dm { get; set; }
 
-        [ExecutionOrder(99)]
+
+
+        [ExecutionOrder(99, FormulaSymbols.d4)]
         private void CalculateD4()
         {
             try
@@ -36,7 +61,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(100)]
+        [ExecutionOrder(100, FormulaSymbols.d5)]
         private void CalculateD5()
         {
             try
@@ -52,7 +77,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(101)]
+        [ExecutionOrder(101, FormulaSymbols.dk)]
         private void CalculateDk()
         {
             try
@@ -71,7 +96,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(102)]
+        [ExecutionOrder(102, FormulaSymbols.h)]
         private void CalculateH()
         {
             try
@@ -87,7 +112,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(103)]
+        [ExecutionOrder(103, FormulaSymbols.h1)]
         private void CalculateH1()
         {
             try
@@ -105,7 +130,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(104)]
+        [ExecutionOrder(104, FormulaSymbols.Dk1)]
         private void CalculateDk1()
         {
             try
@@ -120,7 +145,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(105)]
+        [ExecutionOrder(105, FormulaSymbols.m0)]
         private void CalculateMasses()
         {
             try
@@ -139,7 +164,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(106)]
+        [ExecutionOrder(106, FormulaSymbols.m2)]
         private void CalculateM2()
         {
             decimal valueInBrackets = 0.5m * (d6 - d2) * (decimal)Math.Tan((double)Fik) + 0.02m * lp.Dw;
@@ -150,7 +175,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(107)]
+        [ExecutionOrder(107, FormulaSymbols.rm)]
         private void CalculateRm()
         {
             try
@@ -164,7 +189,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(108)]
+        [ExecutionOrder(108, FormulaSymbols.dm)]
         private void CalculateDm()
         {
             try
@@ -182,7 +207,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
             }
         }
 
-        [ExecutionOrder(3)]
+        [ExecutionOrder(3, "")]
         private void AddValueToFormulaCollection_Page14()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>

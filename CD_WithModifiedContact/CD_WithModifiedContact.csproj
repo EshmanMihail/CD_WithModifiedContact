@@ -73,7 +73,6 @@
     <Compile Include="Calculation\OuterRingParameters\OuterRingParameters.cs" />
     <Compile Include="Calculation\OuterRingParameters\R3smin.cs" />
     <Compile Include="Calculation\Parameters.cs" />
-    <Compile Include="Calculation\RecalculationController.cs" />
     <Compile Include="Calculation\RollerParameters\CollectionOfFormulas.cs" />
     <Compile Include="Calculation\RollerParameters\R0smax.cs" />
     <Compile Include="Calculation\RollerParameters\RollerParameters.cs" />
@@ -84,6 +83,7 @@
     <Compile Include="Calculation\SeparatorParameters\SeparatorParameters.cs" />
     <Compile Include="Calculation\SeparatorParameters\SeparatorParameters_Page16.cs" />
     <Compile Include="Calculation\SeparatorParameters\SeparatorParameters_Page17.cs" />
+    <Compile Include="Helpers\ChangedTextBoxValues.cs" />
     <Compile Include="Helpers\ControlHelper.cs" />
     <Compile Include="Helpers\ErrorHandler.cs" />
     <Compile Include="Helpers\ExecutionOrderAttribute.cs" />
@@ -96,6 +96,7 @@
     <Compile Include="Helpers\ParamsTableHelper\DynamicTableManager.cs" />
     <Compile Include="Helpers\ParameterRounder.cs" />
     <Compile Include="Helpers\ParamsTableHelper\TablePresenter.cs" />
+    <Compile Include="Helpers\PropertyMetadataAttribute.cs" />
     <Compile Include="Helpers\Range\InitialParameterRangeValidator.cs" />
     <Compile Include="Helpers\Range\RangeCalculator.cs" />
     <Compile Include="Helpers\Range\RangeDisplayManager.cs" />
