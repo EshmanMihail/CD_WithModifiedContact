@@ -139,6 +139,28 @@ namespace CD_WithModifiedContact.Calculation
                 sb.AppendLine($"{kvp.Key}: {kvp.Value}");
             }
             MessageBox.Show(sb.ToString(), "Изменённые параметры");
+
+            if (parameters.Count > 0) parameters.Clear();
+
+            var steps = new List<Func<GenericParameterProcessor, bool>>
+            {
+                CalculateLayoutParameters,
+                CalculateOuterRingParameters,
+                CalculateRollerParameters,
+                CalulateInnerRingParameters,
+                CalculateSeparatorParameters
+            };
+
+            for (int i = 0; i < steps.Count; i++)
+            {
+                var processor = new GenericParameterProcessor(changedParameters);
+
+                bool success = steps[i](processor);
+
+                processor.ExecuteFormulasValueMethods(parameters[i]);
+
+                if (!success) break;
+            }
         }
 
         public void AddChangedParameter(string symbol, decimal value)

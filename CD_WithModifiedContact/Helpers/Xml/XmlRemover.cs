@@ -46,7 +46,8 @@ namespace CD_WithModifiedContact.Helpers.Xml
             }
             else
             {
-                throw new InvalidOperationException($"Элемент с Id = '{id}' не найден.");
+                //throw new InvalidOperationException($"Элемент с Id = '{id}' не найден.");
+                ErrorHandler.ShowError($"Элемент с Id = '{id}' не найден.");
             }
         }
     }

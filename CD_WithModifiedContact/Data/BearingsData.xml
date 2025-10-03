@@ -16,4 +16,20 @@
     <Bm>1,2</Bm>
     <k>0,1</k>
   </InitialParameters>
+	<InitialParameters Id="7a99da6c-30f6-44b3-ac18-d7db1103f558">
+		<Name>113628А1МНУК5</Name>
+		<AccuracyClass>1</AccuracyClass>
+		<D>300</D>
+		<d>140</d>
+		<B>102</B>
+		<r_s_min>4</r_s_min>
+		<Gr1>0,12</Gr1>
+		<Gr2>0,16</Gr2>
+		<lambda_B>1,1</lambda_B>
+		<lambda_H>1,1</lambda_H>
+		<X1>5,60</X1>
+		<X2>49,47</X2>
+		<Bm>1,15</Bm>
+		<k>0</k>
+	</InitialParameters>
 </Bearings>

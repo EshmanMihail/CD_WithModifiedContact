@@ -57,6 +57,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         private decimal Dc1 { get; set; }
 
 
+
         [ExecutionOrder(109, FormulaSymbols.epsilon1)]
         private void CalculateEpsilon1()
         {
@@ -167,7 +168,8 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
 
                 decimal resultValue = (decimal)Math.Sqrt(D2_square - Bc_square);
 
-                Dc = ParameterRounder.RoundToStep(resultValue, 1.0m);
+                //Dc = ParameterRounder.RoundToStep(resultValue, 1.0m);
+                Dc = resultValue;
             }
             catch (Exception ex)
             {
@@ -183,7 +185,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             {
                 if (Dc - dc > lp.Dw)
                 {
-                    Dc = ParameterRounder.RoundToStep(ip.d6 + lp.Dw, 1.0m);
+                    //Dc = ParameterRounder.RoundToStep(ip.d6 + lp.Dw, 1.0m);
                 }
             }
             catch (Exception ex)

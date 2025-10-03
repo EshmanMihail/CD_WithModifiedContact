@@ -40,6 +40,8 @@ namespace CD_WithModifiedContact
             controller = new CalculationController();
 
             tableManager.RecalculateRequested += (s, ev) => controller.RecanculationChangedValues();
+            tableManager.RecalculateRequested += (s, ev) => ResetTableWithCalculatedParameters();
+
             tableManager.ParameterValueChanged += controller.AddChangedParameter;
         }
 
@@ -60,17 +62,23 @@ namespace CD_WithModifiedContact
         {
             if (listViewBearingsName.SelectedItems.Count > 0)
             {
-                List<TabPage> tabPagesList = new List<TabPage> { tabPage2, tabPage3, tabPage4, tabPage5, tabPage6 };
-                TablePresenter tablePresenter = new TablePresenter(tableManager, tabPagesList);
 
                 var selectedItem = listViewBearingsName.SelectedItems[0];
                 string selectedId = selectedItem.Tag.ToString();
 
                 controller.CalculateAllParameters(GetInitialParameterObject(selectedId));
 
-                tablePresenter.ShowResults(controller.GetListOfParameters());
+                ResetTableWithCalculatedParameters();
             }
             else MessageBox.Show("Выберите подшипкик!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void ResetTableWithCalculatedParameters()
+        {
+            List<TabPage> tabPagesList = new List<TabPage> { tabPage2, tabPage3, tabPage4, tabPage5, tabPage6 };
+            TablePresenter tablePresenter = new TablePresenter(tableManager, tabPagesList);
+
+            if (controller != null) tablePresenter.ShowResults(controller.GetListOfParameters());
         }
 
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)

@@ -22,7 +22,8 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         private decimal e2_1hatch { get; set; }
 
 
-        [ExecutionOrder(130)]
+
+        [ExecutionOrder(130, FormulaSymbols.hk)]
         private void CalculateHk()
         {
             try
@@ -37,7 +38,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(131)]
+        [ExecutionOrder(131, FormulaSymbols.Dwk)]
         private void CalculateDwk()
         {
             try
@@ -57,7 +58,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(132)]
+        [ExecutionOrder(132, FormulaSymbols.Hr)]
         private void CalculateHr()
         {
             try
@@ -73,7 +74,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(133)]
+        [ExecutionOrder(133, FormulaSymbols.da)]
         private void CalculateDa()
         {
             try
@@ -89,7 +90,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(134)]
+        [ExecutionOrder(134, FormulaSymbols.e2_1hatch)]
         private void CalculateE2_1hatch()
         {
             try
@@ -103,7 +104,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(135)]
+        [ExecutionOrder(135, "")]
         private void CalculateCheckingSeparatorLock()
         {
             try
@@ -119,7 +120,43 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
                 decimal sqrtValue = (decimal)Math.Sqrt(R_square - sencondValueSquare);
 
                 decimal rightPart = lp.Dw - 2 * (lp.R - sqrtValue);
-                
+
+                if (leftPart >= rightPart) // условие не выполняется
+                {
+                    showMessage.Invoke($"При проверки замка сепаратора, условие не выполняется\n" +
+                        $"следует увеличить диаметр {FormulaSymbols.Dc1} или высоту сепаратора {FormulaSymbols.Bc}.");
+                }
+
+                decimal difference = (decimal)Math.Abs(rightPart - leftPart);
+
+                string message = $"Для ролика диаметром {lp.Dw}, разница в неравенстве, при проверки замка сепаратора, должна быть не менее:";
+                bool isRight = true;
+                if (lp.Dw <= 10 && difference >= 0.3m)
+                {
+                    isRight = false;
+                    message += "0.3мм";
+                }
+                else if (lp.Dw > 10 && lp.Dw <= 18 && difference >= 0.5m) 
+                {
+                    isRight = false;
+                    message += "0.5мм";
+                }
+                else if (lp.Dw > 18 && lp.Dw <= 30 && difference >= 0.8m)
+                {
+                    isRight = false;
+                    message += "0.8мм";
+                }
+                else if (lp.Dw > 30 && lp.Dw <= 50 && difference >= 1.0m)
+                {
+                    isRight = false;
+                    message += "1.0мм";
+                }
+
+                if (!isRight)
+                {
+                    showMessage.Invoke(message);
+                }
+
             }
             catch (Exception ex)
             {
@@ -128,21 +165,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(136)]
-        private void CalculateNote()
-        {
-            try
-            {
-                // Логика расчёта e2_1hatch
-            }
-            catch (Exception ex)
-            {
-                showMessage.Invoke($"Ошибка в расчёте примечания: {ex.Message}");
-                StopCalculation.Invoke();
-            }
-        }
-
-        [ExecutionOrder(3)]
+        [ExecutionOrder(3, "")]
         private void AddValueToFormulaCollection_Page17()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>

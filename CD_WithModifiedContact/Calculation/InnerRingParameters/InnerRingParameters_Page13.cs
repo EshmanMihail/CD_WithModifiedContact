@@ -38,6 +38,7 @@ namespace CD_WithModifiedContact.Calculation.InnerRingParameters
 
 
 
+        [ExecutionOrder(88, "")]
         private void CalculateRecalculation2()
         {
             if (a < 0.75m * (d6 - d2))

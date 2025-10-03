@@ -7,35 +7,36 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
 {
     public partial class SeparatorParameters
     {
-        [PropertyMetadataAttribute(FormulaSymbols.Fic)]
+        [PropertyMetadata(FormulaSymbols.Fic)]
         private decimal Fic { get; set; }
 
-        [PropertyMetadataAttribute(FormulaSymbols.D0)]
+        [PropertyMetadata(FormulaSymbols.D0)]
         private decimal D0 { get; set; }
 
-        [PropertyMetadataAttribute(FormulaSymbols.C1)]
+        [PropertyMetadata(FormulaSymbols.C1)]
         private decimal C1 { get; set; }
 
-        [PropertyMetadataAttribute(FormulaSymbols.epsilon2)]
+        [PropertyMetadata(FormulaSymbols.epsilon2)]
         private decimal epsilon2 { get; set; }
 
-        [PropertyMetadataAttribute(FormulaSymbols.dr)]
+        [PropertyMetadata(FormulaSymbols.dr)]
         private decimal dr { get; set; }
 
-        [PropertyMetadataAttribute(FormulaSymbols.alphar)]
+        [PropertyMetadata(FormulaSymbols.alphar)]
         private decimal alphar { get; set; }
 
-        [PropertyMetadataAttribute(FormulaSymbols.S1)]
+        [PropertyMetadata(FormulaSymbols.S1)]
         private decimal S1 { get; set; }
 
-        [PropertyMetadataAttribute(FormulaSymbols.e2)]
+        [PropertyMetadata(FormulaSymbols.e2)]
         private decimal e2 { get; set; }
 
-        [PropertyMetadataAttribute(FormulaSymbols.Fir)]
+        [PropertyMetadata(FormulaSymbols.Fir)]
         private decimal Fir { get; set; }
 
 
-        [ExecutionOrder(119)]
+
+        [ExecutionOrder(119, "")]
         private void CalculateRecalculationDc1()
         {
             try
@@ -60,7 +61,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(120)]
+        [ExecutionOrder(120, FormulaSymbols.Fic)]
         private void CalculateFic()
         {
             try
@@ -74,7 +75,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(121)]
+        [ExecutionOrder(121, FormulaSymbols.D0)]
         private void CalculateD0()
         {
             try
@@ -92,7 +93,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(122)]
+        [ExecutionOrder(122, FormulaSymbols.C1)]
         private void CalculateC1()
         {
             try
@@ -111,7 +112,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(123)]
+        [ExecutionOrder(123, FormulaSymbols.epsilon2)]
         private void CalculateEpsilon2()
         {
             try
@@ -132,7 +133,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(124)]
+        [ExecutionOrder(124, FormulaSymbols.dr)]
         private void CalculateDr()
         {
             try
@@ -149,7 +150,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(125)]
+        [ExecutionOrder(125, FormulaSymbols.alphar)]
         private void CalculateAlphar()
         {
             try
@@ -169,12 +170,11 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(126)]
+        [ExecutionOrder(126, FormulaSymbols.S1)]
         private void CalculateS1()
         {
             try
             {
-                //decimal alpharDegrees = alphar * (decimal)(180 / Math.PI);
                 decimal ficDegrees = ParameterRounder.RoundToStep(Fic * (decimal)(180 / Math.PI), 1.0m);
 
                 double tanAngleDegrees = (double)(ficDegrees - (180 - alphar) / 2);
@@ -193,7 +193,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(127)]
+        [ExecutionOrder(127, FormulaSymbols.e2)]
         private void CalculateE2()
         {
             try
@@ -207,7 +207,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(128)]
+        [ExecutionOrder(128, FormulaSymbols.Fir)]
         private void CalculateFir()
         {
             try
@@ -230,7 +230,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(129)]
+        [ExecutionOrder(129, "")]
         private void CalculateRecalculationFir()
         {
             try
@@ -263,7 +263,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
             }
         }
 
-        [ExecutionOrder(2)]
+        [ExecutionOrder(2, "")]
         private void AddValueToFormulaCollection_Page16()
         {
             var formulaDetailsList = new List<(string Description, string Symbol, decimal Value)>
