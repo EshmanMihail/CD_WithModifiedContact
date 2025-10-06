@@ -42,6 +42,8 @@ namespace CD_WithModifiedContact
             tableManager.RecalculateRequested += (s, ev) => controller.RecanculationChangedValues();
             tableManager.RecalculateRequested += (s, ev) => ResetTableWithCalculatedParameters();
 
+            //tableManager.SketchRequested += ShowSketch;
+            
             tableManager.ParameterValueChanged += controller.AddChangedParameter;
         }
 
@@ -62,7 +64,6 @@ namespace CD_WithModifiedContact
         {
             if (listViewBearingsName.SelectedItems.Count > 0)
             {
-
                 var selectedItem = listViewBearingsName.SelectedItems[0];
                 string selectedId = selectedItem.Tag.ToString();
 
@@ -105,6 +106,16 @@ namespace CD_WithModifiedContact
                 Color.Black,// цвет текста
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
             );
+        }
+
+        private void buttonSketch_Click(object sender, EventArgs e)
+        {
+            SketchForm1 sketchForm1 = new SketchForm1();
+            sketchForm1.Show();
+
+            var selectedItem = listViewBearingsName.SelectedItems[0];
+            string selectedId = selectedItem.Tag.ToString();
+            sketchForm1.FillParamsOnSkretch(GetInitialParameterObject(selectedId), controller.GetListOfParameters());
         }
     }
 }

@@ -8,7 +8,7 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
     public class DynamicTableManager
     {
         public event EventHandler RecalculateRequested;
-        public event EventHandler SketchRequested;
+        public event Action<int> SketchRequested;
         public event Action<string, decimal> ParameterValueChanged;
 
         private Control tabPage;
@@ -36,7 +36,6 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
             table.Controls.Add(InitializeLabel("Обозначение параметра", false), 1, 0);
             table.Controls.Add(InitializeLabel("Значение", false), 2, 0);
         }
-
 
         private Panel InitializePanel()
         {
@@ -71,18 +70,23 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
             };
             recalcButton.Click += (s, e) => RecalculateRequested?.Invoke(this, EventArgs.Empty);
 
-            var sketchButton = new Button
-            {
-                Text = "Эскиз",
-                Size = new Size(150, 40),
-                BackColor = Color.LightSkyBlue,
-                Font = new Font("Arial", 12, FontStyle.Bold),
-                Location = new Point(recalcButton.Right + 10, 5)
-            };
-            sketchButton.Click += (s, e) => SketchRequested?.Invoke(this, EventArgs.Empty);
+            //var sketchButton = new Button
+            //{
+            //    Text = "Эскиз",
+            //    Tag = tabPage.Tag,
+            //    Size = new Size(150, 40),
+            //    BackColor = Color.LightSkyBlue,
+            //    Font = new Font("Arial", 12, FontStyle.Bold),
+            //    Location = new Point(recalcButton.Right + 10, 5)
+            //};
+            //sketchButton.Click += (s, e) =>
+            //{
+            //    if (int.TryParse(sketchButton.Tag?.ToString(), out int index))
+            //        SketchRequested?.Invoke(index);
+            //};
 
             panelButtons.Controls.Add(recalcButton);
-            panelButtons.Controls.Add(sketchButton);
+            //panelButtons.Controls.Add(sketchButton);
 
             return panelButtons;
         }
@@ -190,7 +194,7 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 
         private bool IsAngle(string value)
         {
-            return false; // временно отлючил данную функцию
+            //return false; // временно отлючил данную функцию
 
             return Constants.anglesThatRoundForMinutes.Contains(value) ||
                    Constants.anglesThatRoundForSeconds.Contains(value);

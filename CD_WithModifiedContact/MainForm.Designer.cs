@@ -79,6 +79,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.errorProviderMainForm = new System.Windows.Forms.ErrorProvider(this.components);
+            this.buttonSketch = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanelInitParams.SuspendLayout();
@@ -103,6 +104,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1504, 736);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Tag = "0";
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             // 
             // tabPage1
@@ -153,6 +155,7 @@
             this.tableLayoutPanelInitParams.Controls.Add(this.groupBoxX1Ranger, 2, 9);
             this.tableLayoutPanelInitParams.Controls.Add(this.groupBoxX2Range, 2, 10);
             this.tableLayoutPanelInitParams.Controls.Add(this.groupBoxLambda, 2, 8);
+            this.tableLayoutPanelInitParams.Controls.Add(this.buttonSketch, 2, 0);
             this.tableLayoutPanelInitParams.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanelInitParams.Location = new System.Drawing.Point(250, 0);
             this.tableLayoutPanelInitParams.Margin = new System.Windows.Forms.Padding(0);
@@ -656,6 +659,7 @@
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Size = new System.Drawing.Size(1496, 710);
             this.tabPage2.TabIndex = 1;
+            this.tabPage2.Tag = "0";
             this.tabPage2.Text = "Компанованный расчёт";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -665,6 +669,7 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1496, 710);
             this.tabPage3.TabIndex = 2;
+            this.tabPage3.Tag = "1";
             this.tabPage3.Text = "Расчёт наружного кольца";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
@@ -674,6 +679,7 @@
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1496, 710);
             this.tabPage4.TabIndex = 3;
+            this.tabPage4.Tag = "2";
             this.tabPage4.Text = "Расчёт ролика";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
@@ -683,6 +689,7 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1496, 710);
             this.tabPage5.TabIndex = 4;
+            this.tabPage5.Tag = "3";
             this.tabPage5.Text = "Расчёт внутреннего кольца";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
@@ -693,6 +700,7 @@
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(1496, 710);
             this.tabPage6.TabIndex = 5;
+            this.tabPage6.Tag = "4";
             this.tabPage6.Text = "Расчёт сепаратора";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
@@ -704,6 +712,20 @@
             // errorProviderMainForm
             // 
             this.errorProviderMainForm.ContainerControl = this;
+            // 
+            // buttonSketch
+            // 
+            this.buttonSketch.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonSketch.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonSketch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSketch.Location = new System.Drawing.Point(768, 2);
+            this.buttonSketch.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonSketch.Name = "buttonSketch";
+            this.buttonSketch.Size = new System.Drawing.Size(160, 50);
+            this.buttonSketch.TabIndex = 31;
+            this.buttonSketch.Text = "Эскиз";
+            this.buttonSketch.UseVisualStyleBackColor = false;
+            this.buttonSketch.Click += new System.EventHandler(this.buttonSketch_Click);
             // 
             // MainForm
             // 
@@ -781,6 +803,7 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Button buttonSketch;
     }
 }
 
