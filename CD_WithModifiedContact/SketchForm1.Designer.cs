@@ -40,6 +40,8 @@
             this.labelRsminV2 = new System.Windows.Forms.Label();
             this.labelRsminV1 = new System.Windows.Forms.Label();
             this.labelRsminV3 = new System.Windows.Forms.Label();
+            this.buttonRight = new System.Windows.Forms.Button();
+            this.buttonLeft = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelb1
@@ -62,10 +64,11 @@
             // 
             // labelalpha0
             // 
-            this.labelalpha0.Location = new System.Drawing.Point(183, 332);
+            this.labelalpha0.AutoSize = true;
+            this.labelalpha0.Location = new System.Drawing.Point(160, 340);
             this.labelalpha0.Margin = new System.Windows.Forms.Padding(0);
             this.labelalpha0.Name = "labelalpha0";
-            this.labelalpha0.Size = new System.Drawing.Size(30, 25);
+            this.labelalpha0.Size = new System.Drawing.Size(0, 13);
             this.labelalpha0.TabIndex = 2;
             this.labelalpha0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -150,12 +153,38 @@
             this.labelRsminV3.TabIndex = 11;
             this.labelRsminV3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // buttonRight
+            // 
+            this.buttonRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonRight.Location = new System.Drawing.Point(497, 12);
+            this.buttonRight.Name = "buttonRight";
+            this.buttonRight.Size = new System.Drawing.Size(75, 40);
+            this.buttonRight.TabIndex = 12;
+            this.buttonRight.Text = ">";
+            this.buttonRight.UseVisualStyleBackColor = true;
+            this.buttonRight.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonLeft
+            // 
+            this.buttonLeft.AutoSize = true;
+            this.buttonLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonLeft.Location = new System.Drawing.Point(416, 12);
+            this.buttonLeft.Name = "buttonLeft";
+            this.buttonLeft.Size = new System.Drawing.Size(75, 40);
+            this.buttonLeft.TabIndex = 13;
+            this.buttonLeft.Text = "<";
+            this.buttonLeft.UseVisualStyleBackColor = true;
+            this.buttonLeft.Click += new System.EventHandler(this.button2_Click);
+            // 
             // SketchForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CD_WithModifiedContact.Properties.Resources.Page11;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(584, 811);
+            this.Controls.Add(this.buttonLeft);
+            this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.labelRsminV3);
             this.Controls.Add(this.labelRsminV1);
             this.Controls.Add(this.labelRsminV2);
@@ -170,9 +199,11 @@
             this.Controls.Add(this.labelb1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "SketchForm1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "SketchForm1";
             this.Load += new System.EventHandler(this.SketchForm1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -190,5 +221,7 @@
         private System.Windows.Forms.Label labelRsminV2;
         private System.Windows.Forms.Label labelRsminV1;
         private System.Windows.Forms.Label labelRsminV3;
+        private System.Windows.Forms.Button buttonRight;
+        private System.Windows.Forms.Button buttonLeft;
     }
 }

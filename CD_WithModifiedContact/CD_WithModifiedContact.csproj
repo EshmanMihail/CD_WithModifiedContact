@@ -144,6 +144,18 @@
     <Compile Include="SketchForm1.Designer.cs">
       <DependentUpon>SketchForm1.cs</DependentUpon>
     </Compile>
+    <Compile Include="SketchForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SketchForm2.Designer.cs">
+      <DependentUpon>SketchForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SketchForm3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SketchForm3.Designer.cs">
+      <DependentUpon>SketchForm3.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddForm.resx">
       <DependentUpon>AddForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +168,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SketchForm1.resx">
       <DependentUpon>SketchForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SketchForm2.resx">
+      <DependentUpon>SketchForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SketchForm3.resx">
+      <DependentUpon>SketchForm3.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -175,6 +193,7 @@
     <Content Include="Data\BearingsData.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Sketches\Page3.jpg" />
     <None Include="Resources\Page1.jpg" />
     <Content Include="Sketches\Page2.jpg" />
     <Content Include="Sketches\Page1.jpg" />

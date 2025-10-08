@@ -32,4 +32,20 @@
 		<Bm>1,15</Bm>
 		<k>0</k>
 	</InitialParameters>
+	<InitialParameters Id="e54bf68c-5b2e-48e4-b3e1-ce20841a2da3">
+		<Name>124627А1М</Name>
+		<AccuracyClass>1</AccuracyClass>
+		<D>250</D>
+		<d>190</d>
+		<B>85</B>
+		<r_s_min>4</r_s_min>
+		<Gr1>0,12</Gr1>
+		<Gr2>0,16</Gr2>
+		<lambda_B>1,12</lambda_B>
+		<lambda_H>1,12</lambda_H>
+		<X1>2,60</X1>
+		<X2>41,5</X2>
+		<Bm>1,15</Bm>
+		<k>0</k>
+	</InitialParameters>
 </Bearings>

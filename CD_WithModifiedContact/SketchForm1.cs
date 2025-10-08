@@ -1,40 +1,35 @@
-﻿using CD_WithModifiedContact.Calculation;
-using CD_WithModifiedContact.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using CD_WithModifiedContact.Helpers;
+using CD_WithModifiedContact.Calculation;
 
 namespace CD_WithModifiedContact
 {
     public partial class SketchForm1 : Form
     {
         private InitialParameters initialParameters;
-
-        private List<FormulaDetails> otherParams;
+        private List<Parameters> allParameters;
 
         public SketchForm1()
         {
             InitializeComponent();
         }
 
-        private void SketchForm1_Load(object sender, EventArgs e)
-        {
-            otherParams = new List<FormulaDetails>();
-        }
+        private void SketchForm1_Load(object sender, EventArgs e) { }
 
-        public void FillParamsOnSkretch(InitialParameters initialParameters, List<Parameters> parameters)
+        public void FillParamsOnSketch(InitialParameters initialParameters, List<Parameters> parameters)
         {
             this.initialParameters = initialParameters;
+            allParameters = parameters;
 
-            otherParams.Clear();
             foreach (var p in parameters)
             {
                 foreach (var f in p.GetFormulasInfo())
                 {
                     if (f.Notation == FormulaSymbols.b1) labelb1.Text = f.Result.ToString();
                     if (f.Notation == FormulaSymbols.d0) labeld0.Text = f.Result.ToString();
-                    if (f.Notation == FormulaSymbols.alpha0) labelalpha0.Text = f.Result.ToString();
+                    if (f.Notation == FormulaSymbols.alpha0) labelalpha0.Text = ParameterRounder.RoundAngleToSeconds((double)f.Result).ToString();
                 }
             }
 
@@ -66,6 +61,25 @@ namespace CD_WithModifiedContact
             }
 
             return result;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SketchForm2 sketchForm2 = new SketchForm2();
+            sketchForm2.FillParamsOnSketch(initialParameters, allParameters);
+
+            sketchForm2.StartPosition = FormStartPosition.Manual;
+            sketchForm2.Bounds = this.Bounds;
+
+            sketchForm2.Show();
+
+            this.Hide();
+            this.Dispose();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

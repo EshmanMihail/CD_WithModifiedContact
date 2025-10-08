@@ -115,7 +115,7 @@ namespace CD_WithModifiedContact
 
             var selectedItem = listViewBearingsName.SelectedItems[0];
             string selectedId = selectedItem.Tag.ToString();
-            sketchForm1.FillParamsOnSkretch(GetInitialParameterObject(selectedId), controller.GetListOfParameters());
+            sketchForm1.FillParamsOnSketch(GetInitialParameterObject(selectedId), controller.GetListOfParameters());
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+﻿ using System.Windows.Forms;
 using System.Collections.Generic;
 using CD_WithModifiedContact.Calculation;
 using CD_WithModifiedContact.Helpers.LayoutParamsHelper;
