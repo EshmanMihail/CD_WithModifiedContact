@@ -79,6 +79,24 @@ namespace CD_WithModifiedContact
 
         private void button2_Click(object sender, EventArgs e)
         {
+            SketchForm7 sketchForm7 = new SketchForm7();
+            sketchForm7.FillParamsOnSketch(initialParameters, allParameters);
+
+            sketchForm7.Location = this.Location;
+
+            sketchForm7.Show();
+
+            this.Hide();
+            this.Dispose();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
 
         }
     }

@@ -94,7 +94,15 @@ namespace CD_WithModifiedContact
 
         private void buttonRight_Click(object sender, EventArgs e)
         {
+            SketchForm4 sketchForm4 = new SketchForm4();
+            sketchForm4.FillParamsOnSketch(initialParameters, allParameters);
 
+            sketchForm4.Location = this.Location;
+
+            sketchForm4.Show();
+
+            this.Hide();
+            this.Dispose();
         }
 
         private void buttonLeft_Click(object sender, EventArgs e)
@@ -108,6 +116,16 @@ namespace CD_WithModifiedContact
 
             this.Hide();
             this.Dispose();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

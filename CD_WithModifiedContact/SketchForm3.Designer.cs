@@ -61,6 +61,8 @@
             this.labelYop1 = new System.Windows.Forms.Label();
             this.label_Fi12 = new System.Windows.Forms.Label();
             this.labelAlpha0 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLeft
@@ -365,6 +367,30 @@
             this.labelAlpha0.TabIndex = 48;
             this.labelAlpha0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(696, 562);
+            this.button2.Margin = new System.Windows.Forms.Padding(0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(117, 40);
+            this.button2.TabIndex = 54;
+            this.button2.Text = "Закрыть";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(582, 562);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 40);
+            this.button1.TabIndex = 53;
+            this.button1.Text = "Печать";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // SketchForm3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,6 +398,8 @@
             this.BackgroundImage = global::CD_WithModifiedContact.Properties.Resources.Page3;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(822, 611);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelAlpha0);
             this.Controls.Add(this.label_Fi12);
             this.Controls.Add(this.labelYop1);
@@ -408,7 +436,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "SketchForm3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "SketchForm3";
+            this.Text = "Рисунок 3";
             this.Load += new System.EventHandler(this.SketchForm3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -450,5 +478,7 @@
         private System.Windows.Forms.Label labelYop1;
         private System.Windows.Forms.Label label_Fi12;
         private System.Windows.Forms.Label labelAlpha0;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
