@@ -1,4 +1,4 @@
-﻿ using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Collections.Generic;
 using CD_WithModifiedContact.Calculation;
 using CD_WithModifiedContact.Helpers.LayoutParamsHelper;
@@ -7,8 +7,9 @@ namespace CD_WithModifiedContact.Helpers.ParamsTableHelper
 {
     public class TablePresenter
     {
-        private readonly DynamicTableManager tableManager;
         private readonly List<TabPage> tabPages;
+
+        private readonly DynamicTableManager tableManager;
 
         public TablePresenter(DynamicTableManager manager, List<TabPage> pages)
         {
@@ -27,6 +28,14 @@ namespace CD_WithModifiedContact.Helpers.ParamsTableHelper
                 tableManager.AddFormulasToTable(results[i].GetFormulasInfo());
             }
             MessageBox.Show("Расчёт окончен!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public void ShowRecalculatedResults(List<Parameters> results)
+        {
+            for (int i = 0; i < results.Count; i++)
+            {
+                tableManager.ResetTextBoxesAfterRecanculation(tabPages[i], results[i].GetFormulasInfo());
+            }
         }
 
         private void ClearAllTabPages()

@@ -13,18 +13,19 @@ namespace CD_WithModifiedContact
 {
     public partial class MainForm : Form
     {
+        private bool isFilling = false;
+
         private DynamicTableManager tableManager;
-        CalculationController controller;
+        private CalculationController controller;
+
         private List<InitialParameters> initParamsOfBearings;
 
         private IBearingRepository bearingRepository;
+        private RangeDisplayManager rangeDisplayManager;
         private List<Control> inputControls = new List<Control>();
 
         private ControlHelper controlHelper;
-        private RangeDisplayManager rangeDisplayManager;
         private InitialParameterRangeValidator rangeValidator;
-
-        private bool isFilling = false;
 
         public MainForm()
         {
@@ -40,10 +41,10 @@ namespace CD_WithModifiedContact
             controller = new CalculationController();
 
             tableManager.RecalculateRequested += (s, ev) => controller.RecanculationChangedValues();
-            tableManager.RecalculateRequested += (s, ev) => ResetTableWithCalculatedParameters();
+            tableManager.RecalculateRequested += (s, ev) => ResetTableWithRecalculatedParameters();
 
-            //tableManager.SketchRequested += ShowSketch;
-            
+            tableManager.SketchRequested += buttonSketch_Click;
+
             tableManager.ParameterValueChanged += controller.AddChangedParameter;
         }
 
@@ -69,17 +70,25 @@ namespace CD_WithModifiedContact
 
                 controller.CalculateAllParameters(GetInitialParameterObject(selectedId));
 
-                ResetTableWithCalculatedParameters();
+                FillTableWithCalculatedParameters();
             }
-            else MessageBox.Show("Выберите подшипкик!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else ErrorHandler.ShowError("Выберите подшипкик!");
         }
 
-        private void ResetTableWithCalculatedParameters()
+        private void FillTableWithCalculatedParameters()
         {
             List<TabPage> tabPagesList = new List<TabPage> { tabPage2, tabPage3, tabPage4, tabPage5, tabPage6 };
             TablePresenter tablePresenter = new TablePresenter(tableManager, tabPagesList);
 
             if (controller != null) tablePresenter.ShowResults(controller.GetListOfParameters());
+        }
+
+        private void ResetTableWithRecalculatedParameters()
+        {
+            List<TabPage> tabPagesList = new List<TabPage> { tabPage2, tabPage3, tabPage4, tabPage5, tabPage6 };
+            TablePresenter tablePresenter = new TablePresenter(tableManager, tabPagesList);
+
+            if (controller != null) tablePresenter.ShowRecalculatedResults(controller.GetListOfParameters());
         }
 
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)

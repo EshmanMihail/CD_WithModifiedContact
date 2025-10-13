@@ -5,16 +5,15 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using CD_WithModifiedContact.Helpers;
 using CD_WithModifiedContact.Calculation;
-
 public class GenericParameterProcessor
 {
+    private bool IsNeedToStopCalculation = false;
+
     private readonly List<Action> calculationMethods = new List<Action>();
-    private readonly List<Action> addFormulasValueMethods = new List<Action>();
     private readonly List<Action> inputValuesMethods = new List<Action>();
+    private readonly List<Action> addFormulasValueMethods = new List<Action>();
 
     private Dictionary<string, decimal> inputParameters = new Dictionary<string, decimal>();
-
-    private bool IsNeedToStopCalculation = false;
 
     public GenericParameterProcessor(Dictionary<string, decimal> inputParameters)
     {
@@ -92,7 +91,6 @@ public class GenericParameterProcessor
                 .Except(inputMethods)
                 .ToList();
 
-
             var sortedMethods = SortMethodsByAttribute(filteredMethods);
 
             foreach (var method in sortedMethods)
@@ -113,7 +111,9 @@ public class GenericParameterProcessor
         AddFormulasValuesMethods(parameters);
 
         if (addFormulasValueMethods.Count > 0)
-        {;
+        {
+            if (parameters.GetFormulasInfo().Count > 0) parameters.ClearFormulasInfo();
+
             foreach (var addMethod in addFormulasValueMethods)
             {
                 addMethod();

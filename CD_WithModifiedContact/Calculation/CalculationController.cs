@@ -1,21 +1,20 @@
-﻿using CD_WithModifiedContact.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Windows.Forms;
-using IRP = CD_WithModifiedContact.Calculation.InnerRingParameters.InnerRingParameters;
+using System.Collections.Generic;
+using CD_WithModifiedContact.Helpers;
 using LP = CD_WithModifiedContact.Calculation.LayoutParameters.LayoutParameters;
-using ORP = CD_WithModifiedContact.Calculation.OuterRingParameters.OuterRingParameters;
 using RP = CD_WithModifiedContact.Calculation.RollerParameters.RollerParameters;
 using SP = CD_WithModifiedContact.Calculation.SeparatorParameters.SeparatorParameters;
+using IRP = CD_WithModifiedContact.Calculation.InnerRingParameters.InnerRingParameters;
+using ORP = CD_WithModifiedContact.Calculation.OuterRingParameters.OuterRingParameters;
 
 namespace CD_WithModifiedContact.Calculation
 {
     public class CalculationController
     {
-        private List<Parameters> parameters = new List<Parameters>();
-
         private InitialParameters initParams;
+
+        private List<Parameters> parameters = new List<Parameters>();
 
         private Dictionary<string, string> recalculationRules = new Dictionary<string, string>
         {
@@ -133,13 +132,6 @@ namespace CD_WithModifiedContact.Calculation
 
         public void RecanculationChangedValues()
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (var kvp in changedParameters)
-            {
-                sb.AppendLine($"{kvp.Key}: {kvp.Value}");
-            }
-            MessageBox.Show(sb.ToString(), "Изменённые параметры");
-
             if (parameters.Count > 0) parameters.Clear();
 
             var steps = new List<Func<GenericParameterProcessor, bool>>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -7,17 +8,16 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 {
     public class DynamicTableManager
     {
-        public event EventHandler RecalculateRequested;
-        public event Action<int> SketchRequested;
-        public event Action<string, decimal> ParameterValueChanged;
-
-        private Control tabPage;
         private Panel panel;
+        private Control tabPage;
         private TableLayoutPanel table;
 
-        private const int ColumnsCout = 3;
-
         private bool _isInitializing;
+        private const int ColumnsCout = 3;
+        
+        public event EventHandler SketchRequested;
+        public event EventHandler RecalculateRequested;
+        public event Action<string, decimal> ParameterValueChanged;
 
         public void InitializeTabPageComponents(Control tabPage)
         {
@@ -70,23 +70,18 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
             };
             recalcButton.Click += (s, e) => RecalculateRequested?.Invoke(this, EventArgs.Empty);
 
-            //var sketchButton = new Button
-            //{
-            //    Text = "Эскиз",
-            //    Tag = tabPage.Tag,
-            //    Size = new Size(150, 40),
-            //    BackColor = Color.LightSkyBlue,
-            //    Font = new Font("Arial", 12, FontStyle.Bold),
-            //    Location = new Point(recalcButton.Right + 10, 5)
-            //};
-            //sketchButton.Click += (s, e) =>
-            //{
-            //    if (int.TryParse(sketchButton.Tag?.ToString(), out int index))
-            //        SketchRequested?.Invoke(index);
-            //};
+            var sketchButton = new Button
+            {
+                Text = "Эскиз",
+                Size = new Size(150, 40),
+                BackColor = Color.LightSkyBlue,
+                Font = new Font("Arial", 12, FontStyle.Bold),
+                Location = new Point(recalcButton.Right + 10, 5)
+            };
+            sketchButton.Click += (s, e) => SketchRequested?.Invoke(this, EventArgs.Empty);
 
             panelButtons.Controls.Add(recalcButton);
-            //panelButtons.Controls.Add(sketchButton);
+            panelButtons.Controls.Add(sketchButton);
 
             return panelButtons;
         }
@@ -153,13 +148,6 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
             _isInitializing = false;
         }
 
-        private void AddRowWithLabel(string description, string notation, string result, int rowIndex)
-        {
-            table.Controls.Add(InitializeLabel(description, true), 0, rowIndex);
-            table.Controls.Add(InitializeLabel(notation, false), 1, rowIndex);
-            table.Controls.Add(InitializeLabel(result, false), 2, rowIndex);
-        }
-
         private void AddRowWithTextBox(string description, string notation, string initialValue, int rowIndex)
         {
             table.Controls.Add(InitializeLabel(description, true), 0, rowIndex);
@@ -179,23 +167,104 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
                 Margin = new Padding(3)
             };
 
+            textBox.AccessibleDescription = text;
+
             ControlHelper.AttachDigitOnlyHandler(textBox);
+
+            var changedBackColor = Color.FromArgb(0xD0, 0xF0, 0xFF);
 
             textBox.TextChanged += (s, e) =>
             {
                 if (_isInitializing) return;
 
+                bool isDifferent = !string.Equals(textBox.Text.Trim(), textBox.AccessibleDescription?.Trim(), StringComparison.Ordinal);
+                textBox.BackColor = isDifferent ? changedBackColor : SystemColors.Window;
+
                 if (decimal.TryParse(textBox.Text, out var value))
+                {
                     ParameterValueChanged?.Invoke((string)textBox.Tag, value);
+                }
+            };
+
+            textBox.LostFocus += (s, e) =>
+            {
+                if (decimal.TryParse(textBox.Text, out var val))
+                    textBox.Text = val.ToString("G");
             };
 
             return textBox;
         }
 
+
+        #region reset table after recalculation
+        public void ResetTextBoxesAfterRecanculation(TabPage tabPage, List<FormulaDetails> formulaDetails)
+        {
+            _isInitializing = true;
+
+            var panel = tabPage.Controls.OfType<Panel>().FirstOrDefault();
+            var table = panel?.Controls.OfType<TableLayoutPanel>().FirstOrDefault();
+
+            ClearTextBoxesOnTab(panel, table);
+
+            List<TextBox> textBoxes = GetTextBoxesInThirdColumn(table);
+
+            for (int i = 0; i < formulaDetails.Count; i++)
+            {
+                string newText = IsAngle(formulaDetails[i].Notation) ?
+                    RoundAngle(formulaDetails[i].Notation, formulaDetails[i].Result) : formulaDetails[i].Result.ToString();
+
+                textBoxes[i].Text = newText;
+            }
+
+            _isInitializing = false;
+        }
+
+        private void ClearTextBoxesOnTab(Panel panel, TableLayoutPanel table)
+        {
+            if (table == null) return;
+
+            bool prev = _isInitializing;
+            try
+            {
+                _isInitializing = true;
+
+                foreach (Control c in table.Controls)
+                {
+                    if (c is TextBox tb)
+                    {
+                        tb.Text = string.Empty;
+                        tb.AccessibleDescription = string.Empty;
+                        //tb.BackColor = SystemColors.Window;
+                    }
+                }
+            }
+            finally
+            {
+                _isInitializing = prev;
+            }
+        }
+
+        private List<TextBox> GetTextBoxesInThirdColumn(TableLayoutPanel table)
+        {
+            var list = new List<TextBox>();
+            int cols = table.ColumnCount;
+            int rows = table.RowCount;
+
+            int targetCol = 2;
+
+            for (int r = 0; r < rows; r++)
+            {
+                var ctl = table.GetControlFromPosition(targetCol, r);
+                if (ctl is TextBox tb) list.Add(tb);
+            }
+
+            return list;
+        }
+        #endregion
+
+
         private bool IsAngle(string value)
         {
-            //return false; // временно отлючил данную функцию
-
             return Constants.anglesThatRoundForMinutes.Contains(value) ||
                    Constants.anglesThatRoundForSeconds.Contains(value);
         }
