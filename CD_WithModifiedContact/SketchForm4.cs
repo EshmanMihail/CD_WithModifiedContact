@@ -19,6 +19,7 @@ namespace CD_WithModifiedContact
 
         private void SketchForm4_Load(object sender, EventArgs e)
         {
+            labelRpmax.Text = "rpmax";
             SetLabelsAutoSize(this, 8);
         }
 

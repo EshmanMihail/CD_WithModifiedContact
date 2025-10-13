@@ -37,9 +37,9 @@ namespace CD_WithModifiedContact
             {
                 foreach (var f in p.GetFormulasInfo())
                 {
-                    if (f.Notation == FormulaSymbols.h1) labelh1.Text = f.Result.ToString();
-                    else if (f.Notation == FormulaSymbols.R2) labelR21.Text = f.Result.ToString();
-                    else if (f.Notation == FormulaSymbols.R2) labelR22.Text = f.Result.ToString();
+                    if (f.Notation == FormulaSymbols.R2) labelR21.Text = f.Result.ToString();
+                    if (f.Notation == FormulaSymbols.R2) labelR22.Text = f.Result.ToString();
+                    else if (f.Notation == FormulaSymbols.h1) labelh1.Text = f.Result.ToString();
                     else if (f.Notation == FormulaSymbols.dm) labelDm.Text = f.Result.ToString();
                     else if (f.Notation == FormulaSymbols.h) labelh.Text = f.Result.ToString();
                 }

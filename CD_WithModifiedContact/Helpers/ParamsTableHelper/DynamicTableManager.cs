@@ -140,7 +140,9 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 
                 string result = IsAngle(formula.Notation) ? RoundAngle(formula.Notation, formula.Result) : formula.Result.ToString();
 
-                AddRowWithTextBox(formula.Description, formula.Notation, result, newRowIndex);
+                string sketchesNumbers = IsOnSketch(formula.Notation) ? GetUsedSketches(formula.Notation) : "";
+
+                AddRowWithTextBox(formula.Description + sketchesNumbers, formula.Notation, result, newRowIndex);
             }
 
             table.ResumeLayout();
@@ -262,6 +264,52 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
         }
         #endregion
 
+
+        private bool IsOnSketch(string value)
+        {
+            return Constants.valuesPage1.Contains(value) ||
+                   Constants.valuesPage2.Contains(value) ||
+                   Constants.valuesPage3.Contains(value) ||
+                   Constants.valuesPage4.Contains(value) ||
+                   Constants.valuesPage5.Contains(value) ||
+                   Constants.valuesPage6.Contains(value) ||
+                   Constants.valuesPage7.Contains(value);
+        }
+
+        private string GetUsedSketches(string value)
+        {
+            return "Рисунок" + GetNumberOfUsedSketches(value);
+        }
+
+        private string GetNumberOfUsedSketches(string value)
+        {
+            string result = "";
+            if (Constants.valuesPage1.Contains(value)) result += " 1";
+            if (Constants.valuesPage2.Contains(value)) result += " 2";
+            if (Constants.valuesPage3.Contains(value)) result += " 3";
+            if (Constants.valuesPage4.Contains(value)) result += " 4";
+            if (Constants.valuesPage5.Contains(value)) result += " 5";
+            if (Constants.valuesPage6.Contains(value)) result += " 6";
+            if (Constants.valuesPage7.Contains(value)) result += " 7";
+
+            return AddCommas(result);
+        }
+
+        private string AddCommas(string strToAdd)
+        {
+            var sb = new System.Text.StringBuilder();
+            bool isFirstNumber = true;
+            for (int i = 0; i <  strToAdd.Length; i++)
+            {
+                if (i != strToAdd.Length - 1 && strToAdd[i + 1] >= '0' && strToAdd[i + 1] <= '9' && !isFirstNumber)
+                {
+                    sb.Append(',');
+                }
+                else isFirstNumber = false;
+                sb.Append(strToAdd[i]);
+            }
+            return sb.ToString();
+        }
 
         private bool IsAngle(string value)
         {

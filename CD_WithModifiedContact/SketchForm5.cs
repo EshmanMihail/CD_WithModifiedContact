@@ -99,6 +99,7 @@ namespace CD_WithModifiedContact
 
         private void FillInitParams()
         {
+            labelB1.Text = initialParameters.B.ToString();
             labeld1.Text = initialParameters.d.ToString();
             labeld2.Text = initialParameters.d.ToString();
 
