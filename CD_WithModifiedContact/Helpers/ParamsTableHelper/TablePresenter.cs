@@ -34,7 +34,15 @@ namespace CD_WithModifiedContact.Helpers.ParamsTableHelper
         {
             for (int i = 0; i < results.Count; i++)
             {
-                tableManager.ResetTextBoxesAfterRecanculation(tabPages[i], results[i].GetFormulasInfo());
+                var page = tabPages[i];
+
+                if (page.Controls.Count == 0)
+                {
+                    tableManager.InitializeTabPageComponents(page);
+                    tableManager.AddFormulasToTable(results[i].GetFormulasInfo());
+                }
+
+                tableManager.ResetTextBoxesAfterRecanculation(page, results[i].GetFormulasInfo());
             }
         }
 

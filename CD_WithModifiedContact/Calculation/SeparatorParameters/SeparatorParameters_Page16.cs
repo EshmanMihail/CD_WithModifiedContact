@@ -159,7 +159,6 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
 
                 decimal degrees = radians * (decimal)(180 / Math.PI);
                 decimal resultValue = 180 - 2 * degrees;
-
                 //alphar = ParameterRounder.RoundRadiansToOneDegree(resultValue);
                 alphar = ParameterRounder.RoundToStep(resultValue, 1.0m);
             }
@@ -212,7 +211,9 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                double radians = Math.Asin((double)(2 * lp.L1 / (3 * lp.R)));
+                double x = (double)(2m * lp.L1 / (3m * lp.R));
+                double radians = Math.Asin(x);
+                double degrees = radians * 180.0 / Math.PI;
 
                 if (double.IsNaN(radians) || double.IsInfinity(radians))
                 {

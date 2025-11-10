@@ -13,9 +13,9 @@ namespace CD_WithModifiedContact.Helpers
         /// <returns>Диапазон и среднее значение.</returns>
         public RangeResult CalculateRange(decimal baseValue, decimal minRangeCoefficient, decimal maxRangeCoefficient)
         {
-            decimal minRangeValue = Math.Round(baseValue * minRangeCoefficient, 2);
-            decimal maxRangeValue = Math.Round(baseValue * maxRangeCoefficient, 2);
-            decimal averageValue = Math.Round((minRangeValue + maxRangeValue) / 2, 2);
+            decimal minRangeValue = baseValue * minRangeCoefficient;
+            decimal maxRangeValue = baseValue * maxRangeCoefficient;
+            decimal averageValue = (minRangeValue + maxRangeValue) / 2;
 
             return new RangeResult
             {

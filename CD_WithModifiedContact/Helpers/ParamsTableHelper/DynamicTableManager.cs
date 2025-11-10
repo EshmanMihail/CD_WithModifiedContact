@@ -206,6 +206,12 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
             var panel = tabPage.Controls.OfType<Panel>().FirstOrDefault();
             var table = panel?.Controls.OfType<TableLayoutPanel>().FirstOrDefault();
 
+            if (table == null || panel == null)
+            {
+                _isInitializing = false;
+                return;
+            }
+
             ClearTextBoxesOnTab(panel, table);
 
             List<TextBox> textBoxes = GetTextBoxesInThirdColumn(table);
@@ -299,7 +305,7 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
         {
             var sb = new System.Text.StringBuilder();
             bool isFirstNumber = true;
-            for (int i = 0; i <  strToAdd.Length; i++)
+            for (int i = 0; i < strToAdd.Length; i++)
             {
                 if (i != strToAdd.Length - 1 && strToAdd[i + 1] >= '0' && strToAdd[i + 1] <= '9' && !isFirstNumber)
                 {
@@ -313,6 +319,7 @@ namespace CD_WithModifiedContact.Helpers.LayoutParamsHelper
 
         private bool IsAngle(string value)
         {
+            return false;
             return Constants.anglesThatRoundForMinutes.Contains(value) ||
                    Constants.anglesThatRoundForSeconds.Contains(value);
         }

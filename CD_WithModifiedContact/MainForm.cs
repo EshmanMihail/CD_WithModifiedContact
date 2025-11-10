@@ -89,6 +89,7 @@ namespace CD_WithModifiedContact
             TablePresenter tablePresenter = new TablePresenter(tableManager, tabPagesList);
 
             if (controller != null) tablePresenter.ShowRecalculatedResults(controller.GetListOfParameters());
+            MessageBox.Show("Перерасчёт завершён.");
         }
 
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)

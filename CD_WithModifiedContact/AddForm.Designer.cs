@@ -428,6 +428,7 @@
             this.comboBoxk.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxk.FormattingEnabled = true;
             this.comboBoxk.Items.AddRange(new object[] {
+            "0",
             "1:12",
             "1:30"});
             this.comboBoxk.Location = new System.Drawing.Point(420, 639);

@@ -71,7 +71,7 @@ namespace CD_WithModifiedContact.Calculation.OuterRingParameters
 
                 decimal valueSqrt = (decimal)(Math.Sqrt((double)valueUnderSqrt));
 
-                D2 = ParameterRounder.RoundToStep(valueSqrt, 0.1m);
+                D2 = ParameterRounder.RoundToStep(valueSqrt, 0.001m);
             }
             catch (Exception ex)
             {

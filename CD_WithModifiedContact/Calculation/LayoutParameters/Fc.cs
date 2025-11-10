@@ -42,7 +42,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 
         public static decimal GetValue(decimal Dwe, decimal Dpw, decimal alpha)
         {
-            decimal formulaValue = Math.Round(Dwe * (decimal)Math.Cos((double)alpha) / Dpw, 3);
+            decimal formulaValue = Math.Round(Dwe * (decimal)Math.Cos((double)alpha) / Dpw, 2);
 
             var minValue = keyValues.Keys.Min();
             var maxValue = keyValues.Keys.Max();

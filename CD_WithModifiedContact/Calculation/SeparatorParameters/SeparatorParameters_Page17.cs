@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CD_WithModifiedContact.Helpers;
+using System;
 using System.Collections.Generic;
-using CD_WithModifiedContact.Helpers;
+using System.Text;
+using System.Windows.Forms;
 
 namespace CD_WithModifiedContact.Calculation.SeparatorParameters
 {
@@ -109,6 +111,19 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
+                var sb = new StringBuilder();
+                sb.AppendLine($"dr = {dr}");
+                sb.AppendLine($"Dc = {Dc}");
+                sb.AppendLine($"D0 = {D0}");
+                sb.AppendLine($"dw = {lp.Dw}");
+                sb.AppendLine($"R = {lp.R}");
+                sb.AppendLine($"Bc = {Bc}");
+                sb.AppendLine($"S = {S}");
+                sb.AppendLine($"L1 = {lp.L1}");
+                sb.AppendLine($"Fic (rad) = {Fic}");
+
+                MessageBox.Show(sb.ToString(), "Промежуточные значения", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 double dr_square = Math.Pow((double)dr, 2);
                 double DcMinusD0_square = Math.Pow((double)(Dc - D0), 2);
 
@@ -120,43 +135,42 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
                 decimal sqrtValue = (decimal)Math.Sqrt(R_square - sencondValueSquare);
 
                 decimal rightPart = lp.Dw - 2 * (lp.R - sqrtValue);
-
+                System.Windows.Forms.MessageBox.Show($"{leftPart} < {rightPart}");
                 if (leftPart >= rightPart) // условие не выполняется
                 {
                     showMessage.Invoke($"При проверки замка сепаратора, условие не выполняется\n" +
                         $"следует увеличить диаметр {FormulaSymbols.Dc1} или высоту сепаратора {FormulaSymbols.Bc}.");
-                }
 
-                decimal difference = (decimal)Math.Abs(rightPart - leftPart);
+                    decimal difference = (decimal)Math.Abs(rightPart - leftPart);
 
-                string message = $"Для ролика диаметром {lp.Dw}, разница в неравенстве, при проверки замка сепаратора, должна быть не менее:";
-                bool isRight = true;
-                if (lp.Dw <= 10 && difference >= 0.3m)
-                {
-                    isRight = false;
-                    message += "0.3мм";
-                }
-                else if (lp.Dw > 10 && lp.Dw <= 18 && difference >= 0.5m) 
-                {
-                    isRight = false;
-                    message += "0.5мм";
-                }
-                else if (lp.Dw > 18 && lp.Dw <= 30 && difference >= 0.8m)
-                {
-                    isRight = false;
-                    message += "0.8мм";
-                }
-                else if (lp.Dw > 30 && lp.Dw <= 50 && difference >= 1.0m)
-                {
-                    isRight = false;
-                    message += "1.0мм";
-                }
+                    string message = $"Для ролика диаметром {lp.Dw}, разница в неравенстве, при проверки замка сепаратора, должна быть не менее:";
+                    bool isRight = true;
+                    if (lp.Dw <= 10 && difference >= 0.3m)
+                    {
+                        isRight = false;
+                        message += "0.3мм";
+                    }
+                    else if (lp.Dw > 10 && lp.Dw <= 18 && difference >= 0.5m)
+                    {
+                        isRight = false;
+                        message += "0.5мм";
+                    }
+                    else if (lp.Dw > 18 && lp.Dw <= 30 && difference >= 0.8m)
+                    {
+                        isRight = false;
+                        message += "0.8мм";
+                    }
+                    else if (lp.Dw > 30 && lp.Dw <= 50 && difference >= 1.0m)
+                    {
+                        isRight = false;
+                        message += "1.0мм";
+                    }
 
-                if (!isRight)
-                {
-                    showMessage.Invoke(message);
+                    if (!isRight)
+                    {
+                        showMessage.Invoke(message);
+                    }
                 }
-
             }
             catch (Exception ex)
             {

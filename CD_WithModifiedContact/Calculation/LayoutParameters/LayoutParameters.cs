@@ -106,7 +106,8 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
 
                 decimal d1 = (3m * initParams.D + initParams.d + initParams.B * FractionConverter.GetFraction(initParams.k, 2)) / denominator;
 
-                D1 = ParameterRounder.RoundToStep(d1, 1.0m);
+                //D1 = ParameterRounder.RoundToStep(d1, 1.0m);
+                D1 = d1;
             }
             catch (Exception ex)
             {
@@ -199,7 +200,7 @@ namespace CD_WithModifiedContact.Calculation.LayoutParameters
                 int integerPart = int.Parse(integerPartStr);
 
                 if (integerPart % 2 == 0) z = integerPart;
-                else z = ParameterRounder.RoundToStep(fraction, 1.0m);
+                else z = integerPart + 1;
             }
             catch (Exception ex)
             {
