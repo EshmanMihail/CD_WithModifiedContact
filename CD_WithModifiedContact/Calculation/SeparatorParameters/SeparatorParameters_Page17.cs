@@ -111,18 +111,18 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
         {
             try
             {
-                var sb = new StringBuilder();
-                sb.AppendLine($"dr = {dr}");
-                sb.AppendLine($"Dc = {Dc}");
-                sb.AppendLine($"D0 = {D0}");
-                sb.AppendLine($"dw = {lp.Dw}");
-                sb.AppendLine($"R = {lp.R}");
-                sb.AppendLine($"Bc = {Bc}");
-                sb.AppendLine($"S = {S}");
-                sb.AppendLine($"L1 = {lp.L1}");
-                sb.AppendLine($"Fic (rad) = {Fic}");
+                //var sb = new StringBuilder();
+                //sb.AppendLine($"dr = {dr}");
+                //sb.AppendLine($"Dc = {Dc}");
+                //sb.AppendLine($"D0 = {D0}");
+                //sb.AppendLine($"dw = {lp.Dw}");
+                //sb.AppendLine($"R = {lp.R}");
+                //sb.AppendLine($"Bc = {Bc}");
+                //sb.AppendLine($"S = {S}");
+                //sb.AppendLine($"L1 = {lp.L1}");
+                //sb.AppendLine($"Fic (rad) = {Fic}");
 
-                MessageBox.Show(sb.ToString(), "Промежуточные значения", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(sb.ToString(), "Промежуточные значения", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 double dr_square = Math.Pow((double)dr, 2);
                 double DcMinusD0_square = Math.Pow((double)(Dc - D0), 2);
@@ -135,7 +135,7 @@ namespace CD_WithModifiedContact.Calculation.SeparatorParameters
                 decimal sqrtValue = (decimal)Math.Sqrt(R_square - sencondValueSquare);
 
                 decimal rightPart = lp.Dw - 2 * (lp.R - sqrtValue);
-                System.Windows.Forms.MessageBox.Show($"{leftPart} < {rightPart}");
+                //System.Windows.Forms.MessageBox.Show($"{leftPart} < {rightPart}");
                 if (leftPart >= rightPart) // условие не выполняется
                 {
                     showMessage.Invoke($"При проверки замка сепаратора, условие не выполняется\n" +

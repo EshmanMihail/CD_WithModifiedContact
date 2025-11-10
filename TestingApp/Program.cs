@@ -9,7 +9,7 @@ namespace TestingApp
         {
             string inputPath = @"D:\testImage\kot.jpg";
 
-            string outputPath = @"D:\testImage\output_kot.jpg";
+            string outputPath = @"D:\testImage\output_kot_new.jpg";
 
             using (Bitmap bitmap = new Bitmap(inputPath))
             {
@@ -20,6 +20,7 @@ namespace TestingApp
 
                     graphics.DrawString("300 мм", font, brush, new PointF(355, 250));
                     graphics.DrawString("planetDestroer", font, brush, new PointF(35, 45));
+                    graphics.DrawString("fullofrage", font, brush, new PointF(35, 450));
 
                 }
                 bitmap.Save(outputPath);

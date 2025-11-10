@@ -102,6 +102,8 @@
     <Compile Include="Helpers\Range\RangeCalculator.cs" />
     <Compile Include="Helpers\Range\RangeDisplayManager.cs" />
     <Compile Include="Helpers\Range\RangeResult.cs" />
+    <Compile Include="Helpers\SketchRenderHelper\SketchRenderer.cs" />
+    <Compile Include="Helpers\SketchRenderHelper\TextItem.cs" />
     <Compile Include="Helpers\TextBoxValidator.cs" />
     <Compile Include="Helpers\Xml\XmlBearingRepository.cs" />
     <Compile Include="Helpers\Xml\XmlRemover.cs" />
@@ -229,14 +231,28 @@
     <Content Include="Data\BearingsData.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Sketches\Page7.jpg" />
-    <None Include="Sketches\Page6.jpg" />
-    <None Include="Sketches\Page5.jpg" />
-    <None Include="Sketches\Page4.jpg" />
-    <None Include="Sketches\Page3.jpg" />
+    <None Include="Sketches\Page7.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Sketches\Page6.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Sketches\Page5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Sketches\Page4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Sketches\Page3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Page1.jpg" />
-    <Content Include="Sketches\Page2.jpg" />
-    <Content Include="Sketches\Page1.jpg" />
+    <Content Include="Sketches\Page2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sketches\Page1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
