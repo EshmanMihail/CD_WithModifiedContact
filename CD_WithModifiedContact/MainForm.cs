@@ -120,12 +120,16 @@ namespace CD_WithModifiedContact
 
         private void buttonSketch_Click(object sender, EventArgs e)
         {
-            SketchForm1 sketchForm1 = new SketchForm1();
-            sketchForm1.Show();
+            if (listViewBearingsName.SelectedItems.Count > 0)
+            {
+                SketchForm1 sketchForm1 = new SketchForm1();
+                sketchForm1.Show();
 
-            var selectedItem = listViewBearingsName.SelectedItems[0];
-            string selectedId = selectedItem.Tag.ToString();
-            sketchForm1.FillParamsOnSketch(GetInitialParameterObject(selectedId), controller.GetListOfParameters());
+                var selectedItem = listViewBearingsName.SelectedItems[0];
+                string selectedId = selectedItem.Tag.ToString();
+                sketchForm1.FillParamsOnSketch(GetInitialParameterObject(selectedId), controller.GetListOfParameters());
+            }
+            else ErrorHandler.ShowError("Выберите подшипкик!");
         }
     }
 }
